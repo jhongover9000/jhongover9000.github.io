@@ -14,9 +14,9 @@
     <link rel="stylesheet" href="css/jquery-waves.min.css">
 </head>
 
-<!-- AOS  -->
+<!-- AOS. Only used for the starting screen because it doesn't work with horizontal scrolling.
+Most likely because it's based off of scrollY, rather than scrollX. -->
 <body data-aos-easing="ease-out-back" data-aos-duration="1000" data-aos-delay="0" data-new-gr-c-s-check-loaded="14.993.0" data-gr-ext-installed="">
-
 
     <div id="outer_wrapper">
             <!-- Transition into intro screen, "moving on...".
@@ -36,7 +36,8 @@
                         <br>
                         <br>
                         <span class="descriptionText">30 minutes to film, then 30 minutes to edit.
-                        no designated topic, no preplanned style. on the spot.</span>
+                        no designated topic, no preplanned style. on the spot. the film was a project
+                        for NYUAD Communications Lab.</span>
                     </p>
                     <br>
                     <br>
@@ -87,18 +88,17 @@
                             as the direction in which this site progresses is in relation to the theme
                             of progressing forward. </span>
                     </p>
+                    <div>
+                        <image class="image" src="img/running.gif"></image>
+                    </div>
                 </div>
             </div>
             <div class="subScreen2" id="slide4">
-                <h2 class="subScreenTitle">and beyond.</h2>
+                <h2 class="subScreenTitle" id="finalWord">and beyond.</h2>
             </div>
             <div class="subScreen2" id="slide5">
-                <p class="description">(credits and design stuff).</p>
+                <p class="description"></p>
             </div>
-
-
-
-
         </div>
     </div>
 
@@ -133,17 +133,15 @@
             click here to watch the film.
             <br>
             <br>
-            (you can revisit later.)
+            <span class="smallText">(you can revisit later.)</span>
         </p>
         <p class="filmSelectText" onclick="fadeOut(filmSelect); fadeIn(outer_wrapper)">
             click here to skip the film.
             <br>
             <br>
-            (you can revisit later.)
+            <span class="smallText">(you can revisit later.)</span>
         </p>
     </div>
-
-
 
     <!-- Begins with an empty screen with text. Click to begin. -->
     <div id="startScreen" class="introScreen" onclick="fadeOut(startScreenText,500);fadeOut(this,1000); fadeIn(filmSelect);">
@@ -151,7 +149,6 @@
             click to begin the journey.
         </p>
     </div>
-
     
     
     <!-- JavaScript Files. These include the homemade one for basic events,

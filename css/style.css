@@ -35,7 +35,7 @@ body {
     left: 0;
     margin: 0;
     background-color: black;
-    cursor: default;
+    cursor: pointer;
 }
 /* centered using margin manipulation. by setting the initial value, then
 making the margins negative half of the width and height, you can center text. */
@@ -53,7 +53,15 @@ making the margins negative half of the width and height, you can center text. *
     font-weight: lighter;
     text-align: center;
     font-size: 5vw;
+    animation: glow 2500ms linear infinite 2000ms;
 }
+/* update: I added a little glow function to the thing to make it prettier :))
+source: https://codepen.io/onecastell/pen/VwZWBvr */
+  @keyframes glow {
+    40% {
+      text-shadow: 0 0 8px #fff;
+    }
+  }  
 
 /* film selection screen (choose to view or not) */
 #filmSelect {
@@ -64,7 +72,7 @@ making the margins negative half of the width and height, you can center text. *
     left: 0;
     margin: 0;
     background-color: black;
-    cursor: default;
+    cursor: pointer;
 }
 .filmSelectText {
     position: relative;
@@ -79,6 +87,13 @@ making the margins negative half of the width and height, you can center text. *
     font-size: 3vw;
     display: inline-block;
 }
+.smallText{
+    font-size: 2vw;
+}
+.filmSelectText:hover {
+    color: rgba(255,255,255,1);
+}
+
 
 /* div that holds the film and an option to go back to the website. */
 #filmDiv{
@@ -105,16 +120,23 @@ making the margins negative half of the width and height, you can center text. *
     width: 30vw;
     height: 10vh;
     margin: auto;
-    color: white;
+    color: white; opacity: 0.7;
     font-family: Helvetica;
     font-weight: lighter;
     text-align: center;
     font-size: 2vh;
+    cursor: pointer;
     display: block;
+}
+#close-button:hover {
+    color: white; opacity: 1;
 }
 
 /* this is the horizontal scrolling method that prof. Jiwon showed as an example.
-I used this because the original idea didn't support scrolling location updates. */
+I used this because the original idea didn't support scrolling location updates.
+I figured out the displaying problem, and it was because I needed to set the outer_wrapper
+display mode to flex to keep everything on the same line. the function I wrote for fading in
+had been setting this to block. */
 #outer_wrapper {
     height: 100vh;
     width: calc(100vw + (var(--subSlideCount) * var(--slideWidth)));
@@ -122,7 +144,7 @@ I used this because the original idea didn't support scrolling location updates.
     display: none;
 }
 #titleScreen {
-    margin-top: auto;
+    margin-top: 0;
     width: 100vw;
     height: 100vh;
     top: 0;
@@ -130,6 +152,7 @@ I used this because the original idea didn't support scrolling location updates.
     display: inline-block;
 }
 .titleText {
+    margin-top: 20vh;
     top: 25vh;
     left: 50vw;
     color: rgba(255,255,255,0.8);
@@ -142,12 +165,16 @@ I used this because the original idea didn't support scrolling location updates.
 .subScreen {
     top: 0;
     left: 0;
+    margin-top: 0;
     display: inline-block;
     width: var(--slideWidth);
     height: 100vh;
     color: white;
 }
 .subScreen2 {
+    top: 0;
+    left: 0;
+    margin-top: 0;
     display: inline-block;
     width: var(--slideWidth);
     height: 100vh;
@@ -160,9 +187,8 @@ I used this because the original idea didn't support scrolling location updates.
     font-size: 3.5vw;
 }
 .descriptionBlock {
-    display: inline-block;
     width: 50%;
-    height: 50vh;
+    height: 100vh;
 }
 .description {
     margin-left: 3vw;
@@ -177,11 +203,28 @@ I used this because the original idea didn't support scrolling location updates.
     font-size: 1.5vw;
 }
 .image {
-    margin-left: 3vw;
-    width: 50%;
-    height: auto;
     display: inline-block;
+    margin-left: 3vw;
+    width: 40%;
+    height: auto;
 }
+#finalWord {
+    width: 50vw;
+    height: 5vh;
+    top: 50%;
+    right: 50%;
+    color: black;
+    font-family: Helvetica;
+    font-weight: lighter;
+    text-align: left;
+    font-size: 5vw;
+    animation: glow 2500ms linear infinite 2000ms;
+}
+  @keyframes glow {
+    40% {
+      text-shadow: 0 0 8px gray;
+    }
+  }  
 
 /* navigation triangle (color will change as screen scrolls) */
 #button-right {
@@ -193,7 +236,7 @@ I used this because the original idea didn't support scrolling location updates.
     border-top: 15px solid transparent;
     border-left: 30px solid gray; opacity: 0.3;
     border-bottom: 15px solid transparent;
-    animation: pulse 2s infinite;
+    cursor: pointer;
 }
 /* when hovering over, the arrows become more opaque */
 #button-right:hover {
@@ -221,6 +264,7 @@ I used this because the original idea didn't support scrolling location updates.
     border-top: 15px solid transparent;
     border-right: 30px solid gray; opacity: 0.3;
     border-bottom: 15px solid transparent;
+    cursor: pointer;
 }
 /* when hovering over, the arrows become more opaque */
 #button-left:hover{
@@ -251,5 +295,6 @@ I used this because the original idea didn't support scrolling location updates.
     font-size: 1.2vh;
     font-family: Helvetica;
     color: gray;
+    cursor: pointer;
 }
 
