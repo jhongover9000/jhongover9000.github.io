@@ -37,8 +37,8 @@ function filmOut(){
     var outer_wrapper = document.getElementById("outer_wrapper");
 
     if(film.style.display !== "none"){
-        document.getElementById("mainFilm").pause();
         document.getElementById("mainFilm").load();       // reset film (can also use currentTime = 0)
+        document.getElementById("mainFilm").pause();
         $("#filmDiv").fadeOut();
     }
     // displays the website if it isn't displaying already
