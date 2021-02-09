@@ -18,6 +18,10 @@
 Most likely because it's based off of scrollY, rather than scrollX. -->
 <body data-aos-easing="ease-out-back" data-aos-duration="1000" data-aos-delay="0" data-new-gr-c-s-check-loaded="14.993.0" data-gr-ext-installed="">
 
+    <!-- This is the implementation that Prof. Jiwon suggested, which basically makes a really
+    wide screen that you can navigate using horizontal scrolling. I've used jQuery to convert vertical
+    scrolling to horizontal as well, so it should work either way (hence decreasing the need for users
+    to wonder which way to scroll–– they can do it both ways!) -->
     <div id="outer_wrapper">
             <!-- Transition into intro screen, "moving on...".
             This is also where instructions on how to scroll/click an arrow to move forward is given. -->
@@ -54,7 +58,7 @@ Most likely because it's based off of scrollY, rather than scrollX. -->
                     </p>
                 </div>
             </div>
-
+            <!-- These two slides have images. One is a normal image, the other is a GIF. They both work, which is nice. -->
             <div class="subScreen" id="slide2">
                 <h2 class="subScreenTitle">pressing forward...</h2>
                 <br>
@@ -88,6 +92,7 @@ Most likely because it's based off of scrollY, rather than scrollX. -->
                             as the direction in which this site progresses is in relation to the theme
                             of progressing forward. </span>
                     </p>
+                    <br>
                     <div>
                         <image class="image" src="img/running.gif"></image>
                     </div>
@@ -103,7 +108,10 @@ Most likely because it's based off of scrollY, rather than scrollX. -->
     </div>
 
     <!-- This is the navigation section. It includes the arrow to move forward,
-    as well as the constellation map to navigate through the page. -->
+    as well as the constellation map to navigate through the page. At least it was
+    supposed to. If I had more time, I could definitely implement it. I just need to anchor
+    the elements, and that's a piece of cake. Also, to link them, I found this source: http://jsfiddle.net/v8pbc/
+    In other words, all I need is the time to do it! -->
     <a>
         <div id="button-right" onclick="scrollRight(); fadeOut(instructRight)"></div>
         <div id="instructRight">Press to move forward.</div>

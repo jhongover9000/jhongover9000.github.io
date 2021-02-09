@@ -241,7 +241,7 @@ had been setting this to block. */
 /* when hovering over, the arrows become more opaque */
 #button-right:hover {
     transition:1s;
-    border-left: 30px solid gray; opacity: 0.7;
+    border-left: 30px solid gray; opacity: 1;
 }
 #instructRight {
     position: fixed;
@@ -269,7 +269,7 @@ had been setting this to block. */
 /* when hovering over, the arrows become more opaque */
 #button-left:hover{
     transition:1s;
-    border-right: 30px solid gray; opacity: 0.7;
+    border-right: 30px solid gray; opacity: 1;
 }
 #instructLeft {
     position: fixed;
@@ -282,7 +282,7 @@ had been setting this to block. */
     font-family: Helvetica;
     color: gray;
 }
-#watchFilmAgain{
+#watchFilmAgain { 
     position: fixed;
     display: block;
     left: 50vw;
@@ -294,7 +294,11 @@ had been setting this to block. */
     text-align: center;
     font-size: 1.2vh;
     font-family: Helvetica;
-    color: gray;
+    color: gray; opacity: 0.7;
     cursor: pointer;
 }
+#watchFilmAgain:hover{
+    color: gray; opacity: 1;
+}
+
 

@@ -2,7 +2,8 @@
 let startScreen = document.getElementById("startScreen");
 let webPage = document.getElementById("outer_wrapper");
 
-// View Width and Height
+// View Width and Height. This, however, will have to be changed if the subscreen width
+// is changed on CSS.
 // https://stackoverflow.com/questions/1248081/how-to-get-the-browser-viewport-dimensions
 const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
 const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
@@ -15,7 +16,7 @@ const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeig
 function fadeIn(elem, time = 500){
     $this = $(elem);
     $this.stop().fadeIn(time);
-    elem.style.display = "inline-block";
+    elem.style.display = "flex";
 }
 function fadeOut(elem, time = 500){
     $this = $(elem);
@@ -51,6 +52,7 @@ function filmOut(){
 function scrollRight(){
     var locX = window.scrollX + vw;
     window.scrollTo(locX,0);
+    document.body.style.setProperty('--scroll',locX);
 }
 
 // Function to Move Left (button click)
@@ -59,17 +61,24 @@ function scrollL(){
     if(locX <= 0){
         window.scrollTo(0,0);
     }
-    else{window.scrollTo(locX,0);
+    else{
+        window.scrollTo(locX,0);
+        document.body.style.setProperty('--scroll',locX);
     }
+    
 }
 
-// This changes vertical scrolling to horizontal scrolling using the jquery script
+// This changes vertical scrolling to horizontal scrolling using the jquery script.
+// Theoretically, this should work, since I'm converting the event difference directly into
+// scrollLeft. And it did work. But for some reason, at one point it just kinda stopped.
+// There is a possibility that it may be because I'm using a trackpad, rather than an actual scroll.
 // mousewheel.min.js. Referenced from here: https://stackoverflow.com/questions/24639103/changing-vertical-scroll-to-horizontal
 $(document).ready(function() {
     $('html, body, *').mousewheel(function(e, delta) {
-    this.scrollLeft -= (delta);
+    this.scrollLeft -= (delta * 80);
     e.preventDefault();
     });
+
     });
 
 
