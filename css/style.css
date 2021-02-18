@@ -6,10 +6,10 @@
     --subSlideCount: 5;
 }
 
-/* hiding overflow for y and smoothing scrolling */
+/* hiding overflow for y. update: the smooth scrolling style was what was breaking 
+the scroll function. */
 html {
     overflow-y: hidden;
-    scroll-behavior: smooth;
 }
 
 /* get rid of scrollbar */
@@ -35,7 +35,7 @@ body {
     left: 0;
     margin: 0;
     background-color: black;
-    cursor: pointer;
+    cursor: default;
 }
 /* centered using margin manipulation. by setting the initial value, then
 making the margins negative half of the width and height, you can center text. */
@@ -53,15 +53,7 @@ making the margins negative half of the width and height, you can center text. *
     font-weight: lighter;
     text-align: center;
     font-size: 5vw;
-    animation: glow 2500ms linear infinite 2000ms;
 }
-/* update: I added a little glow function to the thing to make it prettier :))
-source: https://codepen.io/onecastell/pen/VwZWBvr */
-  @keyframes glow {
-    40% {
-      text-shadow: 0 0 8px #fff;
-    }
-  }  
 
 /* film selection screen (choose to view or not) */
 #filmSelect {
@@ -72,7 +64,7 @@ source: https://codepen.io/onecastell/pen/VwZWBvr */
     left: 0;
     margin: 0;
     background-color: black;
-    cursor: pointer;
+    cursor: default;
 }
 .filmSelectText {
     position: relative;
@@ -87,13 +79,6 @@ source: https://codepen.io/onecastell/pen/VwZWBvr */
     font-size: 3vw;
     display: inline-block;
 }
-.smallText{
-    font-size: 2vw;
-}
-.filmSelectText:hover {
-    color: rgba(255,255,255,1);
-}
-
 
 /* div that holds the film and an option to go back to the website. */
 #filmDiv{
@@ -120,31 +105,24 @@ source: https://codepen.io/onecastell/pen/VwZWBvr */
     width: 30vw;
     height: 10vh;
     margin: auto;
-    color: white; opacity: 0.7;
+    color: white;
     font-family: Helvetica;
     font-weight: lighter;
     text-align: center;
     font-size: 2vh;
-    cursor: pointer;
     display: block;
-}
-#close-button:hover {
-    color: white; opacity: 1;
 }
 
 /* this is the horizontal scrolling method that prof. Jiwon showed as an example.
-I used this because the original idea didn't support scrolling location updates.
-I figured out the displaying problem, and it was because I needed to set the outer_wrapper
-display mode to flex to keep everything on the same line. the function I wrote for fading in
-had been setting this to block. */
+I used this because the original idea didn't support scrolling location updates. */
 #outer_wrapper {
     height: 100vh;
     width: calc(100vw + (var(--subSlideCount) * var(--slideWidth)));
     position: absolute;
-    display: none;
+    display: flex;
 }
 #titleScreen {
-    margin-top: 0;
+    margin-top: auto;
     width: 100vw;
     height: 100vh;
     top: 0;
@@ -152,7 +130,6 @@ had been setting this to block. */
     display: inline-block;
 }
 .titleText {
-    margin-top: 20vh;
     top: 25vh;
     left: 50vw;
     color: rgba(255,255,255,0.8);
@@ -165,16 +142,12 @@ had been setting this to block. */
 .subScreen {
     top: 0;
     left: 0;
-    margin-top: 0;
     display: inline-block;
     width: var(--slideWidth);
     height: 100vh;
     color: white;
 }
 .subScreen2 {
-    top: 0;
-    left: 0;
-    margin-top: 0;
     display: inline-block;
     width: var(--slideWidth);
     height: 100vh;
@@ -187,8 +160,9 @@ had been setting this to block. */
     font-size: 3.5vw;
 }
 .descriptionBlock {
+    display: inline-block;
     width: 50%;
-    height: 100vh;
+    height: 50vh;
 }
 .description {
     margin-left: 3vw;
@@ -203,28 +177,11 @@ had been setting this to block. */
     font-size: 1.5vw;
 }
 .image {
-    display: inline-block;
     margin-left: 3vw;
-    width: 40%;
+    width: 50%;
     height: auto;
+    display: inline-block;
 }
-#finalWord {
-    width: 50vw;
-    height: 5vh;
-    top: 50%;
-    right: 50%;
-    color: black;
-    font-family: Helvetica;
-    font-weight: lighter;
-    text-align: left;
-    font-size: 5vw;
-    animation: glow 2500ms linear infinite 2000ms;
-}
-  @keyframes glow {
-    40% {
-      text-shadow: 0 0 8px gray;
-    }
-  }  
 
 /* navigation triangle (color will change as screen scrolls) */
 #button-right {
@@ -236,12 +193,12 @@ had been setting this to block. */
     border-top: 15px solid transparent;
     border-left: 30px solid gray; opacity: 0.3;
     border-bottom: 15px solid transparent;
-    cursor: pointer;
+    animation: pulse 2s infinite;
 }
 /* when hovering over, the arrows become more opaque */
 #button-right:hover {
     transition:1s;
-    border-left: 30px solid gray; opacity: 1;
+    border-left: 30px solid gray; opacity: 0.7;
 }
 #instructRight {
     position: fixed;
@@ -264,12 +221,11 @@ had been setting this to block. */
     border-top: 15px solid transparent;
     border-right: 30px solid gray; opacity: 0.3;
     border-bottom: 15px solid transparent;
-    cursor: pointer;
 }
 /* when hovering over, the arrows become more opaque */
 #button-left:hover{
     transition:1s;
-    border-right: 30px solid gray; opacity: 1;
+    border-right: 30px solid gray; opacity: 0.7;
 }
 #instructLeft {
     position: fixed;
@@ -282,7 +238,7 @@ had been setting this to block. */
     font-family: Helvetica;
     color: gray;
 }
-#watchFilmAgain { 
+#watchFilmAgain{
     position: fixed;
     display: block;
     left: 50vw;
@@ -294,11 +250,6 @@ had been setting this to block. */
     text-align: center;
     font-size: 1.2vh;
     font-family: Helvetica;
-    color: gray; opacity: 0.7;
-    cursor: pointer;
+    color: gray;
 }
-#watchFilmAgain:hover{
-    color: gray; opacity: 1;
-}
-
 
