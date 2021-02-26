@@ -1,0 +1,182 @@
+
+/* ============================================================================================= */
+/* ============================================================================================= */
+/* Initialization */
+
+/* Variables */
+:root * {
+    --scroll: 0;
+
+    --imgPanelWidth: 100;
+    --txtPanelWidth: 50;
+
+    --quarterGutterWidth: 25;
+    --halfGutterWidth: 50;
+    --fullGutterWidth: 100;
+
+
+}
+
+/* Hide Scrollbar */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* HTML. Vertical overflows are hidden. */
+html {
+    overflow-y: hidden;
+}
+
+/* Body. Possibility to change background color on scroll. */
+body {
+    padding: 0;
+    margin: 10;
+    background-color: blanchedalmond;
+    /* background-color: rgb(calc(var(--scroll)/18),calc(var(--scroll)/18),calc(var(--scroll)/18)); */
+}
+
+/* ============================================================================================= */
+/* ============================================================================================= */
+/* Fixed Elements */
+
+/* Paper Plane */
+#paperPlane {
+    height: 50px;
+    width: 100px;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    margin-top: -25px;
+    margin-left: -50px;
+    transform: translateY(-50%);
+    background-color: black;
+    animation: shudder 100s infinite alternate;
+    animation-fill-mode: forwards;
+}
+@keyframes shudder{
+    0%{
+        transform: rotate(-2deg);
+    }
+    20%{
+        transform: rotate(1deg);
+    }
+    40%{
+        transform: rotate(0deg);
+    }
+    60%{
+        transform: rotate(2deg);
+    }
+    80%{
+        transform: rotate(-1deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
+}
+
+/* ============================================================================================= */
+/* ============================================================================================= */
+/* Main Scrollable Elements */
+
+/* Outer Wrapper. Holds the elements in a flex so that horizontal view is possible. */
+#outerWrapper {
+    position: absolute;
+    display: flex;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    /* width: calc(100vw + ( (var(--imgPanelCount) * var(--imgPanelWidth)*1vw) + (var(--txtPanelCount) * var(--txtPanelWidth)*1vw) ) ); */
+    width: var(--wrapperWidth);
+    align-items: center;
+}
+
+/* Gutters (full, half, quarter). Give space between text and image panels. */
+.gutterFull{
+    display: inline-block;
+    height: 100vh;
+    width: 100vw;
+}
+.gutterHalf{
+    display: inline-block;
+    height: 100vh;
+    width: 50vw;
+}
+.gutterQuarter{
+    display: inline-block;
+    height: 100vh;
+    width: 25vw;
+}
+
+/* Text Divs (Isolated Text Boxes). Divided into top, middle, and bottom based on alignment. */
+.txtPanel {
+    height: 100vh;
+    width: calc(var(--txtPanelWidth) * 1vw);
+    display: flex;
+    justify-items: center;
+    align-items: center;
+}
+.top {
+    align-items: flex-start;
+}
+.middle {
+    /* default is center aligned */
+}
+.bottom{
+    align-items: flex-end;
+}
+.textBox {
+    height: 300px;
+    width: 300px;
+    text-align: center;
+    background-color: wheat;
+    justify-items: center;
+    align-items: center;
+}
+.top .textBox {
+    top: 0;
+    margin-top: 20%;
+}
+.middle .textBox {
+    margin: 0;
+}
+.bottom .textBox {
+    bottom: 0;
+    margin-bottom: 20%;
+}
+
+
+/* Image Panels. Take up the entire div, but images are smaller. Centered in screen. */
+.imgPanel {
+    display: flex;
+    height: 100vh;
+    width: calc(var(--imgPanelWidth) * 1vw);
+    justify-items: center;
+    align-items: center;
+}
+.panelImg {
+    display: inline-block;
+    border:black;
+    background-color: burlywood;
+    height: 720px;
+    width: 1020px;
+    top: 50%;
+    left: 50%;
+}
+.imgText {
+    position: absolute;
+}
+.imgText .top{
+
+}
+.imgText .bottom{
+    
+}
+
+/* ============================================================================================= */
+/* ============================================================================================= */
+/* Clickable Elements */
+
+/* Start Over Button */
+#beginAgain {
+    cursor: pointer;
+}
