@@ -261,15 +261,13 @@ $("#autoscroll").on("click", function(){
 
 // Restart from Beginning (Animations are not reset)
 $("#restart").on("click", function(){
-    window.scrollTo(0,0);
+    $('html, body').animate({scrollLeft: 0},1000);
     $("#paperPlane").css({"top": initialHeight});
     $("#paperPlane").css({"left": initialX});
 });
 
 // Next
-$("#restart").on("click", function(){
-    window.scrollTo(0,0);
-    $("#paperPlane").css({"top": initialHeight});
-    $("#paperPlane").css({"left": initialX});
+$("#next").on("click", function(){
+    $('html, body').animate({scrollLeft: window.scrollX + 0.5*vw},1000);
 });
 
