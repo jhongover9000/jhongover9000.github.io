@@ -4,6 +4,9 @@
 //=================================================================================================
 // Variables
 
+// Site First Loaded?
+var firstLoad = true;
+
 // Page Height & Width
 var vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
 var vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
@@ -136,19 +139,31 @@ function animatePanels(){
 
 
 
-// Page Scroll
-function pageScroll(){
-    if(window.scrollX < fullScrollLength){
-        var locX = window.scrollX + vw;
-        window.scrollTo(locX,0);
-        console.log(fullScrollLength);
-        console.log(window.scrollX);
-
+// Autoscroll
+function scrollCheck(){
+    // console.log(autoscroll);
+    $("body").css("--scroll", window.scrollX);
+    var scrollX = $("body").css("--scroll");
+    if(autoscroll){
+        if(scrollX < fullScrollLength){
+            // console.log(scrollX);
+            window.scrollTo(window.scrollX+1,0);
+            $("body").css("--scroll", window.scrollX);
+        }
+    }
+    else{
+        clearInterval(scrollAuto);
     }
 }
 
+// Update Scroll (for testing)
+function scrollUpdate(){
+    console.log(window.scrollX);
+    $("body").css("--scroll", window.scrollX);
+}
+
 function initialize(){
-    window.scrollX = 0;
+    window.scrollTo(0,0);
 }
 
 
@@ -158,6 +173,11 @@ function initialize(){
 
 // Main Event Listener (when website is ready)
 $(document).ready(function() {
+    // If first load of webpage, reset scrollX
+    if(firstLoad){
+        initialize();
+        firstLoad = !firstLoad;
+    }
     // Conversion of Vertical to Horizontal Scroll
     $("html, body, *").mousewheel(function(e, delta) {
     this.scrollLeft -= (delta);
@@ -179,6 +199,7 @@ document.addEventListener("scroll", function(){
     // console.log(initialHeight);
     // console.log(initialX);
     if(scrollX == 0 ){
+        $("#instruct").fadeIn();
         $("#gutter1").css({"animation":"moveDown1 2s forwards"});
         $("#gutter2").css({"animation":"moveUp2 2s forwards"});
         $("#paperPlane").css({"animation":"shudder 100s infinite alternate"});
@@ -186,8 +207,11 @@ document.addEventListener("scroll", function(){
     }
     // Until last image panel, paper plane will move forward and down. This changed from the initial
     // plan of only making it move forward at the end (which also worked, but didn't give as much sense of movement)
+    // The amount that the plane moves is determined by (window.innerWidth/2), which decides the end % location of the plane.
+    
     // else if(0 < scrollX && scrollX < (fullScrollLength - window.innerWidth * 2) ){
     else if(0 < scrollX && scrollX < fullScrollLength ){
+        $("#instruct").fadeOut();
         $("#gutter1").css({"animation":"moveUp1 2s forwards"});
         $("#gutter2").css({"animation":"moveDown2 2s forwards"});
 
@@ -205,7 +229,7 @@ document.addEventListener("scroll", function(){
         
         // Updated code relfects the one above (so there isn't much difference, but I left this for
         // possible improvement where the plane moves forward faster in this section)
-        var newX = initialX + (window.innerWidth/2.5)*((scrollX)/fullScrollLength) + "px";        
+        var newX = initialX + (window.innerWidth/2.0)*((scrollX)/fullScrollLength) + "px";        
         $("#paperPlane").css({"animation":"shudder 4s infinite alternate"});
         $("#paperPlane").css({"top": newY});
         $("#paperPlane").css({"left": newX});
@@ -220,33 +244,32 @@ document.addEventListener("scroll", function(){
 
 });
 
-// Autoscroll
-function scrollCheck(){
-    // console.log(autoscroll);
-    $("body").css("--scroll", window.scrollX);
-    var scrollX = $("body").css("--scroll");
-    if(autoscroll){
-        if(scrollX < fullScrollLength){
-            // console.log(scrollX);
-            window.scrollTo(window.scrollX+1,0);
-            $("body").css("--scroll", window.scrollX);
-        }
-    }
-    else{
-        clearInterval(scrollAuto);
-    }
-}
-
-function scrollUpdate(){
-    console.log(window.scrollX);
-    $("body").css("--scroll", window.scrollX);
-}
-
+// Autoscroll on Button Click
 $("#autoscroll").on("click", function(){
+    console.log($("#autoscroll").css("color"));
     autoscroll = !autoscroll;
     if(autoscroll){
+        $("#autoscroll").css("color","black");
         scrollAuto = setInterval(scrollCheck,10);
+    }
+    else{
+        if($("#autoscroll").css("color") == "rgb(0, 0, 0)"){
+            $("#autoscroll").css("color","gray");
+        }
     }
 });
 
+// Restart from Beginning (Animations are not reset)
+$("#restart").on("click", function(){
+    window.scrollTo(0,0);
+    $("#paperPlane").css({"top": initialHeight});
+    $("#paperPlane").css({"left": initialX});
+});
+
+// Next
+$("#restart").on("click", function(){
+    window.scrollTo(0,0);
+    $("#paperPlane").css({"top": initialHeight});
+    $("#paperPlane").css({"left": initialX});
+});
 
