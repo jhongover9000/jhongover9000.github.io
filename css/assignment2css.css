@@ -9,11 +9,15 @@
 
     --imgPanelWidth: 100;
     --txtPanelWidth: 50;
-
     --quarterGutterWidth: 25;
     --halfGutterWidth: 50;
     --fullGutterWidth: 100;
 
+    --imgPanelCount: 8;
+    --txtPanelCount: 24;
+    --quarterGutterCount: 5;
+    --halfGutterCount: 17;
+    --fullGutterCount: 13;
 
 }
 
@@ -30,7 +34,7 @@ html {
 /* Body. Possibility to change background color on scroll. */
 body {
     padding: 0;
-    margin: 10;
+    margin: 0;
     background-color: blanchedalmond;
     /* background-color: rgb(calc(var(--scroll)/18),calc(var(--scroll)/18),calc(var(--scroll)/18)); */
 }
@@ -41,38 +45,114 @@ body {
 
 /* Paper Plane */
 #paperPlane {
-    height: 50px;
-    width: 100px;
+    height: 75px;
+    width: 150px;
     position: fixed;
     top: 30%;
     left: 50%;
     margin-top: -25px;
     margin-left: -50px;
     transform: translateY(-50%);
-    background-color: black;
     animation: shudder 100s infinite alternate;
     animation-fill-mode: forwards;
+    z-index: 1;
+
 }
 @keyframes shudder{
     0%{
-        transform: rotate(-2deg);
+        transform: rotate(0deg);
     }
     20%{
-        transform: rotate(1deg);
+        transform: rotate(3deg);
     }
     40%{
-        transform: rotate(0deg);
+        transform: rotate(1deg);
     }
     60%{
         transform: rotate(2deg);
     }
     80%{
-        transform: rotate(-1deg);
-    }
-    100%{
         transform: rotate(0deg);
     }
+    100%{
+        transform: rotate(1deg);
+    }
 }
+
+#gutter1 {
+    height: 10vh;
+    width: 100vw;
+    top: 0;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgb(241, 212, 168);
+}
+@keyframes moveUp1 {
+    from{
+        margin-top: 0;
+    }
+    to{
+        margin-top: -10vh;
+    }
+}
+@keyframes moveDown1 {
+    from{
+        margin-top: -10vh;
+    }
+    to{
+        margin-top: 0;
+    }
+}
+#gutter2 {
+    height: 10vh;
+    width: 100vw;
+    bottom: 0;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgb(241, 212, 168);
+}
+@keyframes moveUp2 {
+    from{
+        margin-bottom: -10vh;
+    }
+    to{
+        margin-bottom: 0;
+    }
+}
+@keyframes moveDown2 {
+    from{
+        margin-bottom: 0;
+    }
+    to{
+        margin-bottom: -10vh;
+    }
+}
+#navi {
+    height: 10vh;
+    width: 100vw;
+    bottom: 0;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-family: sans-serif;
+}
+
+/* AutoScroll Button */
+#autoscroll {
+    position: fixed;
+    display: block;
+    cursor: pointer;
+    color: gray;
+}
+#autoscroll:hover{
+    color: white;
+}
+
 
 /* ============================================================================================= */
 /* ============================================================================================= */
@@ -85,26 +165,27 @@ body {
     top: 0;
     left: 0;
     height: 100vh;
-    /* width: calc(100vw + ( (var(--imgPanelCount) * var(--imgPanelWidth)*1vw) + (var(--txtPanelCount) * var(--txtPanelWidth)*1vw) ) ); */
     width: var(--wrapperWidth);
     align-items: center;
+    justify-content: space-evenly;
+    scroll-behavior: smooth;
 }
 
 /* Gutters (full, half, quarter). Give space between text and image panels. */
 .gutterFull{
     display: inline-block;
     height: 100vh;
-    width: 100vw;
+    width: calc(var(--fullGutterWidth) * 1vw);
 }
 .gutterHalf{
     display: inline-block;
     height: 100vh;
-    width: 50vw;
+    width: calc(var(--halfGutterWidth) * 1vw);
 }
 .gutterQuarter{
     display: inline-block;
     height: 100vh;
-    width: 25vw;
+    width: calc(var(--quarterGutterWidth) * 1vw);
 }
 
 /* Text Divs (Isolated Text Boxes). Divided into top, middle, and bottom based on alignment. */
@@ -114,6 +195,7 @@ body {
     display: flex;
     justify-items: center;
     align-items: center;
+    opacity: 0;
 }
 .top {
     align-items: flex-start;
@@ -129,7 +211,7 @@ body {
     width: 300px;
     text-align: center;
     background-color: wheat;
-    justify-items: center;
+    justify-content: center;
     align-items: center;
 }
 .top .textBox {
@@ -150,20 +232,22 @@ body {
     display: flex;
     height: 100vh;
     width: calc(var(--imgPanelWidth) * 1vw);
-    justify-items: center;
+    justify-content: center;
     align-items: center;
+    opacity: 0;
+}
+#panelInitial {
+    justify-content: flex-start;
+    opacity: 1;
 }
 .panelImg {
-    display: inline-block;
+    display: flex;
     border:black;
     background-color: burlywood;
     height: 720px;
-    width: 1020px;
-    top: 50%;
-    left: 50%;
+    width: 1080px;
 }
 .imgText {
-    position: absolute;
 }
 .imgText .top{
 
