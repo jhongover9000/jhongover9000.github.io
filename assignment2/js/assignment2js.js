@@ -56,26 +56,6 @@ var autoscroll = false;
 //=================================================================================================
 // Functions
 
-// Move Right (button click)
-function scrollR(){
-    var locX = window.scrollX + vw;
-    window.scrollTo(locX,0);
-    document.body.style.setProperty("--scroll",locX);
-}
-
-// Move Left (button click)
-function scrollL(){
-    var locX = window.scrollX - vw;
-    if(locX <= 0){
-        window.scrollTo(0,0);
-    }
-    else{
-        window.scrollTo(locX,0);
-        document.body.style.setProperty("--scroll",locX);
-    }
-
-}
-
 // Visibility Checker. Uses the offsets of an element and compares it with the client's viewport
 // to see if the position of the element is visible. This is from the jQuery plugin Visible.
 // The actual .js file didn't work so I looked ended up having to paste the code here.
