@@ -362,7 +362,7 @@ Ah, this was the nightmare/dream. It was terrible, so terrible, trying to implem
         }
     });
 
-This is where I came across setInterval(), and had a lot of trouble because of this. I intially was using .animate() from jQuery to make the window scroll, but the problem with that was the speed wasn't consistent (gets faster in the middle). So I ended up using this. I needed a way to increment the scrollX by a single pixel very quickly, and searching up how to do this led me to setInterval(). This is the function that setInterval() calls every... nanosecond, I think (yeah, a *lot* of calls).
+This is where I came across setInterval(), and had a lot of trouble because of this. I intially was using .animate() from jQuery to make the window scroll, but the problem with that was the speed wasn't consistent (gets faster in the middle). So I ended up using this. I needed a way to increment the scrollX by a single pixel very quickly, and searching up how to do this led me to setInterval(). This is the function that setInterval() calls every... 10 milliseconds, I think (yeah, a *lot* of calls).
 
     // Autoscroll
     function scrollCheck(){
