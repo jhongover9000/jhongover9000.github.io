@@ -1,4 +1,6 @@
-
+/* IM Assignment 2: a love letter. (CSS) */
+/* Joseph Hong */
+/* Description: this is the stylesheet for the interactive comic 'a love letter.' */
 /* ============================================================================================= */
 /* ============================================================================================= */
 /* Initialization */
@@ -86,11 +88,11 @@ body {
     top: 50%;
     right: 5%;
     color: gray;
-    animation: glow 2s infinite;
+    animation: pulsate 2s infinite;
 
 }
-@keyframes glow {
-    40% {
+@keyframes pulsate {
+    50% {
       text-shadow: 0 0 1px gray;
     }
 }
