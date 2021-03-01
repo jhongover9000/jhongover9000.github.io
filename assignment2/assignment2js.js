@@ -1,5 +1,4 @@
 // IM Assignment 2: a love letter. (JavaScript)
-// Joseph Hong
 // Description: this is the JavaScript script for the interactive comic 'a love letter.' This file
 // makes use of jQuery and jQuery plugins such as jQuery-Visible and mouswheel.js.
 //=================================================================================================
