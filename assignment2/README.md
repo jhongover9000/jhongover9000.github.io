@@ -33,7 +33,7 @@ In any case, the project is better than I initially planned and thought it would
 
 Okay, onto the process. I'm still waiting on the images for the comic, but this is the website. I ended up coding the entire website (like I said, the horrors await), so I guess I can explain what I did and why (the latter is a bit iffy though, since I did things just because I wanted to for some things).
 
-I don't think I need to explain the horizontal scrolling website, since I already did in my previous assignment, so [here's](assignment1/README.md) a link to the documentation of Assignment 1.
+I don't think I need to explain the horizontal scrolling website, since I already did in my previous assignment, so [here's](https://github.com/jhongover9000/jhongover9000.github.io/blob/main/assignment1/README.md) a link to the documentation of Assignment 1.
 
 #### The Basics
 
