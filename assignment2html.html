@@ -51,7 +51,9 @@
 
         <!-- First Panel -->
         <div class="panel imgPanel" id="panel1">
-            <img class="panelImg" src="" alt="I think I’m in love with you.">
+            <div class="panelImg">
+                <p class="imgTextRight">I think I’m in love with you.</p>
+            </div>
         </div>
         <div class="gutterFull"></div>
 
@@ -71,12 +73,9 @@
 
         <!-- Second Panel -->
         <div class="panel imgPanel" id="panel2">
-            <div class="imgText top">
-                <p class="textBox">And when you’re sad...</p>
-            </div>
-            <img class="panelImg" src="" alt="image">
-            <div class="imgText bottom">
-                <p class="textBox">I’ll be your shoulder to cry on.</p>
+            <div class="panelImg">
+                <p class="imgTextLeft">And when you’re sad...</p>
+                <p class="imgTextRight">I’ll be a shoulder to cry on.</p>
             </div>
         </div>
         <div class="gutterFull"></div>
@@ -101,7 +100,9 @@
 
         <!-- Third Panel -->
         <div class="panel imgPanel" id="panel3">
-            <img class="panelImg" src="" alt="I’ll listen to whatever you have to say.">
+            <div class="panelImg">
+                <p class="imgTextRight">I’ll listen to whatever you have to say.</p>
+            </div>
         </div>
         <div class="gutterFull"></div>
 
@@ -117,13 +118,9 @@
 
         <!-- Fourth Panel -->
         <div class="panel imgPanel" id="panel4">
-            <div class="imgText top">
-                <p class="textBox">And wherever that might be, whatever we might be doing...</p>
-            </div>
-            <img class="panelImg" src="" alt=" image
-            ">
-            <div class="imgText bottom">
-                <p class="textBox">I promise I’ll follow you with a smile on my face.</p>
+            <div class="panelImg">
+                <p class="imgTextLeft">And wherever that might be, whatever we might be doing...</p>
+                <p class="imgTextRight">I promise I’ll follow you with a smile on my face.</p>
             </div>
         </div>
         <div class="gutterFull"></div>
@@ -144,7 +141,10 @@
 
         <!-- Fifth Panel -->
         <div class="panel imgPanel" id="panel5">
-            <img class="panelImg" src="" alt="I’ll continue to be your closest friend, the one person you can tell everything.">
+            <div class="panelImg">
+                <p class="imgTextLeft">I’ll continue to be your closest friend.</p>
+                <p class="imgTextRight">The one person you can tell everything.</p>
+            </div>
         </div>
         <div class="gutterFull"></div>
 
@@ -165,7 +165,9 @@
 
         <!-- Sixth Panel (Proposal) -->
         <div class="panel imgPanel" id="panel6">
-            <img class="panelImg" src="" alt="Will you say ‘yes’?">
+            <div class="panelImg">
+                <p class="imgTextRight">Will you say yes?</p>
+            </div>
         </div>
         <div class="gutterQuarter"></div>
         <div class="gutterFull"></div>
@@ -194,27 +196,54 @@
 
         <!-- Final Panel -->
         <div class="panel imgPanel" id="panel6">
-            <img class="panelImg" src="" alt="...yours to the very end.">
+            <div class="panelImg">
+                <p class="imgTextRight">Yours till the end.</p>
+            </div>
         </div>
     </div>
     
 
     <!-- Fixed Overlay -->
     <div id="fixedOverlay">
-        <div class="gutter" id="gutter1">
+        
+        <!-- Title Bar -->
+        <div class="navGutter" id="gutter1">
             <p>a love letter.</p>
         </div>
 
+        <!-- Instruction -->
         <div id="instruct">scroll to begin. >></div>
         
+        <!-- Paper Plane -->
         <img id="paperPlane" src="img/paperPlane1.png" alt="paper plane.">
+        
+        <!-- Nav Gutter (Background Color) -->
+        <div class="navGutter" id="gutter2"></div>
 
-        <div class="gutter" id="gutter2">
+        <!-- Epilogue (Polaroids) -->
+        <div class="epilogue">
+            <!-- row 1 -->
+            <div class="row">
+                <img class="polaroid" src="" alt="polaroid">
+                <img class="polaroid" src="" alt="polaroid">
+                <img class="polaroid" src="" alt="polaroid">
+                <img class="polaroid" src="" alt="polaroid">
+            </div>
+            <!-- row 2 -->
+            <div class="row">
+                <img class="polaroid" src="" alt="polaroid">
+                <img class="polaroid" src="" alt="polaroid">
+                <img class="polaroid" src="" alt="polaroid">
+                <img class="polaroid" src="" alt="polaroid">
+            </div>
         </div>
+
+        <!-- Navigation Elements -->
         <div id="navi">
             <div class="navButton" id="restart">to beginning.</div>
-            <div class="navButton" id="autoscroll">autoscroll</div>
-            <div class="navButton" id="next">next</div>
+            <div class="navButton" id="autoscroll">autoscroll.</div>
+            <div class="navButton" id="next">next.</div>
+            <div class="navButton" id="epil">the end...?</div>
         </div>
     </div>
 
