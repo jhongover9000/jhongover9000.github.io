@@ -1,5 +1,7 @@
 ## Assignment 1: a journey.
 
+###### Note that the images in this are not available as this is a copy of the original, whose link is [here](https://docs.google.com/document/d/1gCU_oIFEtCYb_b0R0Uexfbj5LIz46aXEX5Fu415uEGM/edit).
+
 ### Project Description
 This website is designed to implement the concept of moving forward through horizontal scrolling. It carries the user through the process of creating the film and the website.
 There were several features that I wanted to focus on in order to create the full experience of moving forward. The first was horizontal scrolling, which was something I hadn’t really come across before (I know why now; read The Process to find out). This, I thought, was a great way to emphasize the idea of moving forward. Another was through the navigation bar. I was planning on creating a navigation bar made up of stars, which would connect as the user progressed through the website. This was meant to add more meaning to the idea of advancing: that with each moment we live, we leave behind us a trail of legacies. At the end, we realize what we truly gained from each experience and see how they all interacted with one another, forming a coherent picture of linked points in time–– a constellation of stars, shining bright in the night sky. This didn’t work out (again, horizontal scrolling problems, and in the end, time). Finally, I wanted to add animations to the scrolling, similar to how the Apple websites display their products. Once again, this did not work out (horizontal. scrolling.).
