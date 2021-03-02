@@ -330,6 +330,11 @@ body {
 /* ============================================================================================= */
 /* Specific Panels */
 
+#panelInitial .panelImg{
+    background-image: url(img/rooftop.png);
+    background-size: cover;
+    background-position: center;
+}
 #panel1 .panelImg{
     background-image: url(img/3rdwheel.png);
     background-size: cover;
