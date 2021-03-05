@@ -1,5 +1,7 @@
 ## Assignment 2: a love letter.
 
+###### [Link to Site](https://jhongover9000.github.io/assignment2/assignment2html.html)
+
 ### The Concept
 
 Aight, so we're back, ladies and gentlemen, with another round of Nightmares in Horizontal Scrolling with Joseph! Well, actually it wasn't a *nightmare* nightmare this time, just a few problems (major ones, too) here and there. In any case, let's talk about the concept of this interactive comic before getting into details on coding the site.
