@@ -408,6 +408,11 @@ audio:focus{
     background-size: cover;
     background-position: center;
 }
+#panel7 .panelImg{
+    background-image: url(img/finalPanel.png);
+    background-size: cover;
+    background-position: center;
+}
 
 /* ============================================================================================= */
 /* ============================================================================================= */
