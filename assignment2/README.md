@@ -8,7 +8,7 @@ So, our group was talking about ideas for an interactive comic. There were a lot
 
 Then came the idea: what if they were the same person? So we had this long talk about how it could be that the person who threw it picks it up years later. This seemed like a really good idea (wait, why didn't we do this?), but then there was the question of why a paper airplane would be there in the first place (ah, I remember now). Regardless, we wanted to somehow incorporate the idea of *time*–– that the space traveled would be the same as time flowing. This was in response to Understanding Comics, where I remembered this bit where McCloud mentioned how comics were limited in width so using longer gutters was not as desirable in representing that time is flowing (or that time has passed). However, with a horizontal website, you're not restricted by page width as it's quite literally the only thing you have. This was a a great way to utilize the (unlimited) horizontal space available to us.
 
-And that's when it hit me that the paper airplane could be a *letter*. Hear me out. I know it's very uncommon, but then again, people fold letters into all kinds of things. Why not a paper airplane? So we decided it would be a letter. But to who? And this is where my weeb/romanticist side came out. In Japan (and Korea, too, based on my experience), the act of confessing one's feelings for another is considered very... important? I dunno, it's hard to explain. Anyway, students make a really big deal out of it, and oftentimes they leave letters instead of saying it face-to-face (embarrassmen, I guess). So, that could be the synopsis of the story.
+And that's when it hit me that the paper airplane could be a *letter*. Hear me out. I know it's very uncommon, but then again, people fold letters into all kinds of things. Why not a paper airplane? So we decided it would be a letter. But to who? And this is where my weeb/romanticist side came out. In Japan (and Korea, too, based on my experience), the act of confessing one's feelings for another is considered very... important? I dunno, it's hard to explain. Anyway, students make a really big deal out of it, and oftentimes they leave letters instead of saying it face-to-face (embarrassment, I guess). So, that could be the synopsis of the story.
 
 A boy is unable to confess his feelings to a girl and so he writes a letter. However, he is unable to give it to her because before he does, someone else gets to her first. This is the basic gist, and the content of the comic was to have the letter written out for the reader to see, along with images depicting the two of them growing closer and closer.
 
@@ -34,6 +34,8 @@ In any case, the project is better than I initially planned and thought it would
 Okay, onto the process. I'm still waiting on the images for the comic, but this is the website. I ended up coding the entire website (like I said, the horrors await), so I guess I can explain what I did and why (the latter is a bit iffy though, since I did things just because I wanted to for some things).
 
 I don't think I need to explain the horizontal scrolling website, since I already did in my previous assignment, so [here's](https://github.com/jhongover9000/jhongover9000.github.io/blob/main/assignment1/README.md) a link to the documentation of Assignment 1.
+
+Update: the images are more or less all here. Sarah took care of the collages with Photoshop and Ishika did the characters via Illustrator (which became birds because we realized that we are not the best artists, especially when it comes to drawing humans). I guess that's how the delegation worked out...? The coding workload was heavy, to be honest... but I had fun, so I won't complain. Not *that* much, anyway.
 
 #### The Basics
 
@@ -77,11 +79,36 @@ In addition to this, I also added formatting to the textboxes so that I could ma
     .bottom{
         align-items: flex-end;
     }
+
+Update: after creating these boxes, I also added an image background that Sarah provided to give the paper texture. I did a little bit of exposure/shadow/contrast editing and set the backgrouds of all the text boxes. In addition to this, I also softened the edges of the boxes and added box shadows to give a bit more flair.
+
+    .textBox {
+        height: 200px;
+        width: 200px;
+        padding: 5%;
+        display: flex;
+        text-align: left;
+        background-color: wheat;
+        justify-content: center;
+        align-items: center;
+        background-size: cover;
+        background-position: left;
+        background-image: url("img/paperTexture1.jpg");
+        color: black;
+        font-size: medium;
+        /* Box Shadow & Image Border Softening. https://stackoverflow.com/questions/6964794/soft-edges-using-css */
+        border-radius: 2px; 
+        -webkit-box-shadow: 3px 3px 10px rgba(0,0,0,.5);
+        box-shadow: 3px 3px 10px rgba(0,0,0,.5);
+    }
     
 As for images, I envisioned that we could have text boxes *inside* of the images as well, so I implemented that by creating a div for the image panel, made a div for the image (using the image for the background-image), and made textboxes inside those. These were split into left and right, where the left would be on the top left and the right would be on the bottom right. Flex boxes really helped.
 
+Update: I also softened the edges for these as well. The reason why there are two separate textbox elements (essentially repeating code) is because the site wouldn't display them for some reason if I set them as the same class then changed their display positions. It's kinda rough but it works.
+
     /* Image Panels. Take up the entire div, but images are smaller. Centered in screen. */
     .imgPanel {
+        position: relative;
         display: flex;
         height: 100vh;
         width: calc(var(--imgPanelWidth) * 1vw);
@@ -94,12 +121,14 @@ As for images, I envisioned that we could have text boxes *inside* of the images
     }
     .panelImg {
         display: flex;
-        position: absolute;
-        border:black;
-        background-image: url();
+        position: relative;
         background-color: burlywood;
-        height: 720px;
-        width: 1080px;
+        height: 80vh;
+        width: 120vh;
+        /* Box Shadow & Image Border Softening. https://stackoverflow.com/questions/6964794/soft-edges-using-css */
+        border-radius: 2px; 
+        -webkit-box-shadow: 3px 3px 10px rgba(0,0,0,.5);
+        box-shadow: 3px 3px 10px rgba(0,0,0,.5);
     }
     .imgTextLeft {
         position: absolute;
@@ -109,9 +138,16 @@ As for images, I envisioned that we could have text boxes *inside* of the images
         height: 50px;
         width: 200px;
         background-color: wheat;
+        background-size: cover;
+        background-position: top;
+        background-image: url("img/paperTexture1.jpg");
         top: 0;
         left: 0;
         text-align: center;
+        /* Box Shadow & Image Border Softening. https://stackoverflow.com/questions/6964794/soft-edges-using-css */
+        border-radius: 2px; 
+        -webkit-box-shadow: 3px 3px 10px rgba(0,0,0,.5);
+        box-shadow: 3px 3px 10px rgba(0,0,0,.5);
     }
     .imgTextRight{
         position: absolute;
@@ -121,9 +157,16 @@ As for images, I envisioned that we could have text boxes *inside* of the images
         height: 50px;
         width: 200px;
         background-color: wheat;
+        background-size: cover;
+        background-position: bottom;
+        background-image: url("img/paperTexture1.jpg");
         bottom: 0;
         right: 0;
         text-align: center;
+        /* Box Shadow & Image Border Softening. https://stackoverflow.com/questions/6964794/soft-edges-using-css */
+        border-radius: 2px; 
+        -webkit-box-shadow: 3px 3px 10px rgba(0,0,0,.5);
+        box-shadow: 3px 3px 10px rgba(0,0,0,.5);
     }
 
 #### UI and Navigation
@@ -216,6 +259,46 @@ And of course, we have the "to beginning." button. This quite literally sends yo
     });
 
 As you can see, nothing too special. One thing to note is the variable reset, which is what gives the scroll updater the command to refresh the page. This resets the animations of the panels and allows the user to start the story again (why tho). Decided to add this because a) it's nice and b) I needed it because scrolling all the way to the beginning every time during debugging was a nightmare.
+
+#### Music & Muting
+
+So one thing that I didn't consider was that the *browser* would be what restrained my code. The thing is, Chrome doesn't let you autoplay sounds (or at least the version that I've updated to doesn't). I didn't really understand this and tried to make autoplay work for an hour. It was a mistake that someone like me would make. Apparently you need to *click* the screen in order to do anything related to autoplay. However, I didn't want to create another "click to begin" screen (though I realize in hindsight that this would also have been an okay option) so I just made a "click to play audio" button. Not much of a difference since you're still clicking, but now you're clicking with *purpose*.
+
+Anyway, I borrowed code from what I saw in jsFiddle, only to realize that there was a problem. The thing kept skipping one song and replaying the first song. I thought that this was because of something I had done wrong (because it's often my problem), but after reading the code line by line I realized that the counter was skipping the last song of the playlist (which happened to be the only other of two songs).
+
+    audio[0].addEventListener('ended',function(e){
+            current++;                                   <-- the problem was this
+            if(current == len){
+                current = 0;
+                link = playlist.find('a')[0];
+            }else{
+                link = playlist.find('a')[current];    
+            }
+            run($(link),audio[0]);
+        });
+
+Besides that, nothing really special for the mute/unmute button. Just some good ol' jQuery. After clicking the play button, a mute button would appear. I just decided to keep it simple and have the content of the mute button iterate between "mute." and "unmute." every click instead of making separate buttons.
+
+    // Play Audio
+    $("#audio").on("click", function(){
+        init();
+        $("#audio").fadeOut();
+        $("#mute").delay(500).fadeIn();
+    });
+
+    // Mute/Unmute
+    $("#mute").on("click", function(){
+        muted = !muted;
+        if(muted){
+            audio[0].volume = 0;
+            $("#mute").text("unmute.");
+        }
+        else{
+            audio[0].volume = 0.2;
+            $("#mute").text("mute.");
+        }
+    });
+
 
 ### Happy Moments
 
