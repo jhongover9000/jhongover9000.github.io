@@ -1,9 +1,13 @@
 <!-- IM Assignment 2: a love letter. (HTML) -->
 <!-- Joseph Hong -->
 <!-- Description: this is the HTML for the interactive comic 'a love letter.' -->
+<!-- ============================================================================================= -->
+<!-- ============================================================================================= -->
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- ============================================================================================= -->
+<!-- ============================================================================================= -->
+<!-- Head -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,13 +19,20 @@
     <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="js/jquery.visible.js"></script>
 
+    <!-- Font for Website -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assignment2css.css">
 
 </head>
+
+
+<!-- ============================================================================================= -->
+<!-- ============================================================================================= -->
+<!-- Body -->
 <body>
-    <!-- This is the horizontal scrolling part of the website. -->
+<!-- ============================================================================================= -->
+<!-- Comic (Website Content) -->
     <div id="outerWrapper">
         <!-- Initial panel: align boy to the plane. (how?) -->
         <div class="panel imgPanel" id="panelInitial">
@@ -39,7 +50,7 @@
         </div>
         <div class="gutterQuarter"></div>
         <div class="panel txtPanel top">
-            <p class="textBox">Anyway… there’s something that I want to say to you, something I’ve wanted to tell you for the longest time.</p>
+            <p cl ass="textBox">Anyway… there’s something that I want to say to you, something I’ve wanted to tell you for the longest time.</p>
         </div>
         <div class="gutterQuarter"></div>
         <div class="panel txtPanel bottom">
@@ -49,7 +60,7 @@
         <div class="panel txtPanel middle">
             <p class="textBox">Here it goes.</p>
         </div>
-        <div class="gutterFull"></div>
+        <div class="gutterHalf"></div>
 
         <!-- First Panel -->
         <div class="panel imgPanel" id="panel1">
@@ -172,7 +183,6 @@
         </div>
         <div class="gutterFull"></div>
 
-
         <!-- Text Stream -->
         <div class="panel txtPanel top">
             <p class="textBox">But take your time, Evelyn.</p>
@@ -190,7 +200,7 @@
             <p class="textBox">So know that I’ll be yours, Evelyn…</p>
         </div>
 
-        <!-- Time Passage (2 Full Gutters) -->
+        <!-- Time Passage (1.5 Full Gutters) -->
         <div class="gutterFull"></div>
         <div class="gutterHalf"></div>
 
@@ -201,9 +211,9 @@
             </div>
         </div>
     </div>
-    
 
-    <!-- Fixed Overlay -->
+<!-- ============================================================================================= -->
+<!-- Fixed Overlay -->
     <div id="fixedOverlay">
         
         <!-- Title Bar -->
@@ -224,7 +234,7 @@
         <div class="epilogue">
             <!-- row 1 -->
             <div class="row">
-                <img class="polaroid" src="" alt="polaroid">
+                <img class="polaroid" src="img/" alt="polaroid">
                 <img class="polaroid" src="" alt="polaroid">
                 <img class="polaroid" src="" alt="polaroid">
                 <img class="polaroid" src="" alt="polaroid">
@@ -251,7 +261,7 @@
 
         <!-- Music. Not an infringement since this is for educational purposes (hehe) :) -->
         <audio id="audio" tabindex="0" preload="auto" type="audio/mpeg" controls>
-            <source type="audio/mp3" src="media/Ed-Sheeran-Photograph.mp3">
+            <source type="audio/mp3" src="media/Ben-Platt-Grow-As-We-Go.mp3">
         </audio>
         <ul id="playlist">
             <li><a class="active" href="media/Ed-Sheeran-Photograph.mp3" ></a></li>
@@ -259,8 +269,8 @@
         </ul>
     </div>
 
-
-    <!-- JavaScript Files. -->
+<!-- ============================================================================================= -->
+<!-- JavaScript Files. -->
     <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="js/jquery.color.js"></script>
     <script type="text/javascript" src="js/anime.min.js"></script>

@@ -105,10 +105,10 @@ function animatePanels(){
         if($(this).visible(true) && window.scrollX != fullScrollLength){
             // Autoscroll has a slower fade in because it's generally slower in movement
             if(autoscroll){
-                $(this).animate({opacity:1}, 4000);
+                $(this).animate({opacity:1}, 4500);
             }
             else{
-                $(this).animate({opacity:1}, 2000);
+                $(this).animate({opacity:1}, 2500);
             }
             
         }
