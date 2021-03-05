@@ -168,7 +168,7 @@ body {
 /* Navigation Buttons. Restart, autoscroll, next 1/2vw. */
 .navButton {
     height:auto;
-    width: 100px;
+    width: 150px;
     display: inline-block;
     cursor: pointer;
     color: gray;
