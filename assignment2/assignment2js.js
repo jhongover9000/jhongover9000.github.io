@@ -350,8 +350,6 @@ $("#restart").on("click", function(){
     reset = true;
     epilogue = false;
     $('html, body').animate({scrollLeft: 0},1000);
-    $("#paperPlane").css({"top": initialHeight});
-    $("#paperPlane").css({"left": initialX});
     hidePanels();
 });
 
