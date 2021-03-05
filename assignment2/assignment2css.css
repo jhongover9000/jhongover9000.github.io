@@ -27,6 +27,15 @@
     display: none;
 }
 
+/* Audio Player Customization. I wasn't able to get rid of the annoying volume slider but oh well. */
+audio::-webkit-media-controls-timeline,
+audio::-webkit-media-controls-timeline-container,
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display
+{
+    display: none;
+}
+
 /* HTML. Vertical overflows are hidden. */
 html {
     overflow-y: hidden;
@@ -155,53 +164,60 @@ body {
     bottom: 0;
     align-items: center;
     justify-content: space-evenly;
-
 }
 /* Navigation Buttons. Restart, autoscroll, next 1/2vw. */
 .navButton {
+    height:auto;
+    width: 100px;
     display: inline-block;
     cursor: pointer;
     color: gray;
+    text-align: center;
 }
 .navButton:hover{
     opacity: 0.5;
 }
+/* For ending */
 #epil {
     display: none;
 }
-
-/* Afterwards */
-.epilogue {
+/* Click to play (autoplay is disabled on Chrome) */
+#audio {
     position: fixed;
+    top: 3%;
+    right: 3%;
+}
+/* Mute replaces Audio button. */
+#mute {
+    position: fixed;
+    top: 3%;
+    right: 3%;
     display: none;
-    width: 100vw;
-    height: 100vh;
-    background-image: url("img/oakboard.jpg");
-    background-size: cover;
-    background-position: center;
-    align-items: center;
-    justify-content: space-evenly;
-}
-/* Row of Polaroids */
-.epilogue .row {
-    display: flex;
-    height: 40%;
-    width: 100%;
-    align-items: center;
-    justify-content: space-evenly;
-}
-/* Polaroids */
-.epilogue img {
-    display: inline-block;
-    width: 180px;
-    height: 160px;
-    padding: 10px;
-    padding-bottom: 50px;
-    background-color: rgb(228, 224, 224);
-    opacity: 0;
 }
 
-
+/* Audio. Was initially going to show this, but decided not to. */
+audio{
+    /* position: fixed;
+    top: 1%;
+    right: 3%;
+    width: 100px;
+    opacity: 0.2; */
+    display: none;
+    border: none;
+    outline:none;
+}
+/* audio:hover{
+    width: 175px;
+    transition: 1s;
+    opacity: 1;
+}
+audio:focus{
+    outline: none;
+    box-shadow: none;
+} */
+#playlist {
+    display: none;
+}
 
 /* ============================================================================================= */
 /* ============================================================================================= */
@@ -262,9 +278,17 @@ body {
     display: flex;
     text-align: left;
     background-color: wheat;
-    border: 1px solid rgb(218, 200, 167);
     justify-content: center;
     align-items: center;
+    background-size: cover;
+    background-position: left;
+    background-image: url("img/paperTexture1.jpg");
+    color: black;
+    font-size: medium;
+    /* Box Shadow & Image Border Softening. https://stackoverflow.com/questions/6964794/soft-edges-using-css */
+    border-radius: 2px; 
+    -webkit-box-shadow: 3px 3px 10px rgba(0,0,0,.5);
+    box-shadow: 3px 3px 10px rgba(0,0,0,.5);
 }
 .top .textBox {
     top: 0;
@@ -294,10 +318,13 @@ body {
 .panelImg {
     display: flex;
     position: absolute;
-    border:black;
     background-color: burlywood;
     height: 720px;
     width: 1080px;
+    /* Box Shadow & Image Border Softening. https://stackoverflow.com/questions/6964794/soft-edges-using-css */
+    border-radius: 2px; 
+    -webkit-box-shadow: 3px 3px 10px rgba(0,0,0,.5);
+    box-shadow: 3px 3px 10px rgba(0,0,0,.5);
 }
 .imgTextLeft {
     position: absolute;
@@ -307,10 +334,16 @@ body {
     height: 50px;
     width: 200px;
     background-color: wheat;
-    border: 1px solid rgb(218, 200, 167);
+    background-size: cover;
+    background-position: top;
+    background-image: url("img/paperTexture1.jpg");
     top: 0;
     left: 0;
     text-align: center;
+    /* Box Shadow & Image Border Softening. https://stackoverflow.com/questions/6964794/soft-edges-using-css */
+    border-radius: 2px; 
+    -webkit-box-shadow: 3px 3px 10px rgba(0,0,0,.5);
+    box-shadow: 3px 3px 10px rgba(0,0,0,.5);
 }
 .imgTextRight{
     position: absolute;
@@ -320,10 +353,16 @@ body {
     height: 50px;
     width: 200px;
     background-color: wheat;
-    border: 1px solid rgb(218, 200, 167);
+    background-size: cover;
+    background-position: bottom;
+    background-image: url("img/paperTexture1.jpg");
     bottom: 0;
     right: 0;
     text-align: center;
+    /* Box Shadow & Image Border Softening. https://stackoverflow.com/questions/6964794/soft-edges-using-css */
+    border-radius: 2px; 
+    -webkit-box-shadow: 3px 3px 10px rgba(0,0,0,.5);
+    box-shadow: 3px 3px 10px rgba(0,0,0,.5);
 }
 
 /* ============================================================================================= */
@@ -336,7 +375,7 @@ body {
     background-position: center;
 }
 #panel1 .panelImg{
-    background-image: url(img/3rdwheel.png);
+    background-image: url(img/thirdwheelZoom.png);
     background-size: cover;
     background-position: center;
 }
@@ -366,4 +405,35 @@ body {
     background-position: center;
 }
 
-
+/* ============================================================================================= */
+/* ============================================================================================= */
+/* Afterwards */
+.epilogue {
+    position: fixed;
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("img/oakboard.jpg");
+    background-size: cover;
+    background-position: center;
+    align-items: center;
+    justify-content: space-evenly;
+}
+/* Row of Polaroids */
+.epilogue .row {
+    display: flex;
+    height: 40%;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+}
+/* Polaroids */
+.epilogue img {
+    display: inline-block;
+    width: 180px;
+    height: 160px;
+    padding: 10px;
+    padding-bottom: 50px;
+    background-color: rgb(228, 224, 224);
+    opacity: 0;
+}

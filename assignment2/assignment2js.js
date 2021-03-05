@@ -54,6 +54,16 @@ var autoscroll = false;
 // Reset
 var reset = false;
 
+// Epilogue
+var epilogue = false;
+
+// Music
+var audio;
+var playlist;
+var tracks;
+var current;
+var muted = false;
+
 //=================================================================================================
 //=================================================================================================
 // Functions
@@ -91,7 +101,7 @@ function animatePanels(){
     panels.each(function(){
         // If any part of the image is visible, it will be displayed via fading in.
         if($(this).visible(true) && window.scrollX != fullScrollLength){
-            $(this).animate({opacity:1}, 2500);
+            $(this).animate({opacity:1}, 2800);
         }
     });
 }
@@ -124,7 +134,6 @@ function initialize(){
     window.scrollTo(0,0);
     $("#paperPlane").css({"top": initialHeight});
     $("#paperPlane").css({"left": initialX});
-    $(".audio").trigger('load');
 }
 
 // Meant to hide the panels on restart, but it didn't work so I just reload the page when scrollX == 0.
@@ -137,6 +146,9 @@ function initialize(){
 
 // Display Polaroids for Epilogue
 function displayPolaroids(){
+    $("#autoscroll").css("display","none");
+    $("#epil").css("display","none");
+    $("#restart").css("color","white");
     $(".epilogue img").each(function(i){
         $(this).delay(i * 500).animate({opacity:1});
     });
@@ -147,19 +159,43 @@ function hidePolaroids(){
     $(".epilogue img").each(function(i){
         $(this).animate({opacity:0});
     });
+    ("#restart").css("color","gray");
     $(".epilogue").fadeOut("slow");
 }
 
-// Music
-// function play_audio(task) {
-//     if(task == 'play'){
-//          $(".my_audio").trigger('play');
-//     }
-//     if(task == 'stop'){
-//          $(".my_audio").trigger('pause');
-//          $(".my_audio").prop("currentTime",0);
-//     }
-// }
+// Music. Was planning on writing this from scratch, but decided against it.
+function init(){
+    current = 0;
+    audio = $('audio');
+    playlist = $('#playlist');
+    tracks = playlist.find('li a');
+    len = tracks.length - 1;
+    audio[0].volume = .2;
+    audio[0].play();
+    playlist.find('a').click(function(e){
+        e.preventDefault();
+        link = $(this);
+        current = link.parent().index();
+        run(link, audio[0]);
+    });
+    audio[0].addEventListener('ended',function(e){
+        current++;
+        if(current == len){
+            current = 0;
+            link = playlist.find('a')[0];
+        }else{
+            link = playlist.find('a')[current];    
+        }
+        run($(link),audio[0]);
+    });
+}
+function run(link, player){
+        player.src = link.attr('href');
+        par = link.parent();
+        par.addClass('active').siblings().removeClass('active');
+        audio[0].load();
+        audio[0].play();
+}
 
 //=================================================================================================
 //=================================================================================================
@@ -172,6 +208,20 @@ $(document).ready(function() {
         initialize();
         firstLoad = !firstLoad;
     }
+
+    $(document).scroll(function() {
+        // scroll_pos = $(this).scrollTop();
+        // if(scroll_pos > 20213 && scroll_pos < 36041) { //strozzi   
+        //     $("audio").attr("src", "audio/Strozzi.mp3");
+        // } 
+        // else if(scroll_pos > 36041 && scroll_pos < 51097){ //Leonarda
+        //     $("audio").attr("src", "audio/Leonarda.mp3");
+        // }
+        // else {
+        //     $("audio").attr("src", "audio/Hildegard.mp3");//Hildegard
+        // }
+    });
+
     $("html, body, *").mousewheel(function(e, delta) {
         this.scrollLeft -= (delta);
         e.preventDefault();
@@ -180,91 +230,94 @@ $(document).ready(function() {
 
 // Scroll Event Listener
 document.addEventListener("scroll", function(){
-    // var bodyRect = document.body.getBoundingClientRect();
-    // console.log(bodyRect);
-    // Updating the scroll variable in CSS
-    $("body").css("--scroll", window.scrollX);
-    
-
-    // Plane Animation/Location Updates
-    var scrollX = window.scrollX;
-    var newY = initialHeight + (vh/1.6)*(scrollX/fullScrollLength) + "px";
-    // console.log(initialHeight);
-    // console.log(initialX);
-    if(scrollX == 0 ){
+    // Prevents updates when user is at epilogue.
+    if(!epilogue){
+        // var bodyRect = document.body.getBoundingClientRect();
+        // console.log(bodyRect);
+        // Updating the scroll variable in CSS
+        $("body").css("--scroll", window.scrollX);
         
-        // Reload page when at start of page. Resets animations.
-        if(reset){
-            location.reload();
-            reset = false;
+
+        // Plane Animation/Location Updates
+        var scrollX = window.scrollX;
+        var newY = initialHeight + (vh/1.6)*(scrollX/fullScrollLength) + "px";
+        // console.log(initialHeight);
+        // console.log(initialX);
+        if(scrollX == 0 ){
+            
+            // Reload page when at start of page. Resets animations.
+            if(reset){
+                location.reload();
+                reset = false;
+            }
+
+            // Instructions and Navi Animations
+            $("#instruct").fadeIn();
+            $("#next").css("display","inline-block");
+            $("#epil").css("display","none");
+
+            // Navi Gutter Animations
+            $("#gutter1").css({"animation":"moveDown1 2s forwards"});
+            $("#gutter2").css({"animation":"moveUp2 2s forwards"});
+            $("#paperPlane").css({"animation":"shudder 100s infinite alternate"});
+            
         }
-
-        // Instructions and Navi Animations
-        $("#instruct").fadeIn();
-        $("#next").css("display","inline-block");
-        $("#epil").css("display","none");
-
-        // Navi Gutter Animations
-        $("#gutter1").css({"animation":"moveDown1 2s forwards"});
-        $("#gutter2").css({"animation":"moveUp2 2s forwards"});
-        $("#paperPlane").css({"animation":"shudder 100s infinite alternate"});
+        // Until last image panel, paper plane will move forward and down. This changed from the initial
+        // plan of only making it move forward at the end (which also worked, but didn't give as much sense of movement)
+        // The amount that the plane moves is determined by (window.innerWidth/2), which decides the end % location of the plane.
         
-    }
-    // Until last image panel, paper plane will move forward and down. This changed from the initial
-    // plan of only making it move forward at the end (which also worked, but didn't give as much sense of movement)
-    // The amount that the plane moves is determined by (window.innerWidth/2), which decides the end % location of the plane.
-    
-    // else if(0 < scrollX && scrollX < (fullScrollLength - window.innerWidth * 2) ){
-    else if(0 < scrollX && scrollX < fullScrollLength ){
+        // else if(0 < scrollX && scrollX < (fullScrollLength - window.innerWidth * 2) ){
+        else if(0 < scrollX && scrollX < fullScrollLength ){
 
-        // Animate Panels
-        animatePanels();
+            // Animate Panels
+            animatePanels();
 
-        // Instructions and Navi Animations 
-        $("#instruct").fadeOut();
-        $("#next").css("display","inline-block");
-        $("#epil").css("display","none");
+            // Instructions and Navi Animations 
+            $("#instruct").fadeOut();
+            $("#next").css("display","inline-block");
+            $("#epil").css("display","none");
 
-        // Navi Gutter Animations
-        $("#gutter1").css({"animation":"moveUp1 2s forwards"});
-        $("#gutter2").css({"animation":"moveDown2 2s forwards"});
+            // Navi Gutter Animations
+            $("#gutter1").css({"animation":"moveUp1 2s forwards"});
+            $("#gutter2").css({"animation":"moveDown2 2s forwards"});
 
-    //     $("#paperPlane").css({"animation":"shudder 4s infinite alternate"});
-    //     var newX = initialX + (window.innerWidth/2.5)*((scrollX)/fullScrollLength) + "px";
-    //     $("#paperPlane").css({"top": newY});
-    //     $("#paperPlane").css({"left": newX});
-    // }
-    // // Starting from last two panels, scrolling will move the plane forward as well
-    // else if((fullScrollLength - window.innerWidth * 2) <= scrollX && scrollX < fullScrollLength){
+        //     $("#paperPlane").css({"animation":"shudder 4s infinite alternate"});
+        //     var newX = initialX + (window.innerWidth/2.5)*((scrollX)/fullScrollLength) + "px";
+        //     $("#paperPlane").css({"top": newY});
+        //     $("#paperPlane").css({"left": newX});
+        // }
+        // // Starting from last two panels, scrolling will move the plane forward as well
+        // else if((fullScrollLength - window.innerWidth * 2) <= scrollX && scrollX < fullScrollLength){
 
-        // Originally was going to make the plane move forward only at the end
-        // var newX = initialX + (window.innerWidth/2.5)*((scrollX - (fullPageLength - window.innerWidth * 2))/(window.innerWidth * 2)) + "px";
-        
-        // Updated code relfects the one above (so there isn't much difference, but I left this for
-        // possible improvement where the plane moves forward faster in this section)
-        var newX = initialX + (window.innerWidth/2.0)*((scrollX)/fullScrollLength) + "px";        
-        $("#paperPlane").css({"animation":"shudder 4s infinite alternate"});
-        $("#paperPlane").css({"top": newY});
-        $("#paperPlane").css({"left": newX});
-        
-    }
-    // At the end, the plane will come to a stop (well it will move, just really slowly)
-    else if(scrollX == fullScrollLength){
+            // Originally was going to make the plane move forward only at the end
+            // var newX = initialX + (window.innerWidth/2.5)*((scrollX - (fullPageLength - window.innerWidth * 2))/(window.innerWidth * 2)) + "px";
+            
+            // Updated code relfects the one above (so there isn't much difference, but I left this for
+            // possible improvement where the plane moves forward faster in this section)
+            var newX = initialX + (window.innerWidth/2.0)*((scrollX)/fullScrollLength) + "px";        
+            $("#paperPlane").css({"animation":"shudder 4s infinite alternate"});
+            $("#paperPlane").css({"top": newY});
+            $("#paperPlane").css({"left": newX});
+            
+        }
+        // At the end, the plane will come to a stop (well it will move, just really slowly)
+        else if(scrollX == fullScrollLength){
 
-        // Animate Panels
-        animatePanels();
+            // Animate Panels
+            animatePanels();
 
-        // Navi Animations 
-        $("#next").css("display","none");
-        $("#epil").css("display","inline-block");
+            // Navi Animations 
+            $("#next").css("display","none");
+            $("#epil").css("display","inline-block");
 
-        // Navi Gutter Animations
-        $("#gutter1").css({"animation":"moveDown1 2s forwards"});
-        $("#gutter2").css({"animation":"moveUp2 2s forwards"});
+            // Navi Gutter Animations
+            $("#gutter1").css({"animation":"moveDown1 2s forwards"});
+            $("#gutter2").css({"animation":"moveUp2 2s forwards"});
 
-        // Paper Plane has 'landed'.
-        $("#paperPlane").css({"animation":"shudder 100s infinite alternate"});
-        
+            // Paper Plane has 'landed'.
+            $("#paperPlane").css({"animation":"shudder 100s infinite alternate"});
+            
+        }
     }
 });
 
@@ -292,6 +345,7 @@ $("#autoscroll").on("click", function(){
 // Restart from Beginning (Animations are not reset)
 $("#restart").on("click", function(){
     reset = true;
+    epilogue = false;
     $('html, body').animate({scrollLeft: 0},1000);
     $("#paperPlane").css({"top": initialHeight});
     $("#paperPlane").css({"left": initialX});
@@ -305,7 +359,27 @@ $("#next").on("click", function(){
 
 // Epilogue
 $("#epil").on("click", function(){
+    epilogue = true;
     $(".epilogue").fadeIn("slow");
     displayPolaroids();
 });
 
+// Play Audio
+$("#audio").on("click", function(){
+    init();
+    $("#audio").fadeOut();
+    $("#mute").delay(500).fadeIn();
+});
+
+// Mute/Unmute
+$("#mute").on("click", function(){
+    muted = !muted;
+    if(muted){
+        audio[0].volume = 0;
+        $("#mute").text("unmute.");
+    }
+    else{
+        audio[0].volume = 0.2;
+        $("#mute").text("mute.");
+    }
+});
