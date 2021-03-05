@@ -1,6 +1,8 @@
 // IM Assignment 2: a love letter. (JavaScript)
+// Joseph Hong
 // Description: this is the JavaScript script for the interactive comic 'a love letter.' This file
-// makes use of jQuery and jQuery plugins such as jQuery-Visible and mouswheel.js.
+// makes use of jQuery and jQuery plugins such as jQuery-Visible and mouswheel.js. The music function
+// that implements playlists is from http://jsfiddle.net/WsXX3/2128/.
 //=================================================================================================
 //=================================================================================================
 // Variables
@@ -70,7 +72,7 @@ var muted = false;
 
 // Visibility Checker. Uses the offsets of an element and compares it with the client's viewport
 // to see if the position of the element is visible. This is from the jQuery plugin Visible.
-// The actual .js file didn't work so I looked ended up having to paste the code here.
+// The actual .js file didn't work so I looked ended up having to paste the code here. https://github.com/customd/jquery-visible/
 (function(e) {
     e.fn.visible = function(t, n, r) {
       var i = e(this).eq(0),
@@ -101,7 +103,14 @@ function animatePanels(){
     panels.each(function(){
         // If any part of the image is visible, it will be displayed via fading in.
         if($(this).visible(true) && window.scrollX != fullScrollLength){
-            $(this).animate({opacity:1}, 2800);
+            // Autoscroll has a slower fade in because it's generally slower in movement
+            if(autoscroll){
+                $(this).animate({opacity:1}, 3000);
+            }
+            else{
+                $(this).animate({opacity:1}, 2000);
+            }
+            
         }
     });
 }
@@ -156,34 +165,29 @@ function displayPolaroids(){
 
 // Hide Polaroids
 function hidePolaroids(){
+    $("#restart").css("color","gray");
     $(".epilogue img").each(function(i){
         $(this).animate({opacity:0});
     });
-    ("#restart").css("color","gray");
     $(".epilogue").fadeOut("slow");
 }
 
-// Music. Was planning on writing this from scratch, but decided against it.
+// Music. Edited (very slightly) from http://jsfiddle.net/WsXX3/2128/. Had to fix an issue where the
+// last song would be skipped (sloppy code haha).
 function init(){
     current = 0;
     audio = $('audio');
     playlist = $('#playlist');
     tracks = playlist.find('li a');
-    len = tracks.length - 1;
+    len = tracks.length-1;
     audio[0].volume = .2;
     audio[0].play();
-    playlist.find('a').click(function(e){
-        e.preventDefault();
-        link = $(this);
-        current = link.parent().index();
-        run(link, audio[0]);
-    });
     audio[0].addEventListener('ended',function(e){
-        current++;
         if(current == len){
             current = 0;
             link = playlist.find('a')[0];
         }else{
+            current++;
             link = playlist.find('a')[current];    
         }
         run($(link),audio[0]);
@@ -267,7 +271,7 @@ document.addEventListener("scroll", function(){
         // The amount that the plane moves is determined by (window.innerWidth/2), which decides the end % location of the plane.
         
         // else if(0 < scrollX && scrollX < (fullScrollLength - window.innerWidth * 2) ){
-        else if(0 < scrollX && scrollX < fullScrollLength ){
+        else if(0 < scrollX && scrollX < fullScrollLength && !reset){
 
             // Animate Panels
             animatePanels();

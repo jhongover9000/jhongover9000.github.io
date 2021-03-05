@@ -1,5 +1,7 @@
 /* IM Assignment 2: a love letter. (CSS) */
-/* Description: this is the stylesheet for the interactive comic 'a love letter.' */
+/* Joseph Hong */
+/* Description: this is the stylesheet for the interactive comic 'a love letter.' There were a few
+features that I ended up not implementing; I've commented these out. */
 /* ============================================================================================= */
 /* ============================================================================================= */
 /* Initialization */
@@ -28,13 +30,13 @@
 }
 
 /* Audio Player Customization. I wasn't able to get rid of the annoying volume slider but oh well. */
-audio::-webkit-media-controls-timeline,
+/* audio::-webkit-media-controls-timeline,
 audio::-webkit-media-controls-timeline-container,
 audio::-webkit-media-controls-current-time-display,
 audio::-webkit-media-controls-time-remaining-display
 {
     display: none;
-}
+} */
 
 /* HTML. Vertical overflows are hidden. */
 html {
@@ -96,12 +98,12 @@ body {
     top: 50%;
     right: 5%;
     color: gray;
-    animation: pulsate 2s infinite;
+    animation: pulsate 3s infinite;
 
 }
 @keyframes pulsate {
     50% {
-      text-shadow: 0 0 1px gray;
+      opacity: 0.5;
     }
 }
 
@@ -182,17 +184,18 @@ body {
     display: none;
 }
 /* Click to play (autoplay is disabled on Chrome) */
-#audio {
+#audio, #mute {
     position: fixed;
-    top: 3%;
+    top: 4%;
     right: 3%;
+    opacity: 0.3;
 }
 /* Mute replaces Audio button. */
 #mute {
-    position: fixed;
-    top: 3%;
-    right: 3%;
     display: none;
+}
+#audio:hover, #mute:hover{
+    opacity: 0.8;
 }
 
 /* Audio. Was initially going to show this, but decided not to. */
@@ -305,6 +308,7 @@ audio:focus{
 
 /* Image Panels. Take up the entire div, but images are smaller. Centered in screen. */
 .imgPanel {
+    position: relative;
     display: flex;
     height: 100vh;
     width: calc(var(--imgPanelWidth) * 1vw);
@@ -317,10 +321,10 @@ audio:focus{
 }
 .panelImg {
     display: flex;
-    position: absolute;
+    position: relative;
     background-color: burlywood;
-    height: 720px;
-    width: 1080px;
+    height: 80vh;
+    width: 120vh;
     /* Box Shadow & Image Border Softening. https://stackoverflow.com/questions/6964794/soft-edges-using-css */
     border-radius: 2px; 
     -webkit-box-shadow: 3px 3px 10px rgba(0,0,0,.5);
