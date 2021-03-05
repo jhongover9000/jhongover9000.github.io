@@ -165,7 +165,6 @@ function displayPolaroids(){
 
 // Hide Polaroids
 function hidePolaroids(){
-    $("#restart").css("color","gray");
     $(".epilogue img").each(function(i){
         $(this).animate({opacity:0});
     });
