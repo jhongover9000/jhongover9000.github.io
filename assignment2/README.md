@@ -12,6 +12,8 @@ And that's when it hit me that the paper airplane could be a *letter*. Hear me o
 
 A boy is unable to confess his feelings to a girl and so he writes a letter. However, he is unable to give it to her because before he does, someone else gets to her first. This is the basic gist, and the content of the comic was to have the letter written out for the reader to see, along with images depicting the two of them growing closer and closer.
 
+![](Sketch1.jpg)
+
 There were two ways we could take this. One was that this, indeed, was a story of the boy and the girl getting together. The other was that all of this was what *could* have been and the story would end with the boy standing in front of the girl's grave. We decided to choose the former (but the latter is also a great story).
 
 And so that's where the concept came from. A paper airplane that interweaves a story together; utilizing the space on a screen to symbolize time; and the story of a boy who cannot confess his feelings for his childhood friend.
@@ -19,6 +21,8 @@ And so that's where the concept came from. A paper airplane that interweaves a s
 ### The (Desired) Result: Not a Failure This Time!
 
 What we were going for was an interactive comic where there would be a fixed plane that would slowly move down the screen as the user would scroll horizontally, eventually landing on the ground at the end. In the background, there would be a comic composed of text boxes and images.
+
+![](Sketch2.jpg)
 
 The result actually ended up being a lot better than what we had been planning. The website has all of those features and more, with animations for each panel and dynamic website width adjustments (I'll explain this later). I kinda went overboard coding and added a bunch of features that I thought would be "cool," some of them being autoscrolling, restarting, and transitioning into a different page (that isn't actually a different page but is a fixed overlay). I wondered if I should also make the background change colors as the user went along, but I decided not to (because I have a midterm on the 2nd and a coding project due a few days after). I mean, it's really simple, but... ok, I might do it tomorrow.
 
