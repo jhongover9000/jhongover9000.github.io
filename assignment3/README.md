@@ -1,3 +1,5 @@
+###### This isn't the full documentation. You can find it [here](https://docs.google.com/document/d/1g1m6g1_40ul2EIJJo78xnyTmJXtiyj8rrIVlVZWbZYU/edit), along with a link to the active site.
+
 ### Assignment 3: hide and seek.
 
 #### The Concept
