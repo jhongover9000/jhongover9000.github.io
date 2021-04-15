@@ -78,7 +78,7 @@ class WrongLocation {
         this.seqType = 1;
         this.name = "";                         // name of location (for location select)
         this.internalCounter = 0;               // keeps track of which video is being played
-        this.maxCount = 5;
+        this.maxCount = 4;
 
         this.jumpIn = jumpIn;                   // animation of jump in + comment
 
@@ -202,33 +202,121 @@ currentSequence = sceneArray[sceneCounter];
 
 // Scene. Choice. Scene. Choice. Scene. Choice.
 function updateVideo(){
-
     // Intro Scene
     if(sceneCounter < 4){
+        var internalCount = currentSequence.internalCounter;
         // checks if still in first 3 scenes (4th is the first location select)
         if(sceneCounter < 4){
-            playSequence();
-        }
-        // location selections start here
-        else if(sceneCounter >= 4){
-            // check if D2 has been reached or if all jumps have been used
-            if(ended()){
-                console.log("ended!");
+            // checks the current sequence (class) to see if it's completed.
+            if(internalCount <= currentSequence.maxCount){
+                // if first scene of entire video, don't update source, only increment internal counter
+                if(internalCount != 1 && internalCount != 3){
+                    // update the current source to the next video to be played
+                    updateSource(internalCount);
+                }
+                // if scene is the last of intro OR a right location (consists of scene, loc select, exit)
+                else if(sceneCounter == 3 && internalCount == 1){
+                    // choose location
+                    locationSelect(currentSequence.choiceOne, currentSequence.choiceTwo);
+                    // increment second time if first loc selection
+                    currentSequence.internalCounter++;
+
+                }
+                // if dialogue selection
+                else if(internalCount == 1){
+                    dialogSelect(currentSequence.choiceOne, currentSequence.choiceTwo);
+                    // update the current source to the next video to be played
+                    updateSource(internalCount);
+                }
             }
+            // if all videos in the sequence have been completed, go to next sequence
             else{
                 sceneCounter++;
-                currentSequence = nextSequence;
-                // update the internal count (back to 0) and update source
-                internalCount = currentSequence.internalCounter;
-                currentSource = currentSequence.allScenes[internalCount];
-
-                // increment the INTERNAL COUNTER (not internalCount)
-                currentSequence.internalCounter++;
+                if(sceneCounter > 3){
+                    currentSequence = nextSequence;
+                    internalCount = currentSequence.internalCounter;
+                    currentSource = currentSequence.allScenes[internalCount];
+                }
+                else{
+                    currentSequence = sceneArray[sceneCounter];
+                    // update the internal count (back to 0) and update source
+                    internalCount = currentSequence.internalCounter;
+                    updateSource(internalCount);
+                }
+                
             }
         }
+        
     }
-    else{
-        playSequence();
+    // location selections start here
+    if(sceneCounter >= 4){
+        // check if D2 has been reached or if all jumps have been used
+        if(ended()){
+            var internalCount = currentSequence.internalCounter;
+            console.log("ended!");
+            // there's actually 1 more step if you get 3 correct jumps
+            if(rightCounter == 3){
+                // only one option, 'D2'
+                isChoosingLoc = true;
+                $("#timeBar").css({"width":"100vw"});
+                $("#choiceSelect").css({"display":"flex"});
+                $("#choiceTwo").css({"display":"none"});
+            }
+            // best ending
+            else if(rightCounter == 4 && jumpCount == 4){
+                currentSource = endingSceneArray[0];
+            }
+            // okay ending
+            else if(rightCounter == 4 && jumpCount <= 6){
+                currentSource = endingSceneArray[1];
+            }
+            // bad ending
+            else if(jumpCount == 6){
+                currentSource = endingSceneArray[2];
+            }
+            // hidden ending (overwrites bad ending, if applicable)
+            if(hiddenEnd){
+                currentSource = endingSceneArray[3];
+            }
+        }
+        // otherwise, you keep going
+        else{
+            var internalCount = currentSequence.internalCounter;
+            console.log(nextSequence.internalCounter);
+            // checks the current sequence (class) to see if it's completed.
+            if(internalCount <= currentSequence.maxCount){
+                // if internal count is 1, it's either dialog (wrong) or location selection (right)
+                if(internalCount == 1){
+                    // if right location, go to location select
+                    if(locationType == 1){
+                        locationSelect(locationArrayRight[rightCounter].name,locationArrayWrong[wrongCounter].name);
+                        updateSource(internalCount);
+                    }
+                    // otherwise select dialog (wrong location)
+                    else{
+                        dialogSelect(currentSequence.choiceOne, currentSequence.choiceTwo);
+                        updateSource(internalCount);
+                    }
+                    
+                }
+                // else if 3, location selection (wrong location)
+                else if(internalCount == 3){
+                    locationSelect(locationArrayRight[rightCounter].name, locationArrayWrong[wrongCounter].name);
+                }
+                // otherwise just play through as usual
+                else{
+                    // update the current source to the next video to be played
+                    updateSource(internalCount);
+                }
+            }
+            else{
+                console.log("changing sequence");
+                currentSequence = nextSequence;
+                internalCount = currentSequence.internalCounter;
+                // update the current source to the next video to be played
+                updateSource(internalCount);
+            }
+        }
     }
     
     source.src = currentSource;
@@ -237,87 +325,36 @@ function updateVideo(){
     vid.play();
 }
 
-
-function playSequence(){
-    var internalCount = currentSequence.internalCounter;
-            // checks the current sequence (class) to see if it's completed.
-            if(internalCount <= currentSequence.maxCount){
-                // if first scene of entire video, don't update source, only increment internal counter
-                if(internalCount != 1 && internalCount != 3){
-                    // update the current source to the next video to be played
-                    currentSource = currentSequence.allScenes[internalCount];
-
-                    // increment the INTERNAL COUNTER (not internalCount)
-                    currentSequence.internalCounter++;
-                }
-                // if scene is the last of intro OR a right location (consists of scene, loc select, exit)
-                else if((sceneCounter == 3 || locationType == 1) && internalCount == 1){
-                    
-                    // choose location
-                    locationSelect(currentSequence.choiceOne, currentSequence.choiceTwo);
-
-                }
-                // if dialogue selection
-                else if(internalCount == 1){
-                    isChoosing = true;
-                    // display choice selection
-                    $("#timeBar").css({"width":"100vw"});
-                    $("#choiceSelect").css({"display":"flex"});
-                    $("#choiceOneText").html(currentSequence.choiceOne);
-                    $("#choiceTwoText").html(currentSequence.choiceTwo);
-
-                    // update the current source to the next video to be played
-                    currentSource = currentSequence.allScenes[internalCount];
-                    // increment the INTERNAL COUNTER (not internalCount)
-                    currentSequence.internalCounter++;
-                }
-                // location selection
-                else if(internalCount == 3){
-                    // display choice selection
-                    $("#timeBar").css({"width":"100vw"});
-                    $("#choiceSelect").css({"display":"flex"});
-                    locationSelect(locationArrayRight[rightCounter].name, locationArrayWrong[wrongCounter].name);
-                }
-            }
-            // if all videos in the sequence have been completed, go to next sequence
-            else{
-                sceneCounter++;
-                if(sceneCounter > 3){
-                    console.log("next sequence")
-                    currentSequence = nextSequence;
-                    console.log(nextSequence);
-                }
-                else{
-                    console.log("still in scene")
-                    currentSequence = sceneArray[sceneCounter];
-                }
-                
-                console.log(currentSequence);
-                // update the internal count (back to 0) and update source
-                internalCount = currentSequence.internalCounter;
-                currentSource = currentSequence.allScenes[internalCount];
-
-                // increment the INTERNAL COUNTER (not internalCount)
-                currentSequence.internalCounter++;
-            }
+// Check if D2 is 1 stop away, if all jumps have been used, or if hidden ending is achieved.
+function ended(){
+    return (jumpCount == 7 || rightCounter == 3 || hiddenEnd);
 }
 
-function updateInternalCounter(){
+// Update Video Source.
+function updateSource(internalCount){
     // update the internal count (back to 0) and update source
-    var internalCount = currentSequence.internalCounter;
     currentSource = currentSequence.allScenes[internalCount];
-
     // increment the INTERNAL COUNTER (not internalCount)
     currentSequence.internalCounter++;
 }
 
-function locationSelect(choiceA, choiceB){
-    var internalCount = currentSequence.internalCounter;
-    isChoosingLoc = true;
+// Select Dialog Option.
+function dialogSelect(choiceA, choiceB){
+    isChoosing = true;
     // display choice selection
     $("#timeBar").css({"width":"100vw"});
     $("#choiceSelect").css({"display":"flex"});
+    $("#choiceOneText").html(choiceA);
+    $("#choiceTwoText").html(choiceB);
+}
 
+// Select Location Option.
+function locationSelect(choiceA, choiceB){
+    // display choice selection
+    $("#timeBar").css({"width":"100vw"});
+    $("#choiceSelect").css({"display":"flex"});
+    var internalCount = currentSequence.internalCounter;
+    isChoosingLoc = true;
     // randomizes the selection layout of locations
     choiceLayout = Math.floor(Math.random()*2);
     if(choiceLayout == 0){
@@ -335,11 +372,6 @@ function locationSelect(choiceA, choiceB){
     currentSequence.internalCounter++;
 }
 
-// Check if D2 has been reached, or if all jumps have been used, or if hidden ending is achieved.
-function ended(){
-    return (jumpCount == 7 || rightCounter == 4 || hiddenEnd);
-}
-
 
 // Select First Choice.
 function selectFirst(){
@@ -347,31 +379,31 @@ function selectFirst(){
     var internalCount = currentSequence.internalCounter;
     // if in dialogue selection
     if(isChoosing){
-        // update the current source to the next video to be played
-        currentSource = currentSequence.allScenes[internalCount];
         
         // if the sequence is an intro scene
         if(currentSequence.seqType = 0){
+            // update the current source to the next video to be played
+            currentSource = currentSequence.allScenes[internalCount];
             // increment the INTERNAL COUNTER (not internalCount) twice (to get past responses)
             currentSequence.internalCounter+=2;
         }
-        // else, the sequence is a wrong location (only one response)
+        // else, the sequence is a wrong location (only one response available)
         else{
+            // update the current source to the next video to be played
+            currentSource = currentSequence.allScenes[internalCount];
             currentSequence.internalCounter++;
         }
-        isChoosing = false;
-
         console.log(currentSource);
+        isChoosing = false;
         vid.load();
         vid.play();
     }
     // if selecting location
     else if(isChoosingLoc){
-
         // if layout is right, wrong, select right
         if(choiceLayout == 0){
-            locationType = 1;
             // update next sequence to right location, then increment counter
+            locationType = 1;
             nextSequence = locationArrayRight[rightCounter];
             rightCounter++;
         }
@@ -387,16 +419,18 @@ function selectFirst(){
                 hiddenEnd = true;
             }
         }
-
-        // increment jump count by 1
+        // update the current source to the next video to be played (transition animation)
+        currentSource = currentSequence.allScenes[internalCount];
+        currentSequence.internalCounter++;
+        // increment jump count by 1, load, and play
         jumpCount++;
-
-        // location selection is different as it doesn't update the current source
-        isChoosingLoc = false;
         console.log(currentSource);
+        isChoosingLoc = false;
         vid.load();
         vid.play();
     }
+    // remove timer
+    $("#timeBar").css({"width":"100vw"});
     $("#choiceSelect").css({"display":"none"});
 }
 
@@ -407,34 +441,32 @@ function selectSecond(){
     var internalCount = currentSequence.internalCounter;
     // if in dialogue selection
     if(isChoosing){
-        // update the current source to the next, NEXT video to be played
-        currentSource = currentSequence.allScenes[internalCount+1];
-
         // if the sequence is an intro scene
         if(currentSequence.seqType = 0){
+            // update the current source to the next, NEXT video to be played
+            currentSource = currentSequence.allScenes[internalCount+1];
             // increment the INTERNAL COUNTER (not internalCount) twice (to get past responses)
             currentSequence.internalCounter+=2;
         }
         // else, the sequence is a wrong location (only one response)
         else{
+            // update the current source to the next video to be played
+            currentSource = currentSequence.allScenes[internalCount];
             currentSequence.internalCounter++;
         }
         isChoosing = false;
-
         console.log(currentSource);
         vid.load();
         vid.play();
     }
-
     // if selecting location
     else if(isChoosingLoc){
         // if layout is right, wrong, select wrong
         if(choiceLayout == 0){
-            locationType = 0;
             // update next sequence to wrong location, then increment counter
+            locationType = 0;
             nextSequence = locationArrayWrong[wrongCounter];
             wrongCounter++;
-
             // if you've selected the last wrong location (random coordinate) you get the hidden ending
             if(wrongCounter == 4){
                 hiddenEnd = true;
@@ -442,21 +474,41 @@ function selectSecond(){
         }
         // else if layout is wrong, right, select right
         else{
-            locationType = 1;
             // update next sequence to right location, then increment counter
+            locationType = 1;
             nextSequence = locationArrayRight[rightCounter];
             rightCounter++;
         }
-
-        // increment jump count by 1
+        // update the current source to the next video to be played (transition animation)
+        currentSource = currentSequence.allScenes[internalCount+1];
+        currentSequence.internalCounter++;
+        // increment jump count by 1, load, and play
         jumpCount++;
-
-        // location selection is different as it doesn't update the current source
         isChoosingLoc = false;
         console.log(currentSource);
         vid.load();
         vid.play();
     }
+    // remove timer
+    $("#timeBar").css({"width":"100vw"});
+    $("#choiceSelect").css({"display":"none"});
+}
+
+// Select Only Option. Displayed at end of right locations (behind D2).
+function selectOnly(){
+    // update the current source to the next video to be played (transition animation)
+    currentSource = currentSequence.allScenes[internalCount];
+    
+    // increment jump and right loc count by 1, load, and play
+    jumpCount++;
+    rightCounter++;
+    isChoosingLoc = false;
+    console.log(currentSource);
+    vid.load();
+    vid.play();
+
+    // remove timer
+    $("#timeBar").css({"width":"100vw"});
     $("#choiceSelect").css({"display":"none"});
 }
 
@@ -476,7 +528,6 @@ $(document).ready(function(){
 });
 
 vid.addEventListener('ended', function(){
-    $("#timeBar").css({"width":"100vw"});
     $("#choiceSelect").css({"display":"none"});
     // autoselect randomly
     if(isChoosingLoc){
@@ -487,18 +538,27 @@ vid.addEventListener('ended', function(){
         else{
             selectSecond();
         }
-        isChoosingLoc = false;
     }
     // autoselect first option
     else if(isChoosing){
         selectFirst();
-        isChoosing = false;
     }
-    updateVideo();
+    else{
+        updateVideo();
+    }
+    
 });
 
-vid.addEventListener('playing', function(){
-    var durationTime = vid.duration*1000;
-    $("#timeBar").animate({"width":"0"},durationTime);
+vid.addEventListener('play', function(){
+    console.log("rightCount: "+String(rightCounter));
+    console.log("wrongCount: "+String(wrongCounter));
+    console.log("jumpCount: " +String(jumpCount));
+})
+
+vid.addEventListener('playing', function(){ 
+    if(isChoosingLoc || isChoosing){
+        var durationTime = vid.duration*1000;
+        $("#timeBar").animate({"width":"0"},durationTime);
+    }
 });
 
