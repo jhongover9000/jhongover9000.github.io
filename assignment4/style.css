@@ -1,0 +1,231 @@
+.root {
+    --color: 0;
+    --navBarHeight: 3;
+
+}
+
+body {
+    font-family: 'IBM Plex Mono', serif;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    height: 200vh;
+}
+
+/* Navigation Bar */
+#navBar {
+    background-color: black;
+    display: flex;
+    position: fixed;
+    top: 0;
+    flex-direction: column;
+    align-items: center;
+    height: calc(var(--navBarHeight)*1vh);
+    width: 100vw;
+    z-index: 99;
+}
+    #navBar li {
+        display: flex;
+        justify-content: space-evenly;
+        height: 100%;
+        width: 50%;
+        padding: 5px;
+    }
+    #navBar ul {
+        display: inline-block;
+        font-size: 3vh;
+        padding: 10px;
+    }
+    #navBar a {
+        color: whitesmoke;
+        text-decoration: none;
+    }
+    #navBar a:hover{
+        opacity: 0.5;
+    }
+
+
+/* Home */
+header{
+    height: calc((100 - var(--navBarHeight)) * 1vh);
+    /* background: radial-gradient(#fff , rgb(170, 208, 241)); */
+    margin-bottom: 10vh;
+}
+    header .row{
+        margin-top: 50px;
+        height: 70vh;
+    }
+    header h1 {
+        color: whitesmoke;
+        background: none;
+    }
+    header p {
+        color: whitesmoke;
+    }
+
+#scrollDown {
+    width: auto;
+    height: 3vh;
+    bottom: 1vh;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    align-items: center;
+    cursor: pointer;
+    animation: emphasisDown 7s infinite;
+}
+    @keyframes emphasisDown {
+        25%{
+            opacity: 0.5;
+            transform: translateY(5px);
+        }
+        50%{
+            opacity: 1;
+            transform: translateY(0px);
+        }
+        100%{
+            opacity: 1;
+        }
+
+    }
+
+.arrow {
+    border: solid whitesmoke;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+    .down {
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+    }
+
+.container{
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    z-index: 1;
+}
+
+h2 {
+    padding-top: 15vh;
+}
+
+.row{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 0;
+}
+
+.col-2{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-basis: 50%;
+    max-width: 100%;
+} 
+
+.col-2 img{
+    max-width: 100%;
+    padding: 50px 0;
+}
+
+.col-2 h1{
+    text-align: center;
+    font-size: 8vh;
+    line-height: 60px;
+    margin: 40px 0;
+}
+
+.col-2 p {
+    text-align: center;
+    width: 100%;
+}
+
+.btn{
+    display: block;
+    background: rgb(232, 232, 232);
+    color: black;
+    padding: 2vh 5vh;
+    font-size: 2vh;
+    margin: 30px 0;
+    border-radius: 30px;
+    transition: .5s;
+    animation: buttonEmphasis 3s linear infinite;
+    text-decoration: none;
+    font-weight: bold;
+}
+    @keyframes buttonEmphasis {
+        50% {
+            background: white;
+            box-shadow: 0 0 10px #fff;
+            text-shadow: 0 0 10px #fff;
+        }
+    }
+    .btn:hover{
+        background: whitesmoke;
+        animation: none;
+    }
+
+/* =========================================================================== */
+/* =========================================================================== */
+/* Game Page */
+#videoDiv {
+    display: flex;
+    height: 100vh;
+}
+
+#videoDiv video {
+    width: 100vw;
+    height: 100vh;
+    margin: auto;
+}
+
+#fixedElements {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+}
+
+#choiceSelect {
+    position: fixed;
+    display: none;
+    bottom: 0;
+    width: 100vw;
+    height: 30vh;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    opacity: 1;
+}
+
+.choice {
+    width: 30%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto auto;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+    user-select: none;
+}
+.choice:hover{
+    background-color: gray;
+}
+
+#timeBar {
+    position: absolute;
+    top:0;
+    width: 100vw;
+    height: 5%;
+    background-color: white;
+    opacity: 1;
+}
