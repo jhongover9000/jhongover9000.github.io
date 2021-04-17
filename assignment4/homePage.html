@@ -18,7 +18,9 @@
     <script type="text/javascript" src="js/jquery.visible.js"></script>
 
     <!-- Font for Website -->
+    <link rel="shortcut icon" href="#">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@200&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -28,9 +30,6 @@
 <!-- ============================================================================================= -->
 <!-- Body -->
 <body>
-
-
-
     <div id="fixedElements">
         <!-- Navigation Across Different Pages -->
         <div id="navBarPlaceholder"></div>
@@ -38,13 +37,33 @@
         <div id="pageNavPlaceholder"></div>
         <!-- To Top of Page -->
         <div id="toTop">
-
         </div>
+    </div>
 
+	<header>
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<h1 class="head">Welcome, Navigator.</h1>
+					<p></p>
+					<a href="/assignment4/gamePage.html" class="btn">Begin Task.</a>
+				</div>
+			</div>
+		</div>
+		<div id="scrollDown">
+			<br>
+			<br>
+			<p>Or Scroll Down for Details.</p>
+			<i class="arrow down"></i>
+		</div>
+	</header>
+
+    <div>
+        <h3>You are a Navigator.</h3>
     </div>
 
     <!-- JavaScript -->
-    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
     <!-- Loads the NavBar & PageNav (for reuse). Referenced from https://stackoverflow.com/questions/31954089/how-can-i-reuse-a-navigation-bar-on-multiple-pages. -->
     <script>
         $(function(){

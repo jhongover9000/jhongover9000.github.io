@@ -12,17 +12,48 @@
     <script type="text/javascript" src="js/jquery.visible.js"></script>
 
     <!-- Font for Website -->
+    <link rel="shortcut icon" href="#">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@200&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="fixedElements" style="display: none;">
+        <!-- Navigation Bar -->
+        <div id="navBarPlaceholder"></div>
+        <!--  -->
+        <div id="HUD"></div>
+        <!-- Options to Restart/Go to Home -->
+        <div id="restart">
+            <a href="/assignment4/gamePage.html">Restart</a>
+            <a href="/assignment4/homePage.html">To Home Page</a>
+        </div>
+    </div>
+
     <div id="videoDiv">
-        <video controls="none" autoplay>
+        <video id="vid" autoplay>
             <source id="videoSrc" src="video_1.mp4">
         </video>
     </div>
+
+
     
+    <div id="choiceSelect">
+        <div id="timeBar"></div>
+        <div class="choice" id="choiceOne">
+            <p id="choiceOneText">Choice 1</p>
+        </div>
+        <div class="choice" id="choiceTwo">
+            <p id="choiceTwoText">Choice 2</p>
+        </div>
+    </div>
+
+    <script>
+        $(function(){
+            $("#navBarPlaceholder").load("partials/navBar.html");
+            $("#pageNavPlaceholder").load("partials/pageNav.html");
+        });
+    </script>
 
     <script type="text/javascript" src="js/script.js"></script>
     <script type="text/javascript" src="js/gameScript.js"></script>
