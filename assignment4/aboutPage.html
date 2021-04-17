@@ -1,11 +1,63 @@
+<!-- IM Assignment 3: simply seph. (About Page HTML) -->
+<!-- Joseph Hong -->
+<!-- Description: this is the HTML for the home page of the portfolio. -->
+<!-- ============================================================================================= -->
+<!-- ============================================================================================= -->
+<!-- Head -->
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
     
+    <title>fly me to the moon.</title>
+
+    <!-- jQuery. Needs to be up here (doesn't work otherwise). -->
+    <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.visible.js"></script>
+
+    <!-- Font for Website -->
+    <link rel="shortcut icon" href="#">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<!-- Body -->
+<body>
+    <div id="fixedElements">
+        <!-- Navigation Across Different Pages -->
+        <div id="navBarPlaceholder"></div>
+        <!-- Navigation Within Same Page -->
+        <div id="pageNavPlaceholder"></div>
+        <!-- To Top of Page -->
+        <div id="toTop">
+        </div>
+    </div>
+
+    <div class="description">
+        <h2>An Interactive Experience.</h2>
+        <p>
+            This website is a mix between video and interaction, meshed together to create
+            a responsive story that changes with the decisions you make.
+            <br>
+            <br>
+            Decisions will appear in the form of two choices at the bottom of the screen. All
+            you need to do is select the choice that you prefer, then view the response to your
+            decision.
+        </p>
+    </div>
+  
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="js/script.js"></script>
+    <!-- Loads the NavBar & PageNav (for reuse). Referenced from https://stackoverflow.com/questions/31954089/how-can-i-reuse-a-navigation-bar-on-multiple-pages. -->
+    <script>
+        $(function(){
+            $("#navBarPlaceholder").load("partials/navBar.html");
+            $("#pageNavPlaceholder").load("partials/pageNav.html");
+        });
+    </script>
 </body>
 </html>

@@ -276,7 +276,7 @@ function updateVideo(){
             else{
                 if(isFinished){
                     currentSource = creditsSource;
-                    $("#fixedElements").fadeIn();
+                    $("#restart").fadeIn();
                     allDone = true;
                 }
                 // best ending
@@ -579,6 +579,7 @@ $(document).ready(function(){
 vid.addEventListener('ended', function(){
     $("#choiceSelect").fadeOut();
     if(allDone){
+        $("#fixedElements").fadeIn();
         vid.pause();
     }
     // autoselect randomly if location selection
