@@ -1,7 +1,20 @@
+/* Assignment 4: fly me to the moon. (CSS) */
+/* Description: This is the style sheet for the interactive website. */
+/* =========================================================================== */
+/* =========================================================================== */
+/* Variables */
 .root {
     --color: 0;
-    --navBarHeight: 3;
+    --navBarHeight: 2;
 
+}
+
+/* =========================================================================== */
+/* =========================================================================== */
+/* Initialization */
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -12,6 +25,8 @@ body {
     height: 200vh;
 }
 
+/* =========================================================================== */
+/* =========================================================================== */
 /* Navigation Bar */
 #navBar {
     background-color: black;
@@ -23,50 +38,65 @@ body {
     height: calc(var(--navBarHeight)*1vh);
     width: 100vw;
     z-index: 99;
+    box-shadow: 0 0 4px white;
 }
-    #navBar li {
-        display: flex;
-        justify-content: space-evenly;
-        height: 100%;
-        width: 50%;
-        padding: 5px;
-    }
-    #navBar ul {
-        display: inline-block;
-        font-size: 3vh;
-        padding: 10px;
-    }
-    #navBar a {
-        color: whitesmoke;
-        text-decoration: none;
-    }
-    #navBar a:hover{
-        opacity: 0.5;
-    }
-
-
+#navBar li {
+    display: flex;
+    justify-content: space-evenly;
+    height: 70%;
+    width: 70%;
+    padding: 20px;
+}
+#navBar ul {
+    display: inline-block;
+    font-size: 2vw;
+    padding: 20px;
+    margin: 0;
+    color: white;
+}
+#navBar a {
+    color: whitesmoke;
+    text-decoration: none;
+    user-select: none;
+}
+#navBar a:hover{
+    opacity: 0.5;
+}
+#titleBar{
+    width: 100vw;
+    height: 1vw;
+    padding: 10px 0 0 0;
+    color: whitesmoke;
+    text-align: center;
+    user-select: none;
+}
+/* =========================================================================== */
+/* =========================================================================== */
 /* Home */
-header{
-    height: calc((100 - var(--navBarHeight)) * 1vh);
+#header{
+    height: auto;
+    display: block;
     /* background: radial-gradient(#fff , rgb(170, 208, 241)); */
-    margin-bottom: 10vh;
+    margin: 10vh auto;
 }
-    header .row{
-        margin-top: 50px;
-        height: 70vh;
-    }
-    header h1 {
-        color: whitesmoke;
-        background: none;
-    }
-    header p {
-        color: whitesmoke;
-    }
+#header .row{
+    margin-top: 50px;
+    height: 70vh;
+}
+#header h1 {
+    color: whitesmoke;
+    background: none;
+    user-select: none;
+}
+#header p {
+    color: whitesmoke;
+    user-select: none;
+}
 
 #scrollDown {
     width: auto;
-    height: 3vh;
-    bottom: 1vh;
+    height: auto;
+    bottom: 2vh;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -74,33 +104,36 @@ header{
     align-items: center;
     cursor: pointer;
     animation: emphasisDown 7s infinite;
+    user-select: none;
 }
-    @keyframes emphasisDown {
-        25%{
-            opacity: 0.5;
-            transform: translateY(5px);
-        }
-        50%{
-            opacity: 1;
-            transform: translateY(0px);
-        }
-        100%{
-            opacity: 1;
-        }
-
+@keyframes emphasisDown {
+    25%{
+        opacity: 0.5;
+        transform: translateY(5px);
+    }
+    50%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    100%{
+        opacity: 1;
     }
 
+}
+
+/* Arrow */
 .arrow {
     border: solid whitesmoke;
     border-width: 0 3px 3px 0;
     display: inline-block;
     padding: 3px;
   }
-    .down {
-        transform: rotate(45deg);
-        -webkit-transform: rotate(45deg);
-    }
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
 
+/* Header (Welcome Navigator) */
 .container{
     max-width: 100%;
     display: flex;
@@ -109,45 +142,34 @@ header{
     margin: auto;
     z-index: 1;
 }
-
 h2 {
     padding-top: 15vh;
 }
-
-.row{
+.row {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     justify-content: space-around;
     margin: 0;
 }
-
-.col-2{
+.col {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     flex-basis: 50%;
     max-width: 100%;
 } 
-
-.col-2 img{
-    max-width: 100%;
-    padding: 50px 0;
-}
-
-.col-2 h1{
+h1{
     text-align: center;
     font-size: 8vh;
     line-height: 60px;
     margin: 40px 0;
 }
-
-.col-2 p {
+.col {
     text-align: center;
     width: 100%;
 }
-
 .btn{
     display: block;
     background: rgb(232, 232, 232);
@@ -161,21 +183,54 @@ h2 {
     text-decoration: none;
     font-weight: bold;
 }
-    @keyframes buttonEmphasis {
-        50% {
-            background: white;
-            box-shadow: 0 0 10px #fff;
-            text-shadow: 0 0 10px #fff;
-        }
+@keyframes buttonEmphasis {
+    50% {
+        background: white;
+        box-shadow: 0 0 10px #fff;
+        text-shadow: 0 0 10px #fff;
     }
-    .btn:hover{
-        background: whitesmoke;
-        animation: none;
-    }
+}
+.btn:hover{
+    background: whitesmoke;
+    animation: none;
+}
+
+.description{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: auto;
+    margin: auto;
+    margin-top: 15vh;
+    justify-content: center;
+    
+}
+.description h2 {
+    margin: 0;
+    padding: 100px 0 10px 0;
+    width: 100%;
+    font-weight: bolder;
+    font-size: 3vh;
+    color: white;
+    user-select: none;
+}
+.description h3 {
+    margin-top: 20vh;
+    width: 100%;
+    font-weight: bolder;
+    font-size: 3vh;
+    color: white;
+    user-select: none;
+}
+.description p {
+    color: white;
+    font-size: 2vh;
+    user-select: none;
+}
 
 /* =========================================================================== */
 /* =========================================================================== */
-/* Game Page */
+/* Video Page */
 #videoDiv {
     display: flex;
     height: 100vh;
@@ -185,12 +240,6 @@ h2 {
     width: 100vw;
     height: 100vh;
     margin: auto;
-}
-
-#fixedElements {
-    position: fixed;
-    height: 100vh;
-    width: 100vw;
 }
 
 #choiceSelect {
@@ -216,16 +265,61 @@ h2 {
     background-color: black;
     cursor: pointer;
     user-select: none;
+    animation: none;
 }
 .choice:hover{
     background-color: gray;
+}
+@keyframes selected {
+    25% {
+        background-color: white;
+    }
+    50% {
+        background-color: black;
+    }
+    75% {
+        background-color: white;
+    }
+    100% {
+        background-color: black;
+    }
+}
+
+.choice p {
+    text-align: center;
 }
 
 #timeBar {
     position: absolute;
     top:0;
-    width: 100vw;
-    height: 5%;
+    width: 80vw;
+    height: 2%;
     background-color: white;
     opacity: 1;
+}
+
+/* #fixedElements {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+} */
+
+#restart {
+    position: fixed;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: auto;
+    width: 100vw;
+    bottom: 2vh;
+    color: white;
+    z-index: 98;
+}
+#restart a {
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+}
+#restart a:hover {
+    opacity: 0.7;
 }
