@@ -16,7 +16,7 @@ var source = document.getElementById("videoSrc");
 
 // Intro Scene
 var sceneArray = []; 
-var sceneCounter = 3;
+var sceneCounter = 0;
 
 // Location Selection
 var choiceLayout
@@ -369,10 +369,6 @@ function updateVideo(){
     vid.play();
 }
 
-// Select Ending Video. Based on jumpCount, rightCounter, and hiddenEnd
-function selectEnding(){
-
-}
 
 // Check if D2 is 1 stop away, if all jumps have been used, or if hidden ending is achieved.
 function isEnding(){
@@ -557,6 +553,9 @@ $("#choiceOne").on("click", function(){
     if(rightCounter == 4){
         selectOnly();
     }
+    else if(sceneCounter > 2){
+        selectSecond();
+    }
     else{
         selectFirst();
     }
@@ -565,6 +564,9 @@ $("#choiceOne").on("click", function(){
 $("#choiceTwo").on("click", function(){
     if(rightCounter == 4){
         selectOnly();
+    }
+    else if(sceneCounter > 2){
+        selectFirst();
     }
     else{
         selectSecond();
