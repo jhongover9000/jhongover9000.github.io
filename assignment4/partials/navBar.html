@@ -1,0 +1,29 @@
+<div id="navBar">
+    <div id="titleBar">fly me to the moon.</div>
+    <li>
+        <ul id="home"><a href="/assignment4/homePage.html">Home</a></ul>
+        <ul>|</ul>
+        <ul id="game"><a href="/assignment4/gamePage.html">Begin Assignment</a></ul>
+        <ul>|</ul>
+        <ul id="about"><a href="/assignment4/aboutPage.html">About</a></ul>
+    </li>
+</div>
+
+<script>
+    $("#scrollDown").click(function(){
+			const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+			const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+			window.scrollTo(0, 1.1*vh);
+    });
+
+    $(window).scroll(function(){
+        if(document.documentElement.scrollTop > 0){
+            $("#titleBar").fadeOut();
+            document.getElementById("navBar").style.boxShadow = "0 0 8px white";
+        }
+        else{
+            $("#titleBar").fadeIn();
+            document.getElementById("navBar").style.boxShadow = "0 0 4px white";
+        }
+    });
+</script>
