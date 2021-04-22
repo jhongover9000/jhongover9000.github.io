@@ -13,6 +13,7 @@ $('body').css("height","100vh");
 // Video and Source
 var vid = document.getElementById("vid");
 var source = document.getElementById("videoSrc");
+var isPlaying = true;
 
 // Intro Scene
 var sceneArray = []; 
@@ -194,7 +195,7 @@ for(var i = 0; i < 4; i++){
 }
 
 // Load End Scenes.
-for(var i = 0; i < 4; i++){
+for(var i = 0; i < 3; i++){
     var temp = new Ending("ending"+i+".mp4");
     endingSceneArray.push(temp);
 }
@@ -241,6 +242,7 @@ function updateVideo(){
                     currentSource = currentSequence.allScenes[internalCount];
                 }
                 else{
+                    $("#locationsTab").fadeIn();
                     currentSequence = sceneArray[sceneCounter];
                     // update the internal count (back to 0) and update source
                     internalCount = currentSequence.internalCounter;
@@ -279,25 +281,25 @@ function updateVideo(){
                     $("#restart").fadeIn();
                     allDone = true;
                 }
-                // best ending
-                else if(rightCounter == 5 && jumpCount == 5){
-                    console.log("Best Ending!");
-                    currentSource = endingSceneArray[0].scene;
-                }
+                // best ending. got rid of due to time constraints in editing.
+                // else if(rightCounter == 5 && jumpCount == 5){
+                //     console.log("Best Ending!");
+                //     currentSource = endingSceneArray[0].scene;
+                // }
                 // okay ending (every other situation if you reach D2)
                 else if(rightCounter == 5){
-                    console.log("Second Best Ending!");
-                    currentSource = endingSceneArray[1].scene;
+                    // console.log("Second Best Ending!");
+                    currentSource = endingSceneArray[0].scene;
                 }
                 // bad ending
                 else if(jumpCount >= 7){
-                    console.log("Bad Ending :(");
-                    currentSource = endingSceneArray[2].scene;
+                    // console.log("Bad Ending :(");
+                    currentSource = endingSceneArray[1].scene;
                 }
                 // hidden ending (overwrites bad ending, if applicable)
                 if(hiddenEnd && !isFinished){
-                    console.log("Hidden Ending :o");
-                    currentSource = endingSceneArray[3].scene;
+                    // console.log("Hidden Ending :o");
+                    currentSource = endingSceneArray[2].scene;
                 }
                 isFinished = true;
             }
@@ -424,7 +426,7 @@ function selectFirst(){
     // if in dialogue selection
     if(isChoosing){
         // if the sequence is an intro scene, update source to next scene and increment counter twice
-        if(currentSequence.seqType = 0){
+        if(currentSequence.seqType == 0){
             updateSource(internalCount);
             currentSequence.internalCounter++;
         }
@@ -434,6 +436,7 @@ function selectFirst(){
         }
         // console.log(currentSource);
         isChoosing = false;
+        source.src = currentSource;
         vid.load();
         vid.play();
     }
@@ -462,8 +465,9 @@ function selectFirst(){
         updateSource(internalCount);
         // increment jump count by 1, load, and play
         jumpCount++;
-        // console.log(currentSource);
+        console.log(currentSource);
         isChoosingLoc = false;
+        source.src = currentSource;
         vid.load();
         vid.play();
     }
@@ -480,7 +484,7 @@ function selectSecond(){
     // if in dialogue selection
     if(isChoosing){
         // if the sequence is an intro scene
-        if(currentSequence.seqType = 0){
+        if(currentSequence.seqType == 0){
             // update the current source to the next, NEXT video to be played
             currentSource = currentSequence.allScenes[internalCount+1];
             // increment the INTERNAL COUNTER (not internalCount) twice (to get past responses)
@@ -492,7 +496,8 @@ function selectSecond(){
             updateSource(internalCount);
         }
         isChoosing = false;
-        // console.log(currentSource);
+        
+        source.src = currentSource;
         vid.load();
         vid.play();
     }
@@ -523,6 +528,7 @@ function selectSecond(){
         jumpCount++;
         isChoosingLoc = false;
         // console.log(currentSource);
+        source.src = currentSource;
         vid.load();
         vid.play();
     }
@@ -577,6 +583,24 @@ $("#choiceTwo").on("click", function(){
 $(document).ready(function(){
     updateVideo();
 });
+
+$("#locationsTab").hover(function(){
+    $("#locationList").css({"animation":"slideIn 1s forwards"});
+}, function(){
+    $("#locationList").css({"animation":"slideOut 1s forwards"});
+});
+
+// This interfered with the video playing so I got rid of it.
+// $("#playTab").click(function(){
+//     if(isPlaying){
+//         vid.pause();
+//         $("#playTab").html("Play");
+//     }
+//     else{
+//         vid.play();
+//         $("#playTab").html("Pause");
+//     }
+// });
 
 vid.addEventListener('ended', function(){
     $("#choiceSelect").fadeOut();

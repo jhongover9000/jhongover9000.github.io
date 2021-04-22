@@ -17,14 +17,27 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@200&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body style="height: 100vh;">
     <div id="fixedElements" style="display: none;">
         <!-- Navigation Bar -->
         <div id="navBarPlaceholder"></div>
         
     </div>
     <!-- Heads Up Display -->
-    <div id="HUD"></div>
+    <div id="HUD">
+        <div class="tab" id="playTab">
+            <a href="/assignment4/homePage.html">Return Home</a>
+        </div>
+        <div class="tab" id="locationsTab">Required Locations</div>
+        <div id="locationList">
+            <ul>
+                <li>A3</li>
+                <li>Ampitheatre</li>
+                <li>Highline (A5)</li>
+                <li>Highine (A6</li>
+            </ul>
+        </div>
+    </div>
     <!-- Options to Restart/Go to Home -->
     <div id="restart" style="display: none;">
         <a href="/assignment4/gamePage.html">Try Again.</a>
@@ -54,6 +67,7 @@
             $("#navBarPlaceholder").load("partials/navBar.html");
             $("#pageNavPlaceholder").load("partials/pageNav.html");
         });
+        
     </script>
 
     <script type="text/javascript" src="js/script.js"></script>
