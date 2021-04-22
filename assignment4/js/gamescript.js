@@ -477,6 +477,7 @@ function selectFirst(){
     // remove timer
     $("#choiceOne").css({"animation":"selected 1s"});
     $("#choiceSelect").fadeOut();
+    $("#timeBar").stop();
 }
 
 
@@ -538,6 +539,7 @@ function selectSecond(){
     // remove timer
     $("#choiceTwo").css({"animation":"selected 1s"});
     $("#choiceSelect").fadeOut();
+    $("#timeBar").stop();
 }
 
 // Select Only Option. Displayed at end of right locations (behind D2).
@@ -552,6 +554,7 @@ function selectOnly(){
     // remove timer
     $("#choiceOne").css({"background-color":"white"}).delay(500);
     $("#choiceSelect").fadeOut();
+    $("#timeBar").stop();
 }
 
 // ===================================================================================================
