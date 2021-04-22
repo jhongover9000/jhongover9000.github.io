@@ -1,3 +1,7 @@
+// Assignment 4: fly me to the moon. -> 221 jump street. (JS - Script)
+// Description: This is the JS script for the navbar content of the website.
+// ===================================================================================================
+// ===================================================================================================
 // Loads the NavBar & PageNav (for reuse). Referenced from https://stackoverflow.com/questions/31954089/how-can-i-reuse-a-navigation-bar-on-multiple-pages.
 $(document).ready(function(){
     $("#navBarPlaceholder").load("partials/navBar.html");
