@@ -241,7 +241,9 @@ function updateVideo(){
                     currentSource = currentSequence.allScenes[internalCount];
                 }
                 else{
-                    $("#locationsTab").fadeIn();
+                    if(sceneCounter == 3){
+                        $("#locationsTab").fadeIn();
+                    }
                     currentSequence = sceneArray[sceneCounter];
                     // update the internal count (back to 0) and update source
                     internalCount = currentSequence.internalCounter;
@@ -261,13 +263,15 @@ function updateVideo(){
             // there's actually 1 more step if you get 3 correct jumps
             if(rightCounter == 4 && internalCount == 1){
                 // only one option, 'D2'
-                isChoosingLoc = true;
-                $("#choiceOne").css({"animation":"none"});
-                $("#choiceTwo").css({"animation":"none"});
-                $("#timeBar").css({"width":"80vw"});
-                $("#choiceSelect").css({"display":"flex"});
-                $("#choiceOneText").html("D2");
-                $("#choiceTwo").css({"display":"none"});
+                // isChoosingLoc = true;
+                // $("#choiceOne").css({"animation":"none"});
+                // $("#choiceTwo").css({"animation":"none"});
+                // $("#timeBar").css({"width":"80vw"});
+                // $("#choiceSelect").css({"display":"flex"});
+                // $("#choiceOneText").html("D2");
+                // $("#choiceTwo").css({"display":"none"});
+                rightCounter++;
+                jumpCount++;
                 updateSource(internalCount);
             }
             else if(rightCounter < 4 && (internalCount < 3)){
@@ -287,7 +291,7 @@ function updateVideo(){
                 // }
                 // okay ending (every other situation if you reach D2)
                 else if(rightCounter == 5){
-                    // console.log("Second Best Ending!");
+                    // console.log("Second Best Ending.");
                     currentSource = endingSceneArray[0].scene;
                 }
                 // bad ending
@@ -390,7 +394,7 @@ function dialogSelect(choiceA, choiceB){
     // display choice selection
     $("#choiceOne").css({"animation":"none"});
     $("#choiceTwo").css({"animation":"none"});
-    $("#timeBar").css({"width":"80vw"});
+    $("#timeBar").css({"width":"100vw"});
     $("#choiceSelect").css({"display":"flex"});
     $("#choiceOneText").html(choiceA);
     $("#choiceTwoText").html(choiceB);
@@ -401,7 +405,7 @@ function locationSelect(choiceA, choiceB){
     // display choice selection
     $("#choiceOne").css({"animation":"none"});
     $("#choiceTwo").css({"animation":"none"});
-    $("#timeBar").css({"width":"80vw"});
+    $("#timeBar").css({"width":"100vw"});
     $("#choiceSelect").css({"display":"flex"});
     var internalCount = currentSequence.internalCounter;
     isChoosingLoc = true;
@@ -556,9 +560,11 @@ function selectOnly(){
 
 $("#choiceOne").on("click", function(){
     if(rightCounter == 4){
-        selectOnly();
+        // selectOnly();
+        // console.log("selected")
+        // rightCounter++;
     }
-    else if(sceneCounter > 2){
+    else if(sceneCounter > 2 && !isChoosing){
         selectSecond();
     }
     else{
@@ -568,9 +574,11 @@ $("#choiceOne").on("click", function(){
 });
 $("#choiceTwo").on("click", function(){
     if(rightCounter == 4){
-        selectOnly();
+        // selectOnly();
+        // rightCounter++;
+        // console.log("selected")
     }
-    else if(sceneCounter > 2){
+    else if(sceneCounter > 2 && !isChoosing){
         selectFirst();
     }
     else{
@@ -639,6 +647,7 @@ vid.addEventListener('play', function(){
 vid.addEventListener('playing', function(){ 
     if(isChoosingLoc || isChoosing){
         var durationTime = vid.duration*1000;
+        $("#timeBar").css({"width":"100vw"});
         $("#timeBar").animate({"width":"0"},durationTime);
     }
 });
