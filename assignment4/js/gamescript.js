@@ -285,6 +285,8 @@ function updateVideo(){
                     currentSource = creditsSource;
                     $("#restart").fadeIn();
                     allDone = true;
+                    $("#locationsTab").fadeOut();
+                    $("#jumpTab").fadeOut();
                 }
                 // best ending. got rid of due to time constraints in editing.
                 // else if(rightCounter == 5 && jumpCount == 5){
@@ -307,8 +309,7 @@ function updateVideo(){
                     currentSource = endingSceneArray[2].scene;
                 }
                 isFinished = true;
-                $("#locationsTab").fadeOut();
-                $("#jumpTab").fadeOut();
+                
             }
         }
         // otherwise, you keep going
