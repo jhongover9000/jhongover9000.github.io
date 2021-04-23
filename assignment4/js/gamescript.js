@@ -244,6 +244,7 @@ function updateVideo(){
                 else{
                     if(sceneCounter == 3){
                         $("#locationsTab").fadeIn();
+                        $("#jumpTab").fadeIn();
                     }
                     currentSequence = sceneArray[sceneCounter];
                     // update the internal count (back to 0) and update source
@@ -638,6 +639,7 @@ vid.addEventListener('ended', function(){
 });
 
 vid.addEventListener('play', function(){
+    $("#jumpTab").html("Jumps: " + String(jumpCount));
     // console.log("currentSource: " +String(currentSource));
     // console.log("internalCount: "+String(currentSequence.internalCounter));
     // console.log("rightCount: "+String(rightCounter));

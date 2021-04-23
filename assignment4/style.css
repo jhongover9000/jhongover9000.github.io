@@ -352,6 +352,16 @@ h1{
     left: 0;
 }
 
+#jumpTab {
+    position: relative;
+    margin: auto;
+    width: fit-content;
+    display: none;
+}
+#jumpTab:hover {
+    color: black
+}
+
 #locationsTab {
     padding-right: 20px;
     position: fixed;
