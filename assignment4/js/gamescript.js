@@ -1,5 +1,5 @@
-// Assignment 4: fly me to the moon. -> 221 jump street. (JS - Game Script)
-// Description: This is the JS script for the game content of the website.
+// Assignment 4: 221A Jump Street. (JS - Game Script)
+// Description: This is the JS script for the video content of the website.
 // ===================================================================================================
 // ===================================================================================================
 // Initialization
