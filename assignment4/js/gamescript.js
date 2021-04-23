@@ -307,6 +307,8 @@ function updateVideo(){
                     currentSource = endingSceneArray[2].scene;
                 }
                 isFinished = true;
+                $("#locationsTab").fadeOut();
+                $("#jumpTab").fadeOut();
             }
         }
         // otherwise, you keep going
