@@ -131,6 +131,7 @@ class RightLocation {
     }
 }
 
+// Endings.
 class Ending {
     constructor(scene){
         this.seqType = 3;
