@@ -260,7 +260,7 @@ function updateVideo(){
     if(jumpCount >= 1){
         // check if D2 has been reached or if all jumps have been used
         if(isEnding()){
-            console.log("Ending Soon!");
+            // console.log("Ending Soon!");
             var internalCount = currentSequence.internalCounter;
             // there's actually 1 more step if you get 3 correct jumps
             if(rightCounter == 4 && internalCount == 1){
