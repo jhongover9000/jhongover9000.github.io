@@ -163,7 +163,7 @@ for(var i = 0; i < 4; i++){
         temp.setChoices("Something's wrong!", "How old are you?");
     }
     else if(i == 3){
-        temp.setName("Under a Bridge");
+        temp.setName("Graffiti Wall");
         temp.setChoices("There’s a bug in the system!", "It’s not my fault!");
     }
     locationArrayWrong.push(temp);
