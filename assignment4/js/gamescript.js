@@ -359,7 +359,7 @@ function updateVideo(){
             }
             // if at the end of a sequence, change to the next sequence
             else{
-                console.log("changing sequence!");
+                // console.log("changing sequence!");
                 currentSequence = nextSequence;
                 internalCount = currentSequence.internalCounter;
                 // update the current source to the next video to be played
@@ -367,7 +367,6 @@ function updateVideo(){
             }
         }
     }
-    
     source.src = currentSource;
     // console.log(currentSource);
     vid.load();
@@ -424,7 +423,7 @@ function locationSelect(choiceA, choiceB){
 
 // Select First Choice.
 function selectFirst(){
-    console.log("Selected Choice 1.");
+    // console.log("Selected Choice 1.");
     var internalCount = currentSequence.internalCounter;
     // if in dialogue selection
     if(isChoosing){
@@ -468,7 +467,7 @@ function selectFirst(){
         updateSource(internalCount);
         // increment jump count by 1, load, and play
         jumpCount++;
-        console.log(currentSource);
+        // console.log(currentSource);
         isChoosingLoc = false;
         source.src = currentSource;
         vid.load();
@@ -483,7 +482,7 @@ function selectFirst(){
 
 // Select Second Choice.
 function selectSecond(){
-    console.log("Selected Choice 2.");
+    // console.log("Selected Choice 2.");
     var internalCount = currentSequence.internalCounter;
     // if in dialogue selection
     if(isChoosing){
@@ -500,7 +499,6 @@ function selectSecond(){
             updateSource(internalCount);
         }
         isChoosing = false;
-        
         source.src = currentSource;
         vid.load();
         vid.play();
@@ -548,7 +546,7 @@ function selectOnly(){
     rightCounter++;
     isChoosingLoc = false;
     updateSource(internalCount);
-    console.log(currentSource);
+    // console.log(currentSource);
     vid.load();
     vid.play();
     // remove timer
@@ -636,15 +634,14 @@ vid.addEventListener('ended', function(){
     else{
         updateVideo();
     }
-    
 });
 
 vid.addEventListener('play', function(){
-    console.log("currentSource: " +String(currentSource));
+    // console.log("currentSource: " +String(currentSource));
     // console.log("internalCount: "+String(currentSequence.internalCounter));
-    console.log("rightCount: "+String(rightCounter));
-    console.log("wrongCount: "+String(wrongCounter));
-    console.log("jumpCount: " +String(jumpCount));
+    // console.log("rightCount: "+String(rightCounter));
+    // console.log("wrongCount: "+String(wrongCounter));
+    // console.log("jumpCount: " +String(jumpCount));
 })
 
 vid.addEventListener('playing', function(){ 
