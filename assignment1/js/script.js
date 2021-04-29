@@ -51,7 +51,7 @@ function filmOut(){
 // Function to Move Right (button click)
 function scrollRight(){
     var locX = window.scrollX + vw;
-    window.scrollTo(-vw);
+    $('html, body').animate({scrollLeft: window.scrollX + 0.5*vw},1000);
     document.body.style.setProperty('--scroll',locX);
 }
 
@@ -62,7 +62,7 @@ function scrollL(){
         window.scrollTo(0,0);
     }
     else{
-        window.scrollLeft(vw);
+        $('html, body').animate({scrollLeft: window.scrollX - 0.5*vw},1000);
         document.body.style.setProperty('--scroll',locX);
     }
     
