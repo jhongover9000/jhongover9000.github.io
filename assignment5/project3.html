@@ -1,0 +1,99 @@
+<!-- IM Assignment 5: simply seph. (project 3 HTML) -->
+<!-- Joseph Hong -->
+<!-- Description: this is the HTML for the '221A Jump Street' page of the portfolio. -->
+<!-- ============================================================================================= -->
+<!-- ============================================================================================= -->
+<!-- Head -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>simply seph. a portfolio.</title>
+
+    <!-- jQuery. Needs to be up here (doesn't work otherwise). -->
+    <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.visible.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+ 
+    <!-- Font for Website -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<!-- ============================================================================================= -->
+<!-- ============================================================================================= -->
+<!-- Body -->
+<body>
+    <div id="fixedElements">
+        <!-- Navigation Across Different Pages -->
+        <div id="navBarPlaceholder"></div>
+    </div>
+
+    <!-- Title Section -->
+    <div id="header">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div id="titleDiv">221a jump street.</div>
+				</div>
+			</div>
+		</div>
+		<div id="scrollDown">
+            <div id="arrow" style="display: none;"><i class="arrow down"></i></div>
+		</div>
+    </div>
+
+    <div style="margin: 28vh auto; width: 60%;">
+        <h2>videos and interactivity.</h2>
+        <p style="font-size: 3vh;">
+            How do you make a video, interactive? This was something that our group spent a lot of time thinking about,
+            trying to come up with different ideas on video interactivity. To be honest, <i>Cyberpunk 2077</i> had quite
+            a lot to do with the form of interactivity in this project–– which ended up being very similar to <i>Bandersnatch</i>.
+            I still need to watch it, but I hear that it doesn't end very well (spoilers?).
+            <br>
+            <br>
+            In any case, the project was split into two main parts: the code and the film. The code was built around JavaScript,
+            and I decided it would be a great idea to make the code as dynamic as possible, using object-oriented programming
+            to make it as not-hardcoded as possible. It worked, thankfully, and the integration with the film also went great.
+            <br>
+            <br>
+            We went into this project without a solid idea of what we were making, just a general idea in the direction we were going.
+            It was ambitious, for sure, and we had to reduce some filming, editing, and coding in some places in order to meet the 
+            time deadline. Despite all of that, we were able to put together a finished piece that we were satisfied with. 
+            If you want the full documentation, you can find it <a href="https://docs.google.com/document/d/16lutRzfNRjNWHqojyX4VSCx0aeAtPatlN8jLsHElLPQ/edit?usp=sharing">here</a>.
+            <br>
+            <br>
+            Or scroll down to see the site!
+        </p>
+    </div>
+
+    <!-- Embedded Site -->
+    <div style="margin: 32vh auto 15vh;">
+        <div style="margin: 20px auto; text-align: center;">
+            Try the site live (features may be limited), or <a href="http://jhongover9000.github.io/assignment4/homePage.html" target=”_blank”>open it in a new page</a>. If you can't scroll down, try scrolling outside the box.
+        </div>
+        <div id="embedSiteDiv">
+            <object id="embedSite" type="text/html" data="http://jhongover9000.github.io/assignment4/homePage.html">
+            </object>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footerPlaceholder"></div>
+
+<!-- ============================================================================================= -->
+<!-- ============================================================================================= -->
+<!-- Script -->
+    <script type="text/javascript" src="js/script.js"></script>
+    <script>
+        // set page variable
+        var projNum = 3;
+    </script>
+</body>

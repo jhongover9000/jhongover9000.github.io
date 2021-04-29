@@ -1,0 +1,384 @@
+/* Assignment 5: simpy seph. (CSS) */
+/* Description: This is the style sheet for the portfolio website. Some of the 
+styling is done directly in the HTML, though. */
+/* =========================================================================== */
+/* =========================================================================== */
+/* Initialization */
+html {
+    scroll-behavior: smooth;
+}
+
+a {
+    color: purple;
+    user-select: none;
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    min-height: 200vh;
+    height: auto;
+}
+
+h2 {
+    padding: 5vh 0 2vh;
+    font-size: 6vh;
+}
+
+/* =========================================================================== */
+/* =========================================================================== */
+/* Navigation Bar */
+#navBar {
+    display: flex;
+    position: fixed;
+    flex-direction: row;
+    top: calc(-1*10vh);
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    width: 100vw;
+    z-index: 99;
+    box-shadow: 0 0 4px black;
+    transition: 1s;
+    animation: none;
+}
+/* the animation on hover is really simple; it's just sliding up and down based on
+mouse position */
+@keyframes slideDown {
+    100%{
+        top: 0;
+    }
+}
+@keyframes slideUp {
+    0%{
+        top: 0;
+    }
+    100%{
+        top: calc(-1*10vh);;
+    }
+}
+
+#navBar .navList {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 70%;
+    padding: 0;
+}
+
+#navBar li {
+    position: relative;
+    font-weight: 400;
+    color: rgb(213, 210, 210);
+    display: inline-block;
+    font-size: 3vh;
+    padding: 10px;
+    display: block;
+    padding: 1rem;
+    text-decoration: none;
+    transition-duration: 0.5s;
+}
+.navButton {
+    width: 25%;
+    text-align: center;
+}
+.navButton a {
+    width: 100%;
+    height: inherit;
+}
+.navButton a:hover {
+    color: rgb(210, 126, 210);
+}
+
+#navBar #projects a {
+    color: purple;
+    cursor: default;
+}
+#navBar #projects li a {
+    cursor: pointer;
+}
+#navBar #projects:hover{
+    background: none;
+}
+#navBar #projects a:hover{
+    color: purple;
+}
+/* dropdown menu area */
+.dropdown {
+    opacity: 0;
+    text-align: center;
+    position: absolute;
+    margin-top: 1rem;
+    width: 100%;
+    left: 0;
+    background-color: white;
+    padding: 0px;
+    min-width: 5vw;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    transition: all 0.5s ease;
+    display: none;
+}
+ul li:hover > ul,
+ul li ul:hover {
+    opacity: 1;
+    display: block
+}
+/* not sure why, but I had to overwrite whatever was undoing my CSS using !important */
+ul li ul li {
+    width: 100%;
+    padding: 10px 0 !important;
+}
+ul li ul li a {
+    font-size: 2vh;
+}
+.dropdown li:hover ul li ul li a {
+    color: rgb(210, 126, 210) !important;
+}
+
+/* to top button */
+#toTop{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    width: 50px;
+    height: 50px;
+    background-color: whitesmoke;
+    border-radius: 100%;
+    bottom: 3vh;
+    right: 5vh;
+    cursor: pointer;
+    transition: 0.5s ease;
+    border: 1px rgb(225, 225, 225) solid;
+    opacity: 0;
+}
+
+/* =========================================================================== */
+/* =========================================================================== */
+/* Home Page */
+
+/* reused some code from last assignment */
+#header{
+    height: auto;
+    display: block;
+    margin: 10vh auto;
+}
+#header .row{
+    margin-top: 50px;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 0;
+}
+#titleDiv {
+    color: rgb(128, 0, 128);
+    background: none;
+    user-select: none;
+    font-size: 10vh; 
+    text-align: center;
+    font-weight: lighter;
+    display: none;
+}
+#scrollDown {
+    width: 30vw;
+    height: auto;
+    bottom: 5vh;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    align-items: center;
+    cursor: pointer;
+    animation: emphasisDown 7s infinite;
+}
+@keyframes emphasisDown {
+    25%{
+        opacity: 0.5;
+        transform: translateY(5px);
+    }
+    50%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    100%{
+        opacity: 1;
+    }
+
+}
+
+/* arrow */
+.arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid rgba(128, 0, 128, 0.475);
+    border-width: 0 1px 1px 0;
+    display: inline-block;
+    padding: 10px;
+  }
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+.up {
+    transform: rotate(225deg) translateY(-15px) translateX(-15px);
+}
+
+/* header ("Simply Seph") */
+.container{
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    z-index: 1;
+}
+.col {
+    text-align: center;
+    width: 100%;
+}
+
+/* bottom of home page ("Choose a Project") */
+#projectList .select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5vh;
+    margin: 0;
+    height: 15vw;
+    width: 15vw;
+    max-height: 250px;
+    max-width: 250px;
+    background-color: rgba(133, 34, 133, 0.687);
+    border-radius: 100%;
+    opacity: 0;
+}
+#projectList .select.row1{
+    margin-top: 0;
+}
+#projectList .select.row2{
+    margin-top: 300px;
+}
+/* selection for navigation (home page bottom) */
+#one {
+    animation: shiver1 5s infinite;
+    background-image: url(/assignment5/img/ScreenRecorderProject1.gif);
+    background-size: cover;
+    background-position: center;
+}
+#two {
+    animation: shiver2 5s infinite;
+    background-image: url(/assignment5/img/ScreenRecorderProject2.gif);
+    background-size: cover;
+    background-position: center;
+}
+#three {
+    animation: shiver3 5s infinite;
+    background-image: url(/assignment5/img/ScreenRecorderProject3.gif);
+    background-size: cover;
+    background-position: center;
+}
+#four {
+    animation: shiver4 5s infinite;
+    background-image: url(/assignment5/img/ScreenRecorderProject4.gif);
+    background-size: cover;
+    background-position: center;
+}
+@keyframes shiver1 {
+    50%{
+        transform: translateY(-7px);
+    }
+}
+@keyframes shiver2 {
+    75%{
+        transform: translateY(8px);
+    }
+}
+@keyframes shiver3 {
+    25%{
+        transform: translateY(-5px);
+    }
+}
+@keyframes shiver4 {
+    72%{
+        transform: translateY(10px);
+    }
+}
+/* overlay over the images (fade when hovered over) */
+#projectList a {
+    border: 0.5px solid rgba(128, 0, 128, 0.331);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 3vh;
+    height: 15vw;
+    width: 15vw;
+    max-height: 250px;
+    max-width: 250px;
+    background-color: white;
+    border-radius: 100%;
+    transition: 0.5s;
+    cursor: pointer;
+    z-index: 3;
+}
+#projectList a:hover {
+    opacity: 0;
+}
+
+/* =========================================================================== */
+/* =========================================================================== */
+/* Project Page */
+#embedSiteDiv { 
+    margin: auto auto;
+    display: flex; 
+    justify-content: center;
+    box-shadow: 0 0 5px 5px rgb(164, 158, 158);
+    width: 140vh;
+    height: 80vh;
+}
+/* this was an attempt to make a 16:9 screen */
+#embedSite {
+    margin: auto auto;
+    overflow: none;    
+    width: 140vh;
+    height: 80vh;
+}
+
+/* =========================================================================== */
+/* =========================================================================== */
+/* Footer */
+footer{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    min-height: 200px;
+    height: 20vh;
+    background-color: rgba(247, 247, 247, 0.653);
+    bottom: 0;
+}
+
+footer ul {
+    margin: 0;
+    padding: 0;
+}
+
+footer li {
+    padding: 2px;
+    list-style-type: none;
+    text-align: center;
+}
+footer li a:hover{
+    color: rgb(210, 126, 210);
+}

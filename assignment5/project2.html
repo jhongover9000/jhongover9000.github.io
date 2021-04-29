@@ -1,0 +1,101 @@
+<!-- IM Assignment 5: simply seph. (project 2 HTML) -->
+<!-- Joseph Hong -->
+<!-- Description: this is the HTML for the 'hide and seek.' page of the portfolio. -->
+<!-- ============================================================================================= -->
+<!-- ============================================================================================= -->
+<!-- Head -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>simply seph. a portfolio.</title>
+
+    <!-- jQuery. Needs to be up here (doesn't work otherwise). -->
+    <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.visible.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+ 
+    <!-- Font for Website -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<!-- ============================================================================================= -->
+<!-- ============================================================================================= -->
+<!-- Body -->
+<body>
+
+    <!-- Navigation Across Different Pages. Also holds the To Top button. -->
+    <div id="navBarPlaceholder"></div>
+
+    <!-- Title Section -->
+    <div id="header">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div id="titleDiv">hide and seek.</div>
+				</div>
+			</div>
+		</div>
+		<div id="scrollDown">
+            <div id="arrow" style="display: none;"><i class="arrow down"></i></div>
+		</div>
+    </div>
+
+    <div style="margin: 28vh auto; width: 60%;">
+        <h2>sound. or not to sound.</h2>
+        <p style="font-size: 3vh;">
+            So. This was one of those ambitious projects. Note: don't play multiple audio files at once. The sound gets
+            super distorted. Honestly, I'm not sure if it has to do with the memory of the browser. In truth, we still
+            don't actually know what was (and still is) causing the issues.
+            <br>
+            <br>
+            Why was this ambitious? Well, the audio for one, but also the concept. We wanted to play some six or seven audio
+            files all at once and have visuals linked to each of those. Turns out that it doesn't work. The limit for no
+            distortion seems to be <i>two</i> files. Now, if we had known this, we would have done something else to make up
+            for this. But we didn't, since apparently nobody (was stupid enough to have) tried this before. Or maybe they did
+            it in a way that actually <i>worked</i>.
+            <br>
+            <br>
+            The thing is that it <i>does</i> work. It's just really a hit or miss. With the visuals, though, it's almost always
+            a miss. The visuals (and audio) are played via p5.js, which may or may not be part of the problem. We simply don't know.
+            This project was interesting, but very time consuming, resulting in multiple all-nighters in trying to get it to work.
+            Oh, we also kinda did this in a few days' time, so that also added to the problem.
+            If you want the full documentation, you can find it <a href="https://docs.google.com/document/d/1g1m6g1_40ul2EIJJo78xnyTmJXtiyj8rrIVlVZWbZYU/edit?usp=sharing">here</a>.
+            <br>
+            <br>
+            Keep scrolling down to see the site. Mind you, this embedded site doesn't work as well because the code hasn't been written
+            in a way that adjusts according to screen size. I suggest you open it in a new page.
+        </p>
+    </div>
+
+    <!-- Embedded Site -->
+    <div style="margin: 32vh auto 15vh;">
+        <div style="margin: 20px auto; text-align: center;">
+            Try the site live (features <i>will</i> be limited), or <a href="http://jhongover9000.github.io/assignment3/index.html" target=”_blank”>open it in a new page</a>. If you can't scroll down, try scrolling outside the box.
+        </div>
+        <div id="embedSiteDiv">
+            <object id="embedSite" type="text/html" data="http://jhongover9000.github.io/assignment3/index.html">
+            </object>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footerPlaceholder"></div>
+
+<!-- ============================================================================================= -->
+<!-- ============================================================================================= -->
+<!-- Script -->
+    <script type="text/javascript" src="js/script.js"></script>
+    <script>
+        // set page variable
+        var projNum = 2;
+    </script>
+</body>

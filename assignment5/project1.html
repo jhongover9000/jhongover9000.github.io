@@ -1,0 +1,101 @@
+<!-- IM Assignment 5: simply seph. (project 1 HTML) -->
+<!-- Joseph Hong -->
+<!-- Description: this is the HTML for the 'a love letter.' page of the portfolio. -->
+<!-- ============================================================================================= -->
+<!-- ============================================================================================= -->
+<!-- Head -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>simply seph. a portfolio.</title>
+
+    <!-- jQuery. Needs to be up here (doesn't work otherwise). -->
+    <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.visible.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+ 
+    <!-- Font for Website -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<!-- ============================================================================================= -->
+<!-- ============================================================================================= -->
+<!-- Body -->
+<body>
+
+    <!-- Navigation Across Different Pages. Also holds the To Top button. -->
+    <div id="navBarPlaceholder"></div>
+
+    <!-- Title Section -->
+    <div id="header">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div id="titleDiv">a love letter.</div>
+				</div>
+			</div>
+		</div>
+		<div id="scrollDown">
+            <div id="arrow" style="display: none;"><i class="arrow down"></i></div>
+		</div>
+    </div>
+
+    <div style="margin: 28vh auto; width: 60%;">
+        <h2>a love story.</h2>
+        <p style="font-size: 3vh;">
+            Despite how it might seem, I'm actually a pretty romantic guy. In any case, the idea for this project started
+            with the idea of a letter from one's self. And then, I dunno, it just kinda.. happened. I've always been a sucker
+            for the ol' fashioned romance, and I've read <i>way</i> too many romance mangas in my time (probably the latter).
+            In any case, I wanted to express the idea of "unconditional love" through the story. The idea that,
+            no matter what happens, someone will always be there by your side. Through the thick and thin, just... waiting.
+            <br>
+            <br>
+            It's both romantic and sad at the same time, since unconditional love means that you don't actually know if those
+            feelings will be reciprocated in any way. One-sided love often hurts, and that's something I wanted to show. But
+            at the same time, I didn't want it to end that way since it would be too sad. That, and something else. One-sided
+            love might hurt at times, but the moment that becomes reciprocated the joy of that far outweighs the pains from the past.
+            <br>
+            <br>
+            <i>Ahem</i>, that's enough of that. More about the site. It's a mixture of horizontal scrolling (I more or less got the
+            hang of this after the last assignment), fading in, and audio. We had a few hiccups in the process, but in the end we got
+            it done. Ed Sheeran's <i>Photograph</i> was a great match for the story.
+            If you want to read more about what went on behind the scenes, look <a href="https://docs.google.com/document/d/1J4UQcu_qTz_nBc06o8E2Jo-NYhnYVczPQcQ4WqdBqaM/edit?usp=sharing">here</a>.
+            <br>
+            <br>
+            If you want to play around with the site, keep scrolling down.       
+        </p>
+    </div>
+
+    <!-- Embedded Site -->
+    <div style="margin: 32vh auto 15vh;">
+        <div style="margin: 20px auto; text-align: center;">
+            Try the site live (features may be limited), or <a href="http://jhongover9000.github.io/assignment2/assignment2html.html" target=”_blank”>open it in a new page</a>. If you can't scroll down, try scrolling outside the box.
+        </div>
+        <div id="embedSiteDiv">
+            <object id="embedSite" type="text/html" data="http://jhongover9000.github.io/assignment2/assignment2html.html">
+            </object>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footerPlaceholder"></div>
+
+<!-- ============================================================================================= -->
+<!-- ============================================================================================= -->
+<!-- Script -->
+    <script type="text/javascript" src="js/script.js"></script>
+    <!-- Loads the NavBar & PageNav (for reuse). Referenced from https://stackoverflow.com/questions/31954089/how-can-i-reuse-a-navigation-bar-on-multiple-pages. -->
+    <script>
+        // variables
+        var projNum = 1;
+    </script>
+</body>

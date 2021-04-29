@@ -1,0 +1,99 @@
+<!-- IM Assignment 5: simply seph. (About Page HTML) -->
+<!-- Joseph Hong -->
+<!-- Description: this is the HTML for the about page of the portfolio. -->
+<!-- ============================================================================================= -->
+<!-- ============================================================================================= -->
+<!-- Head -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>simply seph. a portfolio.</title>
+
+    <!-- jQuery. Needs to be up here (doesn't work otherwise). -->
+    <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.visible.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+ 
+    <!-- Font for Website -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<!-- ============================================================================================= -->
+<!-- ============================================================================================= -->
+<!-- Body -->
+<body>
+
+    <!-- Navigation Across Different Pages. Also holds the To Top button. -->
+    <div id="navBarPlaceholder"></div>
+
+    <!-- Title Section -->
+    <div id="header">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div id="titleDiv">about...</div>
+				</div>
+			</div>
+		</div>
+		<div id="scrollDown">
+            <div id="arrow" style="display: none;"><i class="arrow down"></i></div>
+		</div>
+    </div>
+
+    <div style="margin: 30vh auto; width: 60%;">
+        <h2>me.</h2>
+        <p style="font-size: 3vh;">
+            Korea, Japan, and the United States; I've lived about a third of my life in each of these
+            countries and have picked up a large range of cultural values and experiences from them.
+            Maybe as a result of this, my interests are just as diverse. Creative writing, coding, 
+            sports, theater, design, biology, and public speaking; these are just some of the many fields
+            that I have found a place in. While this expansive net of interests and experiences may come 
+            off as indecisive, my intentions have always been the same: to learn, and to enjoy learning.
+            <br>
+            <br>
+            I'm told that I have a strange sense of humor and that something's not right with me, but I
+            take that in stride because that's just who I am. I also like really minimalistic things,
+            hence this website. Speaking of which...
+
+        </p>
+        <h2>this website.</h2>
+        <p style="font-size: 3vh;">
+            This website might not really seem like much. And it's not. It's super minimalistic and is made
+            up of more or less the essentials, and that's about it. But it's a design that I like a lot. It's
+            also something that holds sentimental value.
+            <br>
+            <br>
+            You see, back when I was in high school and didn't know a single thing about coding or HTML, my
+            friends and I decided that we wanted to create our own portfolio websites. Since we didn't know about
+            coding, we used Google Sites (I <i>know</i>, look I knew literally <i>nothing</i> about coding then)
+            to make the skeletons of our sites. But we never finished. Left incomplete, the website is somewhere
+            out there in the Internet. And so I thought that this was a great opportunity to get some closure. I
+            also know a lot more about coding and HTML, so I can make it how I envisioned it, too.
+            <br>
+            <br>
+            And so that's what this website is. Me completing what I started years ago.
+        </p>
+    </div>
+
+    <!-- Footer -->
+    <div id="footerPlaceholder"></div>
+
+<!-- ============================================================================================= -->
+<!-- ============================================================================================= -->
+<!-- Script -->
+    <script type="text/javascript" src="js/script.js"></script>
+    <!-- Loads the NavBar & PageNav (for reuse). Referenced from https://stackoverflow.com/questions/31954089/how-can-i-reuse-a-navigation-bar-on-multiple-pages. -->
+    <script>
+        // set page variable
+        var projNum = 4;
+    </script>
+</body>
