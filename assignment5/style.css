@@ -10,15 +10,15 @@ html {
 
 a {
     color: purple;
-    user-select: none;
     text-decoration: none;
 }
+
 
 body {
     font-family: 'Lato', sans-serif;
     margin: 0;
     padding: 0;
-    user-select: none;
+    user-select: none;      /* keeps user from being able to highlight text */
     min-height: 200vh;
     height: auto;
 }
