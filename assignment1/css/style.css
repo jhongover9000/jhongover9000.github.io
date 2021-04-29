@@ -9,7 +9,6 @@
 /* hiding overflow for y and smoothing scrolling */
 html {
     overflow-y: hidden;
-    scroll-behavior: smooth;
 }
 
 /* get rid of scrollbar */
