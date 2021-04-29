@@ -10,15 +10,15 @@ html {
 
 a {
     color: purple;
+    user-select: none;
     text-decoration: none;
 }
-
 
 body {
     font-family: 'Lato', sans-serif;
     margin: 0;
     padding: 0;
-    user-select: none;      /* keeps user from being able to highlight text */
+    user-select: none;
     min-height: 200vh;
     height: auto;
 }
@@ -129,7 +129,8 @@ mouse position */
 ul li:hover > ul,
 ul li ul:hover {
     opacity: 1;
-    display: block
+    display: block;
+    clear: both;
 }
 /* not sure why, but I had to overwrite whatever was undoing my CSS using !important */
 ul li ul li {
@@ -139,7 +140,10 @@ ul li ul li {
 ul li ul li a {
     font-size: 2vh;
 }
-.dropdown li:hover a {
+.dropdown li:hover {
+    background-color: rgba(128, 0, 128, 0.05);
+}
+.dropdown li:hover ul li ul li a {
     color: rgb(210, 126, 210) !important;
 }
 
