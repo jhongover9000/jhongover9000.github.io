@@ -139,7 +139,7 @@ ul li ul li {
 ul li ul li a {
     font-size: 2vh;
 }
-.dropdown li:hover ul li ul li a {
+.dropdown li:hover a {
     color: rgb(210, 126, 210) !important;
 }
 
