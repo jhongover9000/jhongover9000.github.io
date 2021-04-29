@@ -51,7 +51,7 @@ function filmOut(){
 // Function to Move Right (button click)
 function scrollRight(){
     var locX = window.scrollX + vw;
-    window.scrollTo(locX,0);
+    window.scrollTo(-vw);
     document.body.style.setProperty('--scroll',locX);
 }
 
@@ -62,7 +62,7 @@ function scrollL(){
         window.scrollTo(0,0);
     }
     else{
-        window.scrollTo(locX,0);
+        window.scrollLeft(vw);
         document.body.style.setProperty('--scroll',locX);
     }
     
@@ -75,7 +75,7 @@ function scrollL(){
 // mousewheel.min.js. Referenced from here: https://stackoverflow.com/questions/24639103/changing-vertical-scroll-to-horizontal
 $(document).ready(function() {
     $('html, body, *').mousewheel(function(e, delta) {
-    this.scrollLeft -= (delta * 60);
+    this.scrollLeft -= (delta);
     document.body.style.setProperty('--scroll',window.scrollX);
     e.preventDefault();
     });
