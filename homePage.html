@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <meta name="description" content="p5.js a JS client-side library for creating graphic and interactive experiences, based on the core principles of Processing.">
+  <title tabindex="1">home | p5.js</title>
+
+  <link rel="shortcut icon" href="/assets/img/favicon.ico">
+  <link rel="icon" href="/assets/img/favicon.ico">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+  <link href="https://fonts.goog8leapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <div id="home-page">
+    <!-- Navigation -->
+    <div class="navigation" id="navBar">
+      <!-- Navigation Menu -->
+      <nav class="topnav">
+        <!-- p5.js Logo -->
+        <li class="navItem">
+          <a href="/" class="logoLink" >
+            <img class="p5Logo" id="logo" src="p5js.svg" alt="logo">
+            <div class="dropdown">
+              <ul class="dropdownContent">
+                <li class="dropdownEntry">
+                  <a href="" class="innerNav">Getting Started
+                    <span class="dropdownText">
+                      <p class="pageName">Getting Started</p>
+                      <p class="pageDescription">If you're completely new to p5.js and want to know how to start, this is the page for you.</p>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdownEntry">
+                  <a href="" class="innerNav">Download
+                    <span class="dropdownText">
+                      <p class="pageName">Download</p>
+                      <p class="pageDescription">For those who know how to use p5.js and are itching to get started.</p>
+                    </span>
+                  </a>
+                </li>
+                <!-- Default Text (needs jQuery to run better, honestly -- quickfix) -->
+                <span class="dropdownTextDefault">
+                  <p class="pageName">To New Beginnings.</p>
+                  <p class="pageDescription">If you're new to p5.js or just need to download it again.</p>
+                </span>
+              </ul>
+            </div>
+          </a>
+        </li>
+
+        <!-- Dropdown (for mobile screens) -->
+        <li class="navItem" id="drpBtn">
+          <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+        </li>
+
+        <!-- Page Navigation -->
+        <div class="pageNavigation" id="pageNav">
+          <!-- Home -->
+          <li class="navItem">
+            <a href="/index" class="navLink">Home</a>
+          </li>
+          <!-- Get Started -->
+          <li class="navItem">
+            <a href="/index" class="navLink">Get Started</a>
+            <div class="dropdown">
+              <ul class="dropdownContent">
+                <li class="dropdownEntry">
+                  <a href="" class="innerNav">Getting Started
+                    <span class="dropdownText">
+                      <p class="pageName">Getting Started</p>
+                      <p class="pageDescription">If you're completely new to p5.js and want to know how to start, this is the page for you.</p>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdownEntry">
+                  <a href="" class="innerNav">Download
+                    <span class="dropdownText">
+                      <p class="pageName">Download</p>
+                      <p class="pageDescription">For those who know how to use p5.js and are itching to get started.</p>
+                    </span>
+                  </a>
+                </li>
+                <!-- Default Text (needs jQuery to run better, honestly -- quickfix) -->
+                <span class="dropdownTextDefault">
+                  <p class="pageName">To New Beginnings.</p>
+                  <p class="pageDescription">If you're new to p5.js or just need to download it again.</p>
+                </span>
+              </ul>
+            </div>
+          </li>
+          <!-- Resources -->
+          <li class="navItem">
+            <a href="/index">Resources</a>
+            <div class="dropdown">
+              <ul class="dropdownContent">
+                <li class="dropdownEntry">
+                  <a href="" class="innerNav">Reference
+                    <span class="dropdownText">
+                      <p class="pageName">Reference</p>
+                      <p class="pageDescription">A reference of all the unique functions and instances that p5.js has to offer.</p>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdownEntry">
+                  <a href="" class="innerNav">Libraries
+                    <span class="dropdownText">
+                      <p class="pageName">Libraries</p>
+                      <p class="pageDescription">How to use libraries in p5.js, as well as a list of available libraries.</p>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdownEntry">
+                  <a href="" class="innerNav">Examples
+                    <span class="dropdownText">
+                      <p class="pageName">Examples</p>
+                      <p class="pageDescription">Need help with using a function? Check out examples of their uses here.</p>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdownEntry">
+                  <a href="" class="innerNav">Learn
+                    <span class="dropdownText">
+                      <p class="pageName">Learn</p>
+                      <p class="pageDescription">Some tutorials on the basics of p5.js –– for all users!</p>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdownEntry">
+                  <a href="" class="innerNav">Books
+                    <span class="dropdownText">
+                      <p class="pageName">Books</p>
+                      <p class="pageDescription">Books that can help you with learning more about p5.js!</p>
+                    </span>
+                  </a>
+                </li>
+                <!-- Default Text (needs jQuery to run better, honestly -- quickfix) -->
+                <span class="dropdownTextDefault">
+                  <p class="pageName">Looking for Something?</p>
+                  <p class="pageDescription">If you aren't sure about a function or instance, look through the reference or check out some examples. There's a vast number of resources available for p5.js, accessible through this website.</p>
+                </span>
+              </ul>
+            </div>
+          </li>
+          <!-- Community -->
+          <li class="navItem">
+            <a href="/index" class="navLink">Community</a>
+            <div class="dropdown">
+              <ul class="dropdownContent">
+                <li class="dropdownEntry">
+                  <a href="" class="innerNav">Forum
+                    <span class="dropdownText">
+                      <p class="pageName">Forum</p>
+                      <p class="pageDescription">Ask questions, learn, and grow with other members of the Processing community.</p>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdownEntry">
+                  <a href="" class="innerNav">Showcase
+                    <span class="dropdownText">
+                      <p class="pageName">Showcase</p>
+                      <p class="pageDescription">Explore what others have created with p5.js!</p>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdownEntry">
+                  <a href="" class="innerNav">Meet Up
+                    <span class="dropdownText">
+                      <p class="pageName">Meet Up</p>
+                      <p class="pageDescription">Meet up with the community and share knowledge!</p>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdownEntry">
+                  <a href="" class="innerNav">Twitter
+                    <span class="dropdownText">
+                      <p class="pageName">Twitter</p>
+                      <p class="pageDescription">Follow us to get updates!</p>
+                    </span>
+                  </a>
+                </li>
+                <!-- Default Text (needs jQuery to run better, honestly -- quickfix) -->
+                <span class="dropdownTextDefault">
+                  <p class="pageName">You're Not Alone.</p>
+                  <p class="pageDescription">Find members of the vast community and learn p5.js together!</p>
+                </span>
+              </ul>
+            </div>
+          </li>
+          <!-- Support Us! -->
+          <li class="navItem">
+            <a href="/index" class="navLink">Support Us</a>
+            <div class="dropdown">
+              <ul class="dropdownContent">
+                <li class="dropdownEntry">
+                  <a href="https://github.com/processing/p5.js/tree/main/contributor_docs" class="innerNav">GitHub
+                    <span class="dropdownText">
+                      <p class="pageName">GitHub</p>
+                      <p class="pageDescription">We always welcome those who want to contribute to our code!</p>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdownEntry">
+                  <a href="" class="innerNav">Donate
+                    <span class="dropdownText">
+                      <p class="pageName">Donate</p>
+                      <p class="pageDescription">Your donation supports software development for p5.js, education resources like code examples and tutorials, fellowships, and community events.</p>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdownEntry">
+                  <a href="" class="innerNav">Teach
+                    <span class="dropdownText">
+                      <p class="pageName">Teach</p>
+                      <p class="pageDescription">Is there a tutorial you'd like to make for those learning p5.js? Feel free to contribute!</p>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdownEntry">
+                  <a href="" class="innerNav">Share
+                    <span class="dropdownText">
+                      <p class="pageName">Share</p>
+                      <p class="pageDescription">Share something you've made with the rest of the community!</p>
+                    </span>
+                  </a>
+                </li>
+                <!-- Default Text (needs jQuery to run better, honestly -- quickfix) -->
+                <span class="dropdownTextDefault">
+                  <p class="pageName">We Need Your Help!</p>
+                  <p class="pageDescription">p5.js is open source. We want to make this community as open and inclusive as possible. There are various ways to support p5.js, and Processing in general!</p>
+                </span>
+              </ul>
+            </div>
+          </li>
+        </div>
+        
+        <!-- Link to Online Editor -->
+        <a href="https://editor.p5js.org/" class="navItem button" id="onlineEdit">
+          Start Coding
+        </a>
+        
+
+        
+        
+        <!-- Search Bar (idk where to put it) -->
+        <!-- <form id="search" method="get" action="https://www.google.com/search">
+          <input type="hidden" name="as_sitesearch" value="p5js.org">
+          <input id="search_button" type="submit" aria-label="Search" class='sr-only'>
+          <input tabindex="2" id='search_field' type="text" size="12" placeholder="Search p5js.org" name="q">
+          <label class="sr-only" for="search_field">Search p5js.org</label>
+        </form> -->
+        
+      </nav>
+    </div>
+  
+    <!-- To Top Button -->
+    <div id="toTop">
+      <div><i class="arrow up"></i></div>
+    </div>
+
+    <!-- Language Selection -->
+    <!-- <div id="i18n-btn">
+      <h2 id="i18n-settings" class="sr-only">{{#i18n "Language-Settings"}}{{/i18n}}</h2>
+      <ul id="i18n-buttons" aria-labelledby="i18n-settings">
+        <li><a href='#' lang='en' data-lang='en'>En</a></li>
+        <li><a href='#' lang='es' data-lang='es'>Es</a></li>
+        <li><a href='#' lang='zh-Hans' data-lang='zh-Hans'>中文</a></li>
+        <li><a href='#' lang='ko' data-lang='ko'>한</a></li>
+      </ul>
+    </div> -->
+    
+    <div class="column-span">
+      <!-- Main Page -->
+      <main id="content" class="home">
+        <div class="homeScreen">
+          <div class="blurScreen">
+            <iframe src="" frameborder="0"></iframe>
+            <span class="homeScreenText">
+              <h1 class="homeScreenHeader">Hello!</h1>
+              <!-- For Desktops/Tablets -->
+              <p class="desktopOnly">p5.js is a JavaScript library for creative coding, with a focus on making coding accessible and inclusive for artists, designers, educators, beginners, and anyone else! p5.js is free and open-source because we believe software, and the tools to learn it, should be accessible to everyone.</p>
+              <!-- For Phones -->
+              <p class="mobileOnly">p5.js is a JavaScript library for creative coding, with a focus on making coding accessible and inclusive for artists, designers, educators, beginners, and anyone else!</p>
+              <div class="buttonSelect">
+                <!-- <div id="startCoding">Start Coding</div> -->
+                <a href="https://editor.p5js.org/" id="startCoding">Start Coding</a>
+                <div id="learnMore">Learn More</div>
+              </div>
+            </span>
+          </div>
+        </div>
+        
+        <div class="textContent">
+          <h2>About p5.js</h2>
+          <p>Using the metaphor of a sketch, p5.js has a full set of drawing functionality. However, you’re not limited to your drawing canvas. You can think of your whole browser page as your sketch, including HTML5 objects for text, input, video, webcam, and sound.</p>
+          <p><a href="https://showcase.p5js.org">Check out the new p5.js 2020 showcase!</a></p>
+          
+          <h2>Community</h2>
+          <p>We are a community of, and in solidarity with, people from every gender identity and expression, sexual orientation, race, ethnicity, language, neuro-type, size, disability, class, religion, culture, subculture, political opinion, age, skill level, occupation, and background. We acknowledge that not everyone has the time, financial means, or capacity to actively participate, but we recognize and encourage involvement of all kinds. We facilitate and foster access and empowerment. We are all learners.</p>
+          <p>p5.js is an interpretation of <a href="https://processing.org"
+            target="_blank">Processing</a> for today’s web. We hold events and operate with support from the <a href="https://processingfoundation.org"
+            target="_blank">Processing Foundation</a>.
+          </p>
+          <p>Learn more about <a href="community/">our community</a>.</p>
+          
+          <h2>Get Started</h2>
+          <p>Make your first sketch in the <a href="https://editor.p5js.org" target="_blank">p5.js
+            Editor</a>. Learn more about sketching with p5.js on the <a
+            href="get-started/">Get Started page</a> and everything you can do in the <a
+            href="reference/">Reference</a>.
+          </p>
+          
+          <h2>Get Involved</h2>
+          <p>There are many ways to contribute to p5.js:</p>
+          <!-- <h2 id="involvement-options" class="sr-only">Involvement Options</h2> -->
+          <ul aria-labelledby="involvement-options" class="list_view bullets">
+            <li><a href="https://forms.gle/pux9YNoYWPpTsZtn8">Share something you've made!</a></li>
+            <li><a href="/teach">Teach a workshop or class.</a></li>
+            <li><a href="https://day.processing.org" target="_blank">Organize a meet-up.</a></li>
+            <li><a href="https://github.com/processing/p5.js/tree/main/contributor_docs"
+              target="_blank">Contribute to the codebase.</a></li>
+            </ul>
+            
+          </div>
+          
+          
+          
+        </main>
+        
+        <footer>footer goes here</footer>
+        
+      </div>  <!-- end column-span -->
+      
+      <script>
+        $("#scrollDown").click(function(){
+          const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+          const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+          window.scrollTo(0, 1.1*vh);
+        });
+
+        $(window).scroll(function(){
+          navBarHeight = getComputedStyle(document.body).getPropertyValue('--navBarHeight');
+        if(document.documentElement.scrollTop > 0){
+                const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+                const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+                $("#toTop").css({"opacity":"1"});
+                // document.getElementById("navBar").style.height = (navBarHeight*8/10).toString() + "vh";
+                // document.getElementById("navBar").style.boxShadow = "0 0 4px black";
+            }
+            else{
+                // $("#navBar").css({"animation":"slideUp 1s forwards"});
+                $("#toTop").css({"opacity":"0"});
+                // document.getElementById("navBar").style.height = navBarHeight.toString() + "vh";
+                // document.getElementById("navBar").style.boxShadow = "0 0 2px black";
+            }
+    });
+        
+        // makes sure that random page is not the current page
+        $(function(){
+          var num = Math.floor(Math.random()*4);
+          $("#explore").attr("href", "/assignment5/project"+ String(num)+".html");
+        });
+        
+        $("#toTop").click(function(){
+          window.scrollTo(0, 0);
+        });
+
+      // Makes the in-site navigation appear (mobile)
+      function myFunction() {
+        var x = document.getElementById("pageNav");
+        var y = document.getElementById("drpBtn");
+        if (x.className === "pageNavigation") {
+          x.className += " responsive";
+          y.style.background = "rgb(225, 225, 225)"
+          
+        } else {
+          x.className = "pageNavigation";
+          y.style.background = "transparent"
+        }
+      }
+
+      // Makes the inter-site navigation appear (mobile)
+      </script>
+      
+    </body>
+    </html>
