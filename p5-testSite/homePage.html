@@ -11,6 +11,14 @@
   <link rel="icon" href="/assets/img/favicon.ico">
   <script src="https://kit.fontawesome.com/64960e320b.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="./js/vendor/jquery-1.12.4.min.js"></script>
+  <script src="./js/vendor/underscore-min.js"></script>
+  <script src="./js/vendor/backbone-min.js"></script>
+  <script src="./js/vendor/ace-nc/ace.js"></script>
+  <script src="./js/vendor/ace-nc/mode-javascript.js"></script>
+  <script src="./js/vendor/prism.js"></script>
+  <script src="./js/init.js"></script>
+  
   <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
   <link href="https://fonts.goog8leapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet">
   
@@ -364,26 +372,26 @@
         
         <!-- Footer -->
         <footer>
-          <!-- Credits Container -->
-          <div class="footer-container desktopOnly">
-            <!-- <h2 class="sr-only">{{#i18n "footerxh1"}}{{/i18n}}</h2> -->
-            <p>
-              p5.js is currently led by Qianqian Ye and evelyn masso and was created by Lauren Lee McCarthy. p5.js is developed by a community of collaborators.
-            </p>
-          </div>
           <!-- Follow - Twitter, Instagram, Discord -->
           <div class="footer-container">
-            <p>Follow Us</p>
+            <h3>Follow Us</h3>
             <div>
               <a class="sms-icon" href="https://discord.com/invite/SHQ8dH25r9" alt="Discord"><i class='fab fa-discord' style='font-size:40px'></i></a>
               <a class="sms-icon" href="https://twitter.com/p5xjs" alt="Twitter"><i class='fab fa-twitter' style='font-size:40px'></i></a>
               <a class="sms-icon" href="https://www.instagram.com/p5xjs/" alt="Instagram"><i class='fab fa-instagram' style='font-size:40px'></i></a>
             </div>
           </div>
+          <!-- Credits Container -->
+          <div class="footer-container desktopOnly">
+            <!-- <h2 class="sr-only">{{#i18n "footerxh1"}}{{/i18n}}</h2> -->
+            <h3>About Us</h3>
+            <p>
+              p5.js is currently led by Qianqian Ye and evelyn masso and was created by Lauren Lee McCarthy. p5.js is developed by a community of collaborators.
+            </p>
+          </div>
           <!-- Contact -->
           <div class="footer-container">
-            <p>Contact Us</p>
-            
+            <h3>Contact Us</h3>
             <p>
             Any questions?
             <a href="">Let us know!</a>
@@ -394,12 +402,8 @@
         </div>  <!-- end column-span -->
         
         <script>
-          $("#scrollDown").click(function(){
-            const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
-            const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
-            window.scrollTo(0, 1.1*vh);
-          });
           
+          // Displays/Removes external navigation bar when scrolling, displays/removes To Top button.
           $(window).scroll(function(){
             externalNavBarHeight = getComputedStyle(document.body).getPropertyValue('--externalNavBarHeight');
             navBarHeight = getComputedStyle(document.body).getPropertyValue('--navBarHeight');
@@ -413,7 +417,6 @@
               document.getElementById("navBar").style.boxShadow = "0 0 3px black";
             }
             else{
-              // $("#navBar").css({"animation":"slideUp 1s forwards"});
               $("#toTop").css({"opacity":"0"});
               document.getElementById("external-nav").style.height = (externalNavBarHeight).toString() + "vh";
               document.getElementById("external-nav").style.zIndex = 6;
@@ -422,6 +425,7 @@
             }
           });
           
+          // Scrolls to top of page
           $("#toTop").click(function(){
             window.scrollTo(0, 0);
           });
@@ -439,19 +443,7 @@
               y.style.background = "transparent"
             }
           }
-          
-          // Displays language options
-          function displayLang(){
-            var x = document.getElementById("i18n-buttons");
-            if (x.className === "langSelect") {
-              x.className += " responsive";
-              
-            } else {
-              x.className = "langSelect";
-            }
-          }
-          
-          // Makes the inter-site navigation appear (mobile)
+
         </script>
         
       </body>
