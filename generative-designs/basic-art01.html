@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="description" content="p5.js a JS client-side library for creating graphic and interactive experiences, based on the core principles of Processing.">
+    <title tabindex="1">home | p5.js</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js" integrity="sha512-N4kV7GkNv7QR7RX9YF/olywyIgIwNvfEe2nZtfyj73HdjCUkAfOBDbcuJ/cTaN04JKRnw1YG1wnUyNKMsNgg3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+
+</body>
+
+<script>
+    var x=0;
+    var y=0;
+    var side= 70;
+    var offset = 150;
+    var r = 0;
+
+    function setup() { 
+    createCanvas(displayWidth, displayHeight);
+
+    }
+    function draw() {
+        frameRate(2);//Keeps animation less flashy
+        background(255);//Black
+        //Nested loop creates didstance between shapes
+        for (var a=0; a<15; a++){
+            for(var b=1; b<30;b++){
+                fill (255,(70*b),(70*b)); //Colors!
+                noStroke();
+                r = random(0, displayWidth); // Disrupts grid
+                side = random(10,200); // Range of growth/shrinkage
+                ellipse(x+offset*b+r,y+offset*a+r,side,side);
+            }
+        } 
+    }
+</script>
