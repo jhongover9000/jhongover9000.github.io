@@ -1,3 +1,10 @@
+/* p5.js Website Design (Proposal) CSS */
+/* Joseph Hong */
+
+/* ==================================================================== */
+/* ==================================================================== */
+/* Initial */
+
 :root {
     /* height of external navbar, in vh */
     --externalNavBarHeight: 5;
@@ -58,7 +65,8 @@ a:link, a:visited {
     position: relative;
     display: flex;
     justify-content: space-between;
-    height: 5vh;
+    height: calc(var(--externalNavBarHeight)*1vh);
+    max-height: 50px;
     width: 100vw;
     background: white;
     border-bottom: 1px solid rgb(155, 155, 155);
@@ -71,9 +79,8 @@ a:link, a:visited {
     position: relative;
     display: flex;
     align-items: center;
-    /*padding: 0.5em 2em;*/
+    height: 100%;
     width: 80%;
-    /* 96, 100% if fixed*/
     overflow: none;
     margin: 0;
     z-index: inherit;
@@ -168,7 +175,10 @@ cursor: default;
     position: relative;
     background-color: white;
     height: calc(var(--navBarHeight)*1vh);
+    max-height: 100px;
+    min-height: 70px;
     width: 100vw;
+    border-bottom: rgb(225, 225, 225) 1px solid;
     box-shadow: 0px 1px 0px 0px rgba(0,0,0,0.2);
     z-index: 1;
     transition: width 0.2s, height 0.3s;
@@ -229,6 +239,7 @@ cursor: default;
     justify-content: space-between;
     align-items: center;
     margin: 0 8px;
+    padding: 0;
 }
 .navItem {
     height: 100%;
@@ -239,6 +250,7 @@ cursor: default;
 .navItem a {
     display: flex;
     height: inherit;
+    width: 100%;
     align-items: center;
     color: #ed225d;
     font-size: 1.2em;
@@ -261,9 +273,10 @@ cursor: default;
     left: 0;
     right: 0;
     width: 100vw;
-    padding: 20px 0;
+    padding: 30px 0;
     height: 15vh;
     min-height: 200px;
+    border-top: rgb(225, 225, 225) 1px solid;
     background-color: rgba(255, 255, 255);
     display: none;
 }
@@ -278,7 +291,7 @@ cursor: default;
     padding: 0;
 }
 .dropdown a {
-    width: calc((3/4)*100%);
+    width: 100%;
     padding: 0 calc(var(--navBarHeight)/100*1vh) 10px;
     background: white;
 }
@@ -377,7 +390,8 @@ footer {
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
-    margin-top: 100px;
+    margin-top: 50px 0;
+    padding: 25px 0 10px;
     height: fit-content;
     min-height: 200px;
     width: 100vw;
@@ -388,25 +402,33 @@ footer {
 .footer-container {
     display: inline-flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     width: 30%;
     padding: 20px;
 }
+.footer-container h3 {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
 .footer-container p {
     text-align: center;
     font-size: calc(10px 0.5vw);
+    margin: 0;
 }
 .footer-container div {
-    padding: 20px;
+    padding: 10px;
 }
-
+.sms-icon-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .sms-icon i{
     height: 40px;
     width: 40px;
     padding: 10px;
 }
-
 
 /* ==================================================================== */
 /* Home */
@@ -435,12 +457,13 @@ footer {
     background: rgba(255, 255, 255, 0.598);
 }
 .homeScreen iframe{
+    overflow: hidden;
     position: absolute;
-    width: 100%;
-    height: 100%;
+    margin: 0;
+    width: 99%;
+    height: 99%;
     min-height: 400px;
-    background: #da195c;
-    /* background-image: url(p5js.svg); */
+    background: transparent;
     top: 0;
     left: 0;
     z-index: -1;
@@ -574,6 +597,7 @@ footer {
     .topnav {
         width: 100%;
         justify-content: space-between;
+        border-bottom: none;
     }
     #onlineEdit, #learnMore{
         display: none;
@@ -605,6 +629,10 @@ footer {
     }
     .footer-container {
         width: 50%;
+    }
+    footer {
+        flex-direction: column;
+        align-items: center;
     }
 }
 
@@ -647,7 +675,7 @@ footer {
 
     /* Adds space at front and end of navigation */
     .pageNavigation .navItem:first-child {
-        padding-top: calc(var(--navBarHeight)*1vh);    
+        padding-top: calc((var(--navBarHeight) + var(--externalNavBarHeight))*1vh);    
     }
     .pageNavigation .navItem:last-child {
         padding-bottom: calc(var(--navBarHeight)*1vh);    
@@ -672,6 +700,7 @@ footer {
     /* Dropdown Menus */
     .pageNavigation .dropdown{
         position: relative;
+        border-top: none;
         display: block;
         flex-direction: column;
         justify-content: flex-start;

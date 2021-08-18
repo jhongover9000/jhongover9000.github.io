@@ -73,20 +73,20 @@
           
           <!-- p5.js Logo + External Site Navigation -->
           <!-- Hovering over the p5.js logo allows the user to visit the different Processing sites in a fashion similar to the links in the Page Navigation section. -->
-          <li class="navItem">
+          <div class="navItem">
             <a href="" class="logoLink" >
               <img class="p5Logo" id="logo" src="p5js.svg" alt="logo">
             </a>
-          </li>
+          </div>
           
           <!-- Dropdown (for mobile screens) -->
-          <li class="navItem" id="drpBtn">
+          <div class="navItem" id="drpBtn">
             <a href="javascript:void(0);" class="icon" onclick="showMobileNav()">&#9776;</a>
-          </li>
+          </div>
           
           <!-- Page Navigation -->
           <!-- Each 'main' link (Home, Get Started, Resources, Community, Support Us) contains inner navigation links in a dropdown box. These, in turn contain dropdown text in order to give a description of what that page is. There is also a default description of the main link to give users a general idea of what the section is about. -->
-          <div class="pageNavigation" id="pageNav">
+          <ul class="pageNavigation" id="pageNav">
             <!-- Home -->
             <li class="navItem">
               <a href="/index" class="navLink">Home</a>
@@ -97,25 +97,25 @@
               <div class="dropdown">
                 <ul class="dropdownContent">
                   <!-- Default Text -->
-                  <span class="dropdownTextDefault">
+                  <li><div class="dropdownTextDefault">
                     <p class="pageName">To New Beginnings.</p>
                     <p class="pageDescription">If you're new to p5.js or just need to download it again.</p>
-                  </span>
+                  </div></li>
                   <!-- Inner Navigation Links -->
                   <li class="dropdownEntry">
                     <a href="" class="innerNav">Getting Started
-                      <span class="dropdownText">
+                      <div class="dropdownText">
                         <p class="pageName">Getting Started</p>
                         <p class="pageDescription">If you're completely new to p5.js and want to know how to start, this is the page for you.</p>
-                      </span>
+                      </div>
                     </a>
                   </li>
                   <li class="dropdownEntry">
                     <a href="" class="innerNav">Download
-                      <span class="dropdownText">
+                      <div class="dropdownText">
                         <p class="pageName">Download</p>
                         <p class="pageDescription">For those who know how to use p5.js and are itching to get started.</p>
-                      </span>
+                      </div>
                     </a>
                   </li>
                 </ul>
@@ -127,49 +127,49 @@
               <div class="dropdown">
                 <ul class="dropdownContent">
                   <!-- Default Text -->
-                  <span class="dropdownTextDefault">
+                  <li><div class="dropdownTextDefault">
                     <p class="pageName">Looking for Something?</p>
                     <p class="pageDescription">If you aren't sure about a function or instance, look through the reference or check out some examples. There's a vast number of resources available for p5.js, accessible through this website.</p>
-                  </span>
+                  </div></li>
                   <!-- Inner Navigation Links -->
                   <li class="dropdownEntry">
                     <a href="" class="innerNav">Reference
-                      <span class="dropdownText">
+                      <div class="dropdownText">
                         <p class="pageName">Reference</p>
                         <p class="pageDescription">A reference of all the unique functions and instances that p5.js has to offer.</p>
-                      </span>
+                      </div>
                     </a>
                   </li>
                   <li class="dropdownEntry">
                     <a href="" class="innerNav">Libraries
-                      <span class="dropdownText">
+                      <div class="dropdownText">
                         <p class="pageName">Libraries</p>
                         <p class="pageDescription">How to use libraries in p5.js, as well as a list of available libraries.</p>
-                      </span>
+                      </div>
                     </a>
                   </li>
                   <li class="dropdownEntry">
                     <a href="" class="innerNav">Examples
-                      <span class="dropdownText">
+                      <div class="dropdownText">
                         <p class="pageName">Examples</p>
                         <p class="pageDescription">Need help with using a function? Check out examples of their uses here.</p>
-                      </span>
+                      </div>
                     </a>
                   </li>
                   <li class="dropdownEntry">
                     <a href="" class="innerNav">Learn
-                      <span class="dropdownText">
+                      <div class="dropdownText">
                         <p class="pageName">Learn</p>
                         <p class="pageDescription">Some tutorials on the basics of p5.js –– for all users!</p>
-                      </span>
+                      </div>
                     </a>
                   </li>
                   <li class="dropdownEntry">
                     <a href="" class="innerNav">Books
-                      <span class="dropdownText">
+                      <div class="dropdownText">
                         <p class="pageName">Books</p>
                         <p class="pageDescription">Books that can help you with learning more about p5.js!</p>
-                      </span>
+                      </div>
                     </a>
                   </li>
                 </ul>
@@ -181,57 +181,57 @@
               <div class="dropdown">
                 <ul class="dropdownContent">
                   <!-- Default Text -->
-                  <span class="dropdownTextDefault">
+                  <li><div class="dropdownTextDefault">
                     <p class="pageName">You're Not Alone.</p>
                     <p class="pageDescription">Find members of the vast community and learn p5.js together!</p>
-                  </span>
+                  </div></li>
                   <!-- Inner Navigation Links -->
                   <li class="dropdownEntry">
                     <a href="" class="innerNav">Forum
-                      <span class="dropdownText">
+                      <div class="dropdownText">
                         <p class="pageName">Forum</p>
                         <p class="pageDescription">Ask questions, learn, and grow with other members of the Processing community.</p>
-                      </span>
+                      </div>
                     </a>
                   </li>
                   <li class="dropdownEntry">
                     <a href="" class="innerNav">Showcase
-                      <span class="dropdownText">
+                      <div class="dropdownText">
                         <p class="pageName">Showcase</p>
                         <p class="pageDescription">Explore what others have created with p5.js!</p>
-                      </span>
+                      </div>
                     </a>
                   </li>
                   <li class="dropdownEntry">
                     <a href="" class="innerNav">Meet Up
-                      <span class="dropdownText">
+                      <div class="dropdownText">
                         <p class="pageName">Meet Up</p>
                         <p class="pageDescription">Meet up with the community and share knowledge!</p>
-                      </span>
+                      </div>
                     </a>
                   </li>
                   <li class="dropdownEntry">
                     <a href="" class="innerNav">Twitter
-                      <span class="dropdownText">
+                      <div class="dropdownText">
                         <p class="pageName">Twitter</p>
                         <p class="pageDescription">Follow us to get updates on Twitter!</p>
-                      </span>
+                      </div>
                     </a>
                   </li>
                   <li class="dropdownEntry">
                     <a href="" class="innerNav">Instagram
-                      <span class="dropdownText">
+                      <div class="dropdownText">
                         <p class="pageName">Instagram</p>
                         <p class="pageDescription">Follow us to get updates on Instagram!</p>
-                      </span>
+                      </div>
                     </a>
                   </li>
                   <li class="dropdownEntry">
                     <a href="" class="innerNav">Discord
-                      <span class="dropdownText">
+                      <div class="dropdownText">
                         <p class="pageName">Discord</p>
                         <p class="pageDescription">Join our Discord server!</p>
-                      </span>
+                      </div>
                     </a>
                   </li>
                   
@@ -244,47 +244,47 @@
               <div class="dropdown">
                 <ul class="dropdownContent">
                   <!-- Default Text -->
-                  <span class="dropdownTextDefault">
+                  <li><div class="dropdownTextDefault">
                     <p class="pageName">We Need Your Help!</p>
                     <p class="pageDescription">p5.js is open source. We want to make this community as open and inclusive as possible. There are various ways to support p5.js, and Processing in general!</p>
-                  </span>
+                  </div></li>
                   <!-- Inner Navigation Links -->
                   <li class="dropdownEntry">
                     <a href="https://github.com/processing/p5.js/tree/main/contributor_docs" class="innerNav">GitHub
-                      <span class="dropdownText">
+                      <div class="dropdownText">
                         <p class="pageName">GitHub</p>
                         <p class="pageDescription">We always welcome those who want to contribute to our code!</p>
-                      </span>
+                      </div>
                     </a>
                   </li>
                   <li class="dropdownEntry">
                     <a href="" class="innerNav">Donate
-                      <span class="dropdownText">
+                      <div class="dropdownText">
                         <p class="pageName">Donate</p>
                         <p class="pageDescription">Your donation supports software development for p5.js, education resources like code examples and tutorials, fellowships, and community events.</p>
-                      </span>
+                      </div>
                     </a>
                   </li>
                   <li class="dropdownEntry">
                     <a href="" class="innerNav">Teach
-                      <span class="dropdownText">
+                      <div class="dropdownText">
                         <p class="pageName">Teach</p>
                         <p class="pageDescription">Is there a tutorial you'd like to make for those learning p5.js? Feel free to contribute!</p>
-                      </span>
+                      </div>
                     </a>
                   </li>
                   <li class="dropdownEntry">
                     <a href="" class="innerNav">Share
-                      <span class="dropdownText">
+                      <div class="dropdownText">
                         <p class="pageName">Share</p>
                         <p class="pageDescription">Share something you've made with the rest of the community!</p>
-                      </span>
+                      </div>
                     </a>
                   </li>
                 </ul>
               </div>
             </li>
-          </div>
+          </ul>
           
           <!-- Link to Online Editor -->
           <a href="https://editor.p5js.org/" class="navItem button" id="onlineEdit">
@@ -317,8 +317,8 @@
       <main id="content" class="home">
         <div class="homeScreen">
           <div class="blurScreen">
-            <iframe src="" frameborder="0"></iframe>
-            <span class="homeScreenText">
+            <iframe id="background-iframe" src="https://jhongover9000.github.io/generative-designs/basic-art01.html"></iframe>
+            <div class="homeScreenText">
               <h1 class="homeScreenHeader">Welcome!</h1>
               <!-- For Desktops/Tablets -->
               <p class="desktopOnly">p5.js is a JavaScript library for creative coding, with a focus on making coding accessible and inclusive for artists, designers, educators, beginners, and anyone else! p5.js is free and open-source because we believe software, and the tools to learn it, should be accessible to everyone.</p>
@@ -329,7 +329,7 @@
                 <a href="https://editor.p5js.org/" id="startCoding">Start Coding</a>
                 <div id="learnMore">Learn More</div>
               </div>
-            </span>
+            </div>
           </div>
         </div>
         
@@ -375,14 +375,14 @@
           <!-- Follow - Twitter, Instagram, Discord -->
           <div class="footer-container">
             <h3>Follow Us</h3>
-            <div>
+            <div class="sms-icon-container">
               <a class="sms-icon" href="https://discord.com/invite/SHQ8dH25r9" alt="Discord"><i class='fab fa-discord' style='font-size:40px'></i></a>
               <a class="sms-icon" href="https://twitter.com/p5xjs" alt="Twitter"><i class='fab fa-twitter' style='font-size:40px'></i></a>
               <a class="sms-icon" href="https://www.instagram.com/p5xjs/" alt="Instagram"><i class='fab fa-instagram' style='font-size:40px'></i></a>
             </div>
           </div>
           <!-- Credits Container -->
-          <div class="footer-container desktopOnly">
+          <div class="footer-container">
             <!-- <h2 class="sr-only">{{#i18n "footerxh1"}}{{/i18n}}</h2> -->
             <h3>About Us</h3>
             <p>
