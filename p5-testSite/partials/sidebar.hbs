@@ -1,0 +1,256 @@
+---
+slug: sidebar
+---
+
+<!-- Navigation : Includes both external & internal -->
+<nav class="full-navigation">
+  <!-- External Site Nav Bar and Language Selection -->
+  <div id="external-nav">
+    {{!-- External Navigation --}}
+    {{> header}}
+
+    {{!-- Language Selection --}}
+    {{> i18n}}
+  </div>
+  
+  <!-- Navigation -->
+  <div class="internal-navigation" id="navBar">
+    <!-- Navigation Menu -->
+    <!-- The navigation menu is split into three main parts: the logo, the navigation links, and the 'Start Coding' button. -->
+    <nav class="topnav">
+      
+      <!-- p5.js Logo + External Site Navigation -->
+      <div class="navItem">
+        <a href="{{root}}/" class="logoLink" >
+          <img class="p5Logo" id="logo" src="p5js.svg" alt="logo">
+        </a>
+      </div>
+      
+      <!-- Dropdown (for mobile screens) -->
+      <div class="navItem" id="drpBtn">
+        <a href="javascript:void(0);" class="icon" onclick="showMobileNav()">&#9776;</a>
+      </div>
+      
+      <!-- Page Navigation -->
+      <!-- Each 'main' link (Home, Get Started, Resources, Community, Support Us) contains inner navigation links in a dropdown box. These, in turn contain dropdown text in order to give a description of what that page is. There is also a default description of the main link to give users a general idea of what the section is about. -->
+      <ul class="pageNavigation" id="pageNav">
+        <!-- Home -->
+        <li class="navItem">
+          <a href="{{root}}/" class="navLink">Home</a>
+        </li>
+        <!-- Get Started -->
+        <li class="navItem">
+          <a href="{{root}}/get-started/" class="navLink">Get Started</a>
+          <div class="dropdown">
+            <ul class="dropdownContent">
+              <!-- Default Text -->
+              <li><div class="dropdownTextDefault">
+                <p class="pageName">To New Beginnings.</p>
+                <p class="pageDescription">If you're new to p5.js or just need to download it again.</p>
+              </div></li>
+              <!-- Inner Navigation Links -->
+              <li class="dropdownEntry">
+                <a href="{{root}}/get-started/" class="innerNav">Getting Started
+                  <div class="dropdownText">
+                    <p class="pageName">Getting Started</p>
+                    <p class="pageDescription">If you're completely new to p5.js and want to know how to start, this is the page for you.</p>
+                  </div>
+                </a>
+              </li>
+              <li class="dropdownEntry">
+                <a href="{{root}}/download/" class="innerNav">{{#i18n "Download"}}{{/i18n}}
+                  <div class="dropdownText">
+                    <p class="pageName">{{#i18n "Download"}}{{/i18n}}</p>
+                    <p class="pageDescription">For those who know how to use p5.js and are itching to get started.</p>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <!-- Resources (Needs Default Link!!) -->
+        <li class="navItem">
+          <a href="/index" class="navLink">Resources</a>
+          <div class="dropdown">
+            <ul class="dropdownContent">
+              <!-- Default Text -->
+              <li><div class="dropdownTextDefault">
+                <p class="pageName">Looking for Something?</p>
+                <p class="pageDescription">If you aren't sure about a function or instance, look through the reference or check out some examples. There's a vast number of resources available for p5.js, accessible through this website.</p>
+              </div></li>
+              <!-- Inner Navigation Links -->
+              <li class="dropdownEntry">
+                <a href="{{root}}/reference/" class="innerNav">{{#i18n "Reference"}}{{/i18n}}
+                  <div class="dropdownText">
+                    <p class="pageName">{{#i18n "Reference"}}{{/i18n}}</p>
+                    <p class="pageDescription">A reference of all the unique functions and instances that p5.js has to offer.</p>
+                  </div>
+                </a>
+              </li>
+              <li class="dropdownEntry">
+                <a href="{{root}}/libraries/" class="innerNav">{{#i18n "Libraries"}}{{/i18n}}
+                  <div class="dropdownText">
+                    <p class="pageName">{{#i18n "Libraries"}}{{/i18n}}</p>
+                    <p class="pageDescription">How to use libraries in p5.js, as well as a list of available libraries.</p>
+                  </div>
+                </a>
+              </li>
+              <li class="dropdownEntry">
+                <a href="{{root}}/examples/" class="innerNav">{{#i18n "Examples"}}{{/i18n}}
+                  <div class="dropdownText">
+                    <p class="pageName">{{#i18n "Examples"}}{{/i18n}}</p>
+                    <p class="pageDescription">Need help with using a function? Check out examples of their uses here.</p>
+                  </div>
+                </a>
+              </li>
+              <li class="dropdownEntry">
+                <a href="{{root}}/learn/" class="innerNav">{{#i18n "Learn"}}{{/i18n}}
+                  <div class="dropdownText">
+                    <p class="pageName">{{#i18n "Learn"}}{{/i18n}}</p>
+                    <p class="pageDescription">Some tutorials on the basics of p5.js –– for all users!</p>
+                  </div>
+                </a>
+              </li>
+              <li class="dropdownEntry">
+                <a href="{{root}}/books/" class="innerNav">{{#i18n "Books"}}{{/i18n}}
+                  <div class="dropdownText">
+                    <p class="pageName">{{#i18n "Books"}}{{/i18n}}</p>
+                    <p class="pageDescription">Books that can help you with learning more about p5.js!</p>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <!-- Community -->
+        <li class="navItem">
+          <a href="{{root}}/community/" class="navLink">{{#i18n "Community"}}{{/i18n}}</a>
+          <div class="dropdown">
+            <ul class="dropdownContent">
+              <!-- Default Text -->
+              <li><div class="dropdownTextDefault">
+                <p class="pageName">You're Not Alone.</p>
+                <p class="pageDescription">Find members of the vast community and learn p5.js together!</p>
+              </div></li>
+              <!-- Inner Navigation Links -->
+              <li class="dropdownEntry">
+                <a href="https://discourse.processing.org/c/p5js" class="innerNav">{{#i18n "Forum"}}{{/i18n}}
+                  <div class="dropdownText">
+                    <p class="pageName">{{#i18n "Forum"}}{{/i18n}}</p>
+                    <p class="pageDescription">Ask questions, learn, and grow with other members of the Processing community.</p>
+                  </div>
+                </a>
+              </li>
+              <li class="dropdownEntry">
+                <a href="https://showcase.p5js.org/" class="innerNav">{{#i18n "Showcase"}}{{/i18n}}
+                  <div class="dropdownText">
+                    <p class="pageName">{{#i18n "Showcase"}}{{/i18n}}</p>
+                    <p class="pageDescription">Explore what others have created with p5.js!</p>
+                  </div>
+                </a>
+              </li>
+              <li class="dropdownEntry">
+                <a href="https://day.processing.org/" class="innerNav">Meet Up
+                  <div class="dropdownText">
+                    <p class="pageName">Meet Up</p>
+                    <p class="pageDescription">Meet up with the community and share knowledge!</p>
+                  </div>
+                </a>
+              </li>
+              <li class="dropdownEntry">
+                <a href="https://twitter.com/p5xjs" class="innerNav">{{#i18n "Twitter"}}{{/i18n}}
+                  <div class="dropdownText">
+                    <p class="pageName">{{#i18n "Twitter"}}{{/i18n}}</p>
+                    <p class="pageDescription">Follow us to get updates on Twitter!</p>
+                  </div>
+                </a>
+              </li>
+              <li class="dropdownEntry">
+                <a href="https://www.instagram.com/p5xjs/" class="innerNav">{{#i18n "Instagram"}}{{/i18n}}
+                  <div class="dropdownText">
+                    <p class="pageName">{{#i18n "Instagram"}}{{/i18n}}</p>
+                    <p class="pageDescription">Follow us to get updates on Instagram!</p>
+                  </div>
+                </a>
+              </li>
+              <li class="dropdownEntry">
+                <a href="https://discord.com/invite/SHQ8dH25r9" class="innerNav">{{#i18n "Discord"}}{{/i18n}}
+                  <div class="dropdownText">
+                    <p class="pageName">{{#i18n "Discord"}}{{/i18n}}</p>
+                    <p class="pageDescription">Join our Discord server!</p>
+                  </div>
+                </a>
+              </li>
+              
+            </ul>
+          </div>
+        </li>
+        <!-- Support Us! -->
+        <li class="navItem">
+          <a href="{{root}}/download/donate/" class="navLink">Support Us</a>
+          <div class="dropdown">
+            <ul class="dropdownContent">
+              <!-- Default Text -->
+              <li><div class="dropdownTextDefault">
+                <p class="pageName">We Need Your Help!</p>
+                <p class="pageDescription">p5.js is open source. We want to make this community as open and inclusive as possible. There are various ways to support p5.js, and Processing in general!</p>
+              </div></li>
+              <!-- Inner Navigation Links -->
+              <li class="dropdownEntry">
+                <a href="https://github.com/processing/p5.js/tree/main/contributor_docs" class="innerNav">GitHub
+                  <div class="dropdownText">
+                    <p class="pageName">GitHub</p>
+                    <p class="pageDescription">We always welcome those who want to contribute to our code!</p>
+                  </div>
+                </a>
+              </li>
+              <li class="dropdownEntry">
+                <a href="{{root}}/download/donate/" class="innerNav">{{#i18n "Donate"}}{{/i18n}}
+                  <div class="dropdownText">
+                    <p class="pageName">{{#i18n "Donate"}}{{/i18n}}</p>
+                    <p class="pageDescription">Your donation supports software development for p5.js, education resources like code examples and tutorials, fellowships, and community events.</p>
+                  </div>
+                </a>
+              </li>
+              <li class="dropdownEntry">
+                <a href="{{root}}/teach/" class="innerNav">{{#i18n "Teach"}}{{/i18n}}
+                  <div class="dropdownText">
+                    <p class="pageName">{{#i18n "Teach"}}{{/i18n}}</p>
+                    <p class="pageDescription">Is there a tutorial you'd like to make for those learning p5.js? Feel free to contribute!</p>
+                  </div>
+                </a>
+              </li>
+              <li class="dropdownEntry">
+                <a href="https://forms.gle/pux9YNoYWPpTsZtn8" class="innerNav">Share
+                  <div class="dropdownText">
+                    <p class="pageName">Share</p>
+                    <p class="pageDescription">Share something you've made with the rest of the community!</p>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+      
+      <!-- Link to Online Editor -->
+      <a href="https://editor.p5js.org/" class="navItem button" id="onlineEdit">
+        Start Coding
+      </a>
+      
+      <!-- Search Bar (will figure out a place) -->
+      <!-- <form id="search" method="get" action="https://www.google.com/search">
+        <input type="hidden" name="as_sitesearch" value="p5js.org">
+        <input id="search_button" type="submit" aria-label="Search" class='sr-only'>
+        <input tabindex="2" id='search_field' type="text" size="12" placeholder="Search p5js.org" name="q">
+        <label class="sr-only" for="search_field">Search p5js.org</label>
+      </form> -->
+      
+    </nav>
+  </div>
+</nav>
+
+<!-- To Top Button -->
+<div id="toTop">
+  <div><i class="arrow up"></i></div>
+</div>
