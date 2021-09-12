@@ -1,0 +1,65 @@
+<!-- A.r.t. Intel Project 1: Mind Over Matter. -->
+<!-- Navigation Partials -->
+<!-- ============================================================================================= -->
+<!-- ============================================================================================= -->
+<div id="navBar">
+    <ul class="navList">
+        <li class="navButton" id="home"><a href="/mind-over-matter-website/homePage.html">Home</a></li>
+        <li>|</li>
+        <li class="navButton" id="about"><a href="/mind-over-matter-website/aboutPage.html">About</a></li>
+        <li>|</li>
+        <li class="navButton" id="about"><a href="/mind-over-matter-website/aboutPage.html">Get Started</a></li>
+        <li>|</li>
+        <li class="navButton" id="pricing"><a a href="/mind-over-matter-website/pricingPage.html">Pricing</a></li>
+    </ul>
+</div>
+
+<!-- To Top Button -->
+<div id="toTop">
+    <div><i class="arrow up"></i></div>
+</div>
+
+<script>
+    $("#scrollDown").click(function(){
+			const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+			const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+			window.scrollTo(0, 1.1*vh);
+    });
+
+    $(window).scroll(function(){
+        if(document.documentElement.scrollTop > 0){
+                const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+                const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+                $("#navBar").css({"animation":"slideDown 1s forwards"});
+                $("#toTop").css({"opacity":"1"});
+                document.getElementById("navBar").style.height = "8vh";
+                document.getElementById("navBar").style.boxShadow = "0 0 4px black";
+            }
+            else{
+                $("#navBar").css({"animation":"slideUp 1s forwards"});
+                $("#toTop").css({"opacity":"0"});
+                document.getElementById("navBar").style.height = "10vh";
+                document.getElementById("navBar").style.boxShadow = "0 0 2px black";
+            }
+    });
+
+    // makes sure that random page is not the current page
+    $(function(){
+            var num = Math.floor(Math.random()*4);
+            $("#explore").attr("href", "/assignment5/project"+ String(num)+".html");
+        });
+    
+
+    document.addEventListener('mousemove', (event) => {
+        if(document.documentElement.scrollTop == 0 && event.clientY < 100){
+            $("#navBar").css({"animation":"slideDown 1s forwards"});
+        }
+        else if(document.documentElement.scrollTop == 0 && event.clientY > 300){
+            $("#navBar").css({"animation":"slideUp 1s forwards"});
+        }
+    });
+
+    $("#toTop").click(function(){
+            window.scrollTo(0, 0);
+    });
+</script>
