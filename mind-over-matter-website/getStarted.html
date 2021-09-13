@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Get Started | Mind Over Matter.</title>
+    <title>Setting Up | Mind Over Matter.</title>
 
     <!-- jQuery. Needs to be up here (doesn't work otherwise). -->
     <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
@@ -31,6 +31,11 @@
 <!-- Body -->
 <body>
 
+    <!-- "Loading Screen" (gives time for background image to load) -->
+    <div id="start-video-div">
+        <video id="start-video" muted autoplay src="img/Speculative Design Project Logo.mp4#t=0,2" onpause="showPage()"></video>
+    </div>
+
     <!-- Navigation Across Different Pages. Also holds the To Top button. -->
     <div id="navBarPlaceholder"></div>
 
@@ -39,12 +44,10 @@
 		<div class="container">
 			<div class="row">
 				<div class="col">
-					<div id="titleDiv1"></div>
-				</div>
-                <div class="col">
-					<div id="titleDiv2"></div>
-				</div>
-			</div>
+					<div id="titleDiv1">Have One Already?</div>
+					<div id="titleDiv2">Let's Get Started.</div>
+			    </div>
+            </div>
 		</div>
 		<div id="scrollDown">
             <div id="arrow" style="display: none;"><i class="arrow down"></i></div>
