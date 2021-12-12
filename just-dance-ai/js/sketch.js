@@ -35,7 +35,7 @@ function setup() {
     
     textSize(20)
     
-    model.on('pose', predict);
+    model.on('pose', getPose);
     // init()
 }
 
@@ -52,7 +52,7 @@ function setupCamera() {
 
 
 // Predict Pose
-function predict(poses) {
+function getPose(poses) {
     topPrediction = poses[0].label;
     let highestProbability = 0
     let highestIndex
@@ -79,7 +79,7 @@ function draw() {
     push()
     translate(videoWidth, 0);
     scale(-1, 1);
-    image(capture, 0, 0, videoWidth, videoHeight)
+    image(video, 0, 0, videoWidth, videoHeight)
     if (poseData) {
         const minPartConfidence = 0.5;
         tmPose.drawKeypoints(poseData.keypoints, minPartConfidence, context);
