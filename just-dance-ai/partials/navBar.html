@@ -1,0 +1,59 @@
+<!-- A.r.t. Intel Project 1: Mind Over Matter. -->
+<!-- Navigation Partials -->
+<!-- ============================================================================================= -->
+<!-- ============================================================================================= -->
+<div id="navBar">
+    <div><a href="/mind-over-matter-website/homePage.html"><img src="img/mm_icon.png" alt="logo"></a></div>
+    <ul class="navList">
+        <li class="navButton" id="home"><a href="/mind-over-matter-website/homePage.html">HOME</a></li>
+        <li>|</li>
+        <li class="navButton" id="about"><a href="/mind-over-matter-website/aboutPage.html">ABOUT</a></li>
+        <li>|</li>
+        <li class="navButton" id="pricing"><a a href="/mind-over-matter-website/pricingPage.html">PRICING</a></li>
+    </ul>
+    <div></div>
+</div>
+
+<!-- To Top Button -->
+<div id="toTop">
+    <div><i class="arrow up"></i></div>
+</div>
+
+<script>
+
+    // Scrolldown Arrow
+    $("#scrollDown").click(function(){
+			window.scrollTo(0, 1*vh);
+    });
+
+    // Display Nav on Scroll
+    $(window).scroll(function(){
+        if(document.documentElement.scrollTop > 5){
+                $("#navBar").css({"animation":"slideDown 1s forwards"});
+                $("#toTop").css({"opacity":"1"});
+                document.getElementById("navBar").style.height = "8vh";
+                document.getElementById("navBar").style.boxShadow = "0 0 4px black";
+            }
+            else{
+                $("#navBar").css({"animation":"slideUp 1s forwards"});
+                $("#toTop").css({"opacity":"0"});
+                document.getElementById("navBar").style.height = "10vh";
+                document.getElementById("navBar").style.boxShadow = "0 0 2px black";
+            }
+    });
+    
+    // Show Nav on Hover
+    document.addEventListener('mousemove', (event) => {
+        if(document.documentElement.scrollTop == 0 && event.clientY < 100){
+            $("#navBar").css({"animation":"slideDown 1s forwards"});
+        }
+        else if(document.documentElement.scrollTop == 0 && event.clientY > 150){
+            $("#navBar").css({"animation":"slideUp 1s forwards"});
+        }
+    });
+
+    // To Top Button
+    $("#toTop").click(function(){
+            window.scrollTo(0, 0);
+    });
+</script>
