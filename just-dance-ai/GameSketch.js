@@ -17,11 +17,23 @@ let screenHeight = window.innerHeight;
 var camWidth = 720;
 var camHeight = 480;
 
-// Video Variables
-var videoWidth = window.innerWidth;
-var videoHeight = videoWidth*0.565;
-var visualHeight = videoWidth*0.625;    // yes i did those calculations too
-var videoYOffset = videoWidth*0.03;     // yup even this
+
+// Video Variables (auto-adjust to height/width)
+if(window.innerWidth*0.565 > window.innerHeight){
+    // Video Variables (Height-Based)
+    var videoHeight = window.innerHeight;
+    var videoWidth = videoHeight*1.7702;
+    var visualHeight = videoHeight*1.107;    // yes i did those calculations too
+    var videoYOffset = videoHeight*0.053;     // yup even this
+
+}
+else{
+    // Video Variables (Width-Based)
+    var videoWidth = window.innerWidth;
+    var videoHeight = videoWidth*0.565;
+    var visualHeight = videoWidth*0.625;    // yes i did those calculations too
+    var videoYOffset = videoWidth*0.03;     // yup even this
+}
 
 // Pose Variables
 var numPoses = 0;
@@ -44,6 +56,7 @@ var numPoses;
 // SS
 // var timeStamps = [2.23, 4.15,  6.20,11.15, 12.19, 19.20, 36.28, 20.21, 38.01, 22.24, 40.05, 25.14, 27.17, 44.25, 29.10, 46.18, 33.21, 50.26, 34.06, 51.16, 35.11, 52.24];
 // var poseNums = [1,2,3,4,5,6,6,7,7,8,8,9,10,10,11,11,12,12,13,13,14,14]
+
 // Maria
 // var timeStamps = [3.29,10.00,11.13,14.27,26.14,29.13,35.12,42.03,43.09,46.29,50.25,55.20,58.25,63.19];
 // var poseNums = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
@@ -56,6 +69,7 @@ var danceVid;       // video of dance
 
 // PoseNet Variables
 var model;              // poseNet model
+var modelLoaded = false;
 var capture;            // webcam video
 var topPrediction;      // top prediction
 var numClasses;         // number of classes
@@ -167,6 +181,7 @@ async function init() {
     const metadataURL = URL + "metadata.json";
     model = await tmPose.load(modelURL, metadataURL);
     numClasses = model.getTotalClasses();
+    modelLoaded = true;
 
     poseSet = new Set(poseNums);
     numPoses = poseSet.size;   
@@ -264,7 +279,7 @@ async function updatePose(){
 
 // display pose visual
 async function displayPose(){
-    image(currentPoseVisual, poseLocX, 0, videoWidth, visualHeight);
+    image(currentPoseVisual, poseLocX, -videoYOffset, videoWidth, visualHeight);
 }
 
 // ===================================================================================================
@@ -274,7 +289,6 @@ async function displayPose(){
 // Main Menu
 function startMenu(){
     background(0);
-    displayBackground()
     noFill();
     stroke(1);
     textAlign(CENTER, CENTER);
@@ -285,11 +299,11 @@ function startMenu(){
     textAlign(CENTER, CENTER);
     textSize(45);
     fill(255);
-    text("DANCE DANCE AI", screenWidth/4, screenHeight/9 + screenHeight/12 );
+    text("DANCE DANCE AI", screenWidth/2, screenHeight/9 + screenHeight/12);
     
     //Set location of first button
-    let firstButtonX1 = rectX;
-    let firstButtonX2 = rectX + rectWidth;
+    let firstButtonX1 = rectX + screenWidth/4;
+    let firstButtonX2 = rectX + screenWidth/4 + rectWidth;
     let firstButtonY1 = rectY;
     let firstButtonY2 = rectY + rectHeight;
     
@@ -307,12 +321,19 @@ function startMenu(){
 // Instructions
 function instructions() {
     background(0);
+    textAlign(LEFT, LEFT);
+    fill(255);
+    textSize(50);
+    text("Welcome to Just Dance AI!", screenWidth/4, screenHeight/2, 2*screenWidth/4, 3*screenHeight/4);
+    textSize(20);
+    text("\nWe're bringing back everyone's favorite dancing game with a new flavor: artificial intelligence! Using Google's Teachable Machine PoseNet, we've curated a sample of choreographies that will bring back the nostalgia in one song!\nPlaying is simple: just follow along with the dancer in front of you as usual, but pay attention especially when the silhouette borders appear: those will rack up your points!", screenWidth/4, screenHeight/2+50, 2*screenWidth/4, 3*screenHeight/4);
+    text("\n\n\n\nPress SPACE to Return to Menu", screenWidth/4, 3*screenHeight/4, 2*screenWidth/4, 3*screenHeight/4);
+    
 }
 
 // Song Selection
 function songSelect(){
     background(0);
-    displayBackground()
     noFill();
     stroke(1);
     textAlign(CENTER, CENTER);
@@ -417,7 +438,6 @@ function nthMenuButton(n, nextState, firstButtonX1, firstButtonX2, firstButtonY1
 
 function showResults(){
     background(0);
-    displayBackground();
     textAlign(CENTER,CENTER);
     textSize(50);
     text("Total Score: " + totalScore, screenWidth/2, screenHeight/3);
@@ -439,11 +459,11 @@ function showResults(){
     }
 }
 
-function displayBackground(){
-    var backNum = random(backgroundsNum);
-    imageMode(CENTER);
-    image(backgrounds[backNum], screenWidth/2, screenHeight/2, screenWidth);
-}
+// function displayBackground(){
+//     var backNum = int(random(backgroundsNum));
+//     imageMode(CENTER);
+//     image(backgrounds[backNum], screenWidth/2, screenHeight/2);
+// }
 
 // ===================================================================================================
 // ===================================================================================================
@@ -461,7 +481,7 @@ function draw() {
     }
     else if (gameState == 3){
         background(0);
-        image(danceVid, 0, videoYOffset, videoWidth, videoHeight, 0, 0, danceVid.width, danceVid.height);
+        image(danceVid, 0, 0, videoWidth, videoHeight, 0, 0, danceVid.width, danceVid.height);
         if(isPaused){
             push();
             translate(camWidth, 0);
@@ -481,6 +501,16 @@ function draw() {
             text("Press SPACE to Continue", screenWidth/2, screenHeight/2);
         }
         else{
+            push();
+            translate(camWidth, 0);
+            scale(-1, 1);
+            image(capture, 0, 0, camWidth, camHeight);
+            if (poseData) {
+                const minPartConfidence = 0.5;
+                tmPose.drawKeypoints(poseData.keypoints, minPartConfidence, context);
+                tmPose.drawSkeleton(poseData.keypoints, minPartConfidence, context); 
+            }
+            pop();
             updatePose();
             etaPose = currentTimeStamp - danceVid.time();
         }        
@@ -490,7 +520,8 @@ function draw() {
         fill(255);
         textAlign(LEFT);
         textSize(20);
-        text("Score : "+ totalScore, 20, 30);
+        text(topPrediction+": "+ poseProb + " | Score : "+ totalScore, 20, 30);
+        // text("Score : "+ totalScore, 20, 30);
 
         danceVid.onended(function(){
             gameState = 4;
@@ -510,7 +541,7 @@ function mousePressed(event) {
         if ((gameState == 2) || gameState == 0) {
             mouseClicked = true;
         }
-        else if (gameState == 3){
+        else if (gameState == 3 && modelLoaded){
             if(isPaused){
                 isPaused = !isPaused;
                 danceVid.play();
@@ -541,7 +572,7 @@ function keyReleased() {
             // game = new Game();
             gameState = 0;
         }
-        else if (gameState == 3){
+        else if (gameState == 3 && modelLoaded){
             if(isPaused){
                 isPaused = !isPaused;
                 danceVid.play();
