@@ -1,6 +1,6 @@
 // A.r.t. Intel Final Project: Just Dance A.I. (Sketch Script)
 // Joseph
-// 
+//
 // Description: this is the script that plays out the game. Since I ended up writing this alone, I
 //              thought it was only fair I put my name on it. I used some base code from an example,
 //              which I lost but the code is here: https://editor.p5js.org/jhh508/sketches/pH8nvOCtN.
@@ -29,21 +29,27 @@ var camHeight = 540;
 
 
 // Video Variables (auto-adjust to height/width)
-if(window.innerWidth*0.565 > window.innerHeight){
-    // Video Variables (Height-Based)
-    var videoHeight = window.innerHeight;
-    var videoWidth = videoHeight*1.7702;
-    var visualHeight = videoHeight*1.107;    // yes i did those calculations too
-    var videoYOffset = videoHeight*0.053;     // yup even this
+// if(window.innerWidth*0.565 > window.innerHeight){
+//     // Video Variables (Height-Based)
+//     var videoHeight = window.innerHeight;
+//     var videoWidth = videoHeight*1.7702;
+//     var visualHeight = videoHeight*1.107;    // yes i did those calculations too
+//     var videoYOffset = videoHeight*0.053;     // yup even this
+//
+// }
+// else{
+//     // Video Variables (Width-Based)
+//     var videoWidth = window.innerWidth;
+//     var videoHeight = videoWidth*0.565;
+//     var visualHeight = videoWidth*0.625;    // yes i did those calculations too
+//     var videoYOffset = videoWidth*0.03;     // yup even this
+// }
 
-}
-else{
-    // Video Variables (Width-Based)
-    var videoWidth = window.innerWidth;
-    var videoHeight = videoWidth*0.565;
-    var visualHeight = videoWidth*0.625;    // yes i did those calculations too
-    var videoYOffset = videoWidth*0.03;     // yup even this
-}
+// Video Variables (Width-Based)
+var videoWidth = window.innerWidth;
+var videoHeight = videoWidth*0.565;
+var visualHeight = videoWidth*0.625;    // yes i did those calculations too
+var videoYOffset = videoWidth*0.03;     // yup even this
 
 // Pose Variables
 var numPoses = 0;
@@ -106,7 +112,7 @@ var textY = screenHeight/2;
 var backgroundsNum = 10;        // backgrounds for menu
 var backgroundImages = [];
 var firstLoaded = true;
-// var audio;
+var audio;
 
 // for actual game
 var currentPose;        // next pose (poseImage object)
@@ -168,15 +174,15 @@ function setup() {
     frameRate(30);
     // canvas with webcam
     const canvas = createCanvas(videoWidth, videoHeight);
-    // audio = new Audio("Audio/" + String(int(random(0,4))) + ".mp3");
+    audio = new Audio("Audio/" + String(int(random(0,4))) + ".mp3");
     context = canvas.elt.getContext('2d');
     capture = createCapture(VIDEO);
     capture.size(camWidth, camHeight);
     capture.hide();
-    
+
     textSize(20);
     // init();
-    
+
 }
 
 // initialize model (can be called separately)
@@ -196,7 +202,7 @@ async function init() {
     modelLoaded = true;
 
     poseSet = new Set(poseNums);
-    numPoses = poseSet.size;   
+    numPoses = poseSet.size;
     console.log(numPoses);
     // Set totalPoses
     if(timeStamps.length == poseNums.length){
@@ -214,16 +220,16 @@ async function init() {
     // sort in ascending order of timestamp
     poseImages.sort(function(a, b){return a.timeStamp - b.timeStamp});
     // console.log(poseImages);
-    
+
     danceVid = createVideo(fileDirHdr + "/danceVideo.mp4");
     danceVid.hide();
-    
+
     for(var i = 0; i < numPoses; i++){
         var temp = loadImage(fileDirHdr + "Poses/Pose"+String(i+1)+".png");
         console.log(temp);
         poseVisuals.push(temp);
     }
-    
+
     // set pose variables to first pose to appear
     setPoseVariables(poseImages[currentIndex]);
 }
@@ -239,11 +245,11 @@ async function predict() {
 
     // estimate pose
     const {pose, posenetOutput} = await model.estimatePose(capture.elt);
-    
+
     const predictions = await model.predict(posenetOutput)
     var highestProbability = 0
     var highestIndex
-    if(etaPose <= 0.2){
+    if(-0.5 < etaPose && etaPose <= -0.3){
         predictions.forEach((item, index) => {
             if(item.className == currentPose.compString){
                 totalScore += item.probability*1000;
@@ -286,7 +292,7 @@ async function updatePose(){
         displayPose();
     }
     // scoring window technically starts from the 0.5 second mark
-    else if(0.0 < etaPose && etaPose <= 0.5){
+    else if(-0.5 < etaPose && etaPose <= 0.5){
         if(currentPose.compString == topPrediction){
             console.log("Nice!");
             totalScore += int(poseProb*1000);
@@ -297,16 +303,20 @@ async function updatePose(){
             }
         }
         else{
+          if(etaPose < 0){
+          }
+          else{
             poseLocX = map(etaPose, 0, 3, 0, 2*windowWidth/3);
             displayPose();
+          }
         }
-        
+
     }
     // at 0, you either get it or you don't
-    else if( etaPose <= 0.0){
+    else if( etaPose <= -0.5){
         currentIndex++;
         if(currentIndex >= totalPoses){
-            
+
         }
         else{
             if(currentPose.compString == topPrediction){
@@ -338,76 +348,72 @@ function startMenu(){
     noFill();
     stroke(1);
     textAlign(CENTER, CENTER);
-    
+
     // Display Main Menu
     fill(0);
     rect(screenWidth/2 - rectWidth, screenHeight/9, rectWidth*2, screenHeight/6, 5);
     textAlign(CENTER, CENTER);
-    textSize(45);
+    textSize(60);
     fill(255);
-    text("DANCE DANCE AI", screenWidth/2, screenHeight/9 + screenHeight/12);
-    
+    text("JUST DANCE AI", screenWidth/2, screenHeight/9 + screenHeight/12);
+
     //Set location of first button
     var firstButtonX1 = rectX + screenWidth/4;
     var firstButtonX2 = rectX + screenWidth/4 + rectWidth;
     var firstButtonY1 = rectY;
     var firstButtonY2 = rectY + rectHeight;
-    
+
     //Start Game - leads to song select
     nthMenuButton(0, 2, firstButtonX1, firstButtonX2, firstButtonY1, firstButtonY2, "Start");
-    
+
     //Instructions
     nthMenuButton(1, 1, firstButtonX1, firstButtonX2, firstButtonY1, firstButtonY2, "How to Play");
-    
+
     //Change Background
     // nthMenuButton(3, 9, firstButtonX1, firstButtonX2, firstButtonY1, firstButtonY2, "Change Background");
-    
+
 }
 
 // Instructions
 function instructions() {
     // background(0);
-    
-    textSize(50);
+    textSize(60);
     textAlign(CENTER);
     fill(0);
     rect(videoWidth/6, videoHeight/5, 2*videoWidth/3, videoHeight/2);
     fill(255);
     text("Welcome to Just Dance AI!", videoWidth/4, videoHeight/4, 2*videoWidth/4, 3*videoHeight/4);
-    textSize(20);
+    textSize(30);
     textAlign(LEFT, LEFT);
-    text("\nWe're bringing back everyone's favorite dancing game with a new flavor: artificial intelligence! Using Google's Teachable Machine PoseNet, we've curated a sample of choreographies that will bring back the nostalgia in one song!\nPlaying is simple: just follow along with the dancer in front of you as usual, but pay attention especially when the silhouette borders appear: those will rack up your points!", screenWidth/4, screenHeight/4+50, 2*screenWidth/4, 3*screenHeight/4);
+    text("\nWe're bringing back everyone's favorite dancing game with a new flavor: artificial intelligence! Using Google's Teachable Machine PoseNet, we've curated a sample of choreographies that will bring back the nostalgia in one song!\nPlaying is simple: just follow along with the dancer in front of you as usual, but pay attention especially when the silhouette borders appear: those will rack up your points!", screenWidth/4, screenHeight/4+70, 2*screenWidth/4, 3*screenHeight/4);
     textAlign(CENTER);
     text("\n\n\n\nPress SPACE to Return to Menu", videoWidth/4, 3*videoHeight/4, 2*videoWidth/4, 2*videoHeight/4);
-    
+
 }
 
 // Song Selection
 function songSelect(){
     // background(0);
-    noFill();
     stroke(1);
-    textAlign(CENTER, CENTER);
-    
     // Display Song Select
     fill(200);
     // rect(rectWidth/2, screenHeight/9, rectWidth*2, screenHeight/6, 5);
     textAlign(CENTER, CENTER);
-    textSize(40);
+    textSize(55);
     fill(255);
     text("Select A Song.", screenWidth/4, screenHeight/9 + screenHeight/12);
-    
+
     // Set location of first button
     var firstButtonX1 = rectX - (rectWidth*1.2 / 6);
     var firstButtonX2 = rectX + rectWidth*1.2;
     var firstButtonY1 = rectY;
     var firstButtonY2 = rectY + rectHeight;
-    
+
     // How You Like That? - Black Pink
     nthMenuButton(0, 3, firstButtonX1, firstButtonX2, firstButtonY1, firstButtonY2, "How You Like That? - Black Pink");
     if(buttonSelected != 3){
         songSelected = 0;
-        
+
         URL = "https://teachablemachine.withgoogle.com/models/SwOKCzLAF/";
         fileDirHdr = "Songs/HowYouLikeThat/";
         poseNums = [1,2,3,4,4,5,6,7,8,9,10,11,12,12,12,13,13,14,14,15,16,17,18];
@@ -415,7 +421,7 @@ function songSelect(){
         // audio.stop();
         init();
     }
-    
+
     // Say So - Doja Cat
     nthMenuButton(1, 3, firstButtonX1, firstButtonX2, firstButtonY1, firstButtonY2, "Say So - Doja Cat");
     if(buttonSelected != 3){
@@ -444,16 +450,16 @@ function songSelect(){
 
 // creating menu buttons
 function nthMenuButton(n, nextState, firstButtonX1, firstButtonX2, firstButtonY1, firstButtonY2, word) {
-    
+
     // Reset Variables
     buttonSelected = 3;
-    
+
     //Increment n times
     for (var i = 0; i < n; i++) {
         firstButtonY1 = firstButtonY2 + screenHeight/36;
         firstButtonY2 = firstButtonY1 + screenHeight/12;
     }
-    
+
     if ( ( firstButtonX1 < mouseX && mouseX < firstButtonX2) && (firstButtonY1 < mouseY && mouseY < firstButtonY2) ) {
         fill(100);
 
@@ -488,42 +494,49 @@ function nthMenuButton(n, nextState, firstButtonX1, firstButtonX2, firstButtonY1
     rect(firstButtonX1, firstButtonY1, (firstButtonX2 - firstButtonX1), (firstButtonY2 - firstButtonY1), 5 );
     textAlign(CENTER, CENTER);
     // textFont(font);
-    textSize(20);
+    textSize(35);
     fill(255);
     text(word, firstButtonX1 + (firstButtonX2 - firstButtonX1)/2, firstButtonY1 + (firstButtonY2 - firstButtonY1)/2);
     //Stay in Main Menu if no option is selected
 }
 
 function showResults(){
-    // background(0);
+    background(0);
     textAlign(CENTER,CENTER);
-    textSize(50);
+    textSize(70);
+    rectMode(CENTER);
+    fill(0);
+    rect(screenWidth/2, screenHeight/3, screenWidth/3, 90);
+    fill(255);
     text("Total Score: " + int(totalScore), screenWidth/2, screenHeight/3);
+    fill(0);
+    rect(screenWidth/2, screenHeight/3 + 120, screenWidth/3, 60);
+    fill(255);
+    textSize(40);
     if(numPoses*1000*0.8 < totalScore && totalScore <= numPoses*1000){
-        textSize(35);
-        text("Amazing! You're a natural at this!", screenWidth/2, screenHeight/3 + 50);
+        text("Amazing! You're a natural at this!", screenWidth/2, screenHeight/3 + 120);
     }
     else if(numPoses*1000*0.4 < totalScore && totalScore <= numPoses*1000*0.8){
-        textSize(35);
-        text("Nice. You're pretty decent, I gotta say!", screenWidth/2, screenHeight/3 + 50);
+        text("Nice. You're pretty decent, I gotta say!", screenWidth/2, screenHeight/3 + 120);
     }
     else if(numPoses*1000*0.2 < totalScore && totalScore <= numPoses*1000*0.4){
-        textSize(35);
-        text("Hmm. Not bad.", screenWidth/2, screenHeight/3 + 50);
+        text("Not bad. Not bad.", screenWidth/2, screenHeight/3 + 120);
     }
     else{
-        textSize(35);
-        text("Do you... dance?", screenWidth/2, screenHeight/3 + 50);
+        text("So, you.. dance.. right?", screenWidth/2, screenHeight/3 + 120);
     }
-
-    text("\n\nPress SPACE to Return to Menu", screenWidth/4, 3*screenHeight/4, 2*screenWidth/4, 3*screenHeight/4);
+    fill(0);
+    rect(screenWidth/2, 3*screenHeight/4, screenWidth/3, 60);
+    fill(255);
+    text("\n\nPress SPACE to Return to Menu", screenWidth/2, 3*screenHeight/4);
+    rectMode(CORNER);
 }
 
 function displayBackground(){
     // var backNum = );
     // console.log(backNum);
     imageMode(CENTER);
-    image(backgroundImages[int(random(0, backgroundsNum))], videoWidth/2, videoHeight/2);
+    image(backgroundImages[int(random(0, backgroundsNum))], videoWidth/2, videoHeight/2, videoWidth, videoHeight);
 }
 
 // ===================================================================================================
@@ -532,9 +545,9 @@ function displayBackground(){
 
 function draw() {
     if(firstLoaded){
-        // if(gameState == 0){
-        //     audio.play();
-        // }
+        if(gameState == 0){
+            audio.play();
+        }
         console.log("loaded.");
         displayBackground();
         firstLoaded = false;
@@ -549,7 +562,11 @@ function draw() {
         songSelect();
     }
     else if (gameState == 3){
+        if(!audio.paused || audio.currentTime){
+            audio.pause();
+        }
         background(0);
+        imageMode(CORNER);
         image(danceVid, 0, 0, videoWidth, videoHeight, 0, 0, danceVid.width, danceVid.height);
         if(isPaused){
             push();
@@ -559,7 +576,7 @@ function draw() {
             if (poseData) {
                 const minPartConfidence = 0.5;
                 tmPose.drawKeypoints(poseData.keypoints, minPartConfidence, context);
-                tmPose.drawSkeleton(poseData.keypoints, minPartConfidence, context); 
+                tmPose.drawSkeleton(poseData.keypoints, minPartConfidence, context);
             }
             pop();
             textAlign(CENTER,CENTER);
@@ -577,24 +594,25 @@ function draw() {
             if (poseData) {
                 const minPartConfidence = 0.5;
                 tmPose.drawKeypoints(poseData.keypoints, minPartConfidence, context);
-                tmPose.drawSkeleton(poseData.keypoints, minPartConfidence, context); 
+                tmPose.drawSkeleton(poseData.keypoints, minPartConfidence, context);
             }
             pop();
             updatePose();
             etaPose = currentTimeStamp - danceVid.time();
             totalScore += 0.01;
-        }        
-        predict(); 
+        }
+        predict();
         strokeWeight(4);
         stroke(0);
         fill(255);
         textAlign(LEFT);
-        textSize(20);
-        text(topPrediction+": "+ poseProb + " | Score : "+ int(totalScore), 20, 30);
-        // text("Score : "+ int(totalScore), 20, 30);
+        textSize(40);
+        // text(topPrediction+": "+ poseProb + " | Score : "+ int(totalScore), 20, 30);
+        text("Score : "+ int(totalScore), 20, 50);
 
         danceVid.onended(function(){
             gameState = 4;
+            firstLoaded = true;
         });
     }
     if(gameState == 4){
@@ -630,7 +648,7 @@ function mouseReleased() {
         if (gameState >= 2) {
             mouseReleased = true;
         }
-        
+
     }
 }
 
@@ -650,7 +668,7 @@ function keyReleased() {
                 isPaused = !isPaused;
                 danceVid.pause();
             }
-            
+
         }
     }
 }
