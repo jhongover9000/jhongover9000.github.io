@@ -16,7 +16,7 @@ body {
     margin: 0;
     padding: 0;
     user-select: none;
-    min-height: 200vh;
+    /* min-height: 200vh; */
     height: auto;
 }
 
@@ -335,4 +335,22 @@ footer li {
 }
 footer li a:hover{
     color: black;
+}
+
+/*  */
+
+#canvas {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    
+}
+
+#v {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    margin: -50% 0 0 -50%;
 }
