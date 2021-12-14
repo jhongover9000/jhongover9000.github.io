@@ -1,3 +1,13 @@
+// A.r.t. Intel Final Project: Just Dance A.I. (Sketch Script)
+// Joseph Hong
+// 
+// Description: this is the script that plays out the game. Since I ended up writing this alone, I
+//              thought it was only fair I put my name on it. I used some base code from an example,
+//              which I lost but the code is here: https://editor.p5js.org/jhh508/sketches/pH8nvOCtN.
+// ===================================================================================================
+// ===================================================================================================
+// Variables
+
 // How You Like That
 // https://teachablemachine.withgoogle.com/models/uehtSDJpy/
 var URL = "https://teachablemachine.withgoogle.com/models/uehtSDJpy/";
@@ -10,8 +20,8 @@ var URL = "https://teachablemachine.withgoogle.com/models/uehtSDJpy/";
 // var URL = https://teachablemachine.withgoogle.com/models/9jWoOem-c/
 
 // Main Variables
-let screenWidth = window.innerWidth;
-let screenHeight = window.innerHeight;
+var screenWidth = window.innerWidth;
+var screenHeight = window.innerHeight;
 
 // Webcam Variables
 var camWidth = 720;
@@ -82,17 +92,17 @@ var gameState = 0;
 var internalState = 0;
 var isPaused = true;
 
-let mouseClicked = false;
-let buttonSelected = 3;  // track which button is selected, 3 is default
-let songSelected = 3;    // track which song is selected, 3 is default
+var mouseClicked = false;
+var buttonSelected = 3;  // track which button is selected, 3 is default
+var songSelected = 3;    // track which song is selected, 3 is default
 
 // for menu screens
-let rectWidth = screenWidth/4;
-let rectHeight = screenHeight/12;
-let rectX = screenWidth/4 - rectWidth/2;
-let rectY = 2*screenHeight/5;
-let textX = screenWidth/2;
-let textY = screenHeight/2;
+var rectWidth = screenWidth/4;
+var rectHeight = screenHeight/12;
+var rectX = screenWidth/4 - rectWidth/2;
+var rectY = 2*screenHeight/5;
+var textX = screenWidth/2;
+var textY = screenHeight/2;
 var backgroundsNum = 10;        // backgrounds for menu
 var backgrounds = [];
 
@@ -302,10 +312,10 @@ function startMenu(){
     text("DANCE DANCE AI", screenWidth/2, screenHeight/9 + screenHeight/12);
     
     //Set location of first button
-    let firstButtonX1 = rectX + screenWidth/4;
-    let firstButtonX2 = rectX + screenWidth/4 + rectWidth;
-    let firstButtonY1 = rectY;
-    let firstButtonY2 = rectY + rectHeight;
+    var firstButtonX1 = rectX + screenWidth/4;
+    var firstButtonX2 = rectX + screenWidth/4 + rectWidth;
+    var firstButtonY1 = rectY;
+    var firstButtonY2 = rectY + rectHeight;
     
     //Start Game - leads to song select
     nthMenuButton(0, 2, firstButtonX1, firstButtonX2, firstButtonY1, firstButtonY2, "Start");
@@ -347,10 +357,10 @@ function songSelect(){
     text("Select A Song.", screenWidth/4, screenHeight/9 + screenHeight/12);
     
     // Set location of first button
-    let firstButtonX1 = rectX - (rectWidth*1.2 / 6);
-    let firstButtonX2 = rectX + rectWidth*1.2;
-    let firstButtonY1 = rectY;
-    let firstButtonY2 = rectY + rectHeight;
+    var firstButtonX1 = rectX - (rectWidth*1.2 / 6);
+    var firstButtonX2 = rectX + rectWidth*1.2;
+    var firstButtonY1 = rectY;
+    var firstButtonY2 = rectY + rectHeight;
     
     // How You Like That? - Black Pink
     nthMenuButton(0, 3, firstButtonX1, firstButtonX2, firstButtonY1, firstButtonY2, "How You Like That? - Black Pink");
@@ -392,7 +402,7 @@ function nthMenuButton(n, nextState, firstButtonX1, firstButtonX2, firstButtonY1
     buttonSelected = 3;
     
     //Increment n times
-    for (let i = 0; i < n; i++) {
+    for (var i = 0; i < n; i++) {
         firstButtonY1 = firstButtonY2 + screenHeight/36;
         firstButtonY2 = firstButtonY1 + screenHeight/12;
     }
@@ -457,6 +467,8 @@ function showResults(){
         textSize(35);
         text("Do you... dance? At all?", screenWidth/2, screenHeight/3 + 50);
     }
+
+    text("\n\n\n\nPress SPACE to Return to Menu", screenWidth/4, 3*screenHeight/4, 2*screenWidth/4, 3*screenHeight/4);
 }
 
 // function displayBackground(){
@@ -568,7 +580,7 @@ function keyReleased() {
     //SPACE -- RESET GAME
     if (keyCode == 32) {
         //Reset Game
-        if (gameState == 1 || gameState == 2) {
+        if (gameState == 1 || gameState == 2 || gameState == 4) {
             // game = new Game();
             gameState = 0;
         }
