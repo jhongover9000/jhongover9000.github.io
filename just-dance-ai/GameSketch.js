@@ -8,11 +8,11 @@
 // ===================================================================================================
 // Variables
 
-// How You Like That
+// Say So
 // https://teachablemachine.withgoogle.com/models/uehtSDJpy/
 var URL = "https://teachablemachine.withgoogle.com/models/uehtSDJpy/";
 
-// Say So
+// How You Like That
 // https://teachablemachine.withgoogle.com/models/SwOKCzLAF/
 // var URL = "https://teachablemachine.withgoogle.com/models/SwOKCzLAF/";
 
@@ -104,7 +104,9 @@ var rectY = 2*screenHeight/5;
 var textX = screenWidth/2;
 var textY = screenHeight/2;
 var backgroundsNum = 10;        // backgrounds for menu
-var backgrounds = [];
+var backgroundImages = [];
+var firstLoaded = true;
+// var audio;
 
 // for actual game
 var currentPose;        // next pose (poseImage object)
@@ -152,9 +154,8 @@ function preload() {
 
     // backgrounds
     for(var i = 0; i < backgroundsNum; i++){
-        var temp = createImg("Backgrounds/"+String(i)+".jpg");
-        temp.hide();
-        backgrounds.push(temp);
+        var temp = loadImage("Backgrounds/"+String(i)+".jpg");
+        backgroundImages.push(temp);
     }
 
     // dance video
@@ -167,6 +168,7 @@ function setup() {
     frameRate(30);
     // canvas with webcam
     const canvas = createCanvas(videoWidth, videoHeight);
+    // audio = new Audio("Audio/" + String(int(random(0,4))) + ".mp3");
     context = canvas.elt.getContext('2d');
     capture = createCapture(VIDEO);
     capture.size(camWidth, camHeight);
@@ -332,14 +334,14 @@ async function displayPose(){
 
 // Main Menu
 function startMenu(){
-    background(0);
+    // background(0);
     noFill();
     stroke(1);
     textAlign(CENTER, CENTER);
     
     // Display Main Menu
     fill(0);
-    // rect(screenWidth/2 - rectWidth, screenHeight/9, rectWidth*2, screenHeight/6, 5);
+    rect(screenWidth/2 - rectWidth, screenHeight/9, rectWidth*2, screenHeight/6, 5);
     textAlign(CENTER, CENTER);
     textSize(45);
     fill(255);
@@ -364,10 +366,13 @@ function startMenu(){
 
 // Instructions
 function instructions() {
-    background(0);
-    fill(255);
+    // background(0);
+    
     textSize(50);
     textAlign(CENTER);
+    fill(0);
+    rect(videoWidth/6, videoHeight/5, 2*videoWidth/3, videoHeight/2);
+    fill(255);
     text("Welcome to Just Dance AI!", videoWidth/4, videoHeight/4, 2*videoWidth/4, 3*videoHeight/4);
     textSize(20);
     textAlign(LEFT, LEFT);
@@ -379,7 +384,7 @@ function instructions() {
 
 // Song Selection
 function songSelect(){
-    background(0);
+    // background(0);
     noFill();
     stroke(1);
     textAlign(CENTER, CENTER);
@@ -402,10 +407,12 @@ function songSelect(){
     nthMenuButton(0, 3, firstButtonX1, firstButtonX2, firstButtonY1, firstButtonY2, "How You Like That? - Black Pink");
     if(buttonSelected != 3){
         songSelected = 0;
-        URL = "https://teachablemachine.withgoogle.com/models/uehtSDJpy/";
+        
+        URL = "https://teachablemachine.withgoogle.com/models/SwOKCzLAF/";
         fileDirHdr = "Songs/HowYouLikeThat/";
         poseNums = [1,2,3,4,4,5,6,7,8,9,10,11,12,12,12,13,13,14,14,15,16,17,18];
         timeStamps = [1.07, 3.16, 7.15, 8.10, 9.03, 14.02, 17.19, 19.05, 22.19, 23.13, 25.26, 28.12, 30.10, 33.02, 34.16, 32.01, 33.23, 36.00, 43.18, 37.02, 39.23, 41.26, 45.11];
+        // audio.stop();
         init();
     }
     
@@ -413,11 +420,12 @@ function songSelect(){
     nthMenuButton(1, 3, firstButtonX1, firstButtonX2, firstButtonY1, firstButtonY2, "Say So - Doja Cat");
     if(buttonSelected != 3){
         songSelected = 1;
-        URL = "https://teachablemachine.withgoogle.com/models/SwOKCzLAF/";
+        URL = "https://teachablemachine.withgoogle.com/models/uehtSDJpy/";
         fileDirHdr = "Songs/SaySo/";
         // timeStamps = [2.23, 4.15,  6.20,11.15, 12.19, 19.20, 36.28, 20.21, 38.01, 22.24, 40.05, 25.14, 27.17, 44.25, 29.10, 46.18, 33.21, 50.26, 34.06, 51.16, 35.11, 52.24];
         timeStamps = [2.7, 4.5, 7.00, 11.13, 12.6, 19.17, 36.26, 20.19, 37.29, 22.6, 40.44, 25.52, 27.6, 44.25, 29.7, 46.17, 33.17, 50.26, 34.06, 51.16, 35.08, 52.21];
         poseNums = [1,2,3,4,5,6,6,7,7,8,8,9,10,10,11,11,12,12,13,13,14,14];
+        // audio.stop();
         init();
     }
     // Maria - Hwasa
@@ -429,6 +437,7 @@ function songSelect(){
         // timeStamps = [3.29,10.00,11.13,14.27,26.14,29.13,35.12,42.03,43.09,46.29,50.25,55.20,58.25,63.19];
         timeStamps = [3.7, 9.27, 11.13, 14.7, 26.08, 29.03, 35.11, 41.25, 43.07, 46.06, 50.22, 55.80, 57.26, 63.14];
         poseNums = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
+        // audio.stop();
         init();
     }
 }
@@ -446,7 +455,7 @@ function nthMenuButton(n, nextState, firstButtonX1, firstButtonX2, firstButtonY1
     }
     
     if ( ( firstButtonX1 < mouseX && mouseX < firstButtonX2) && (firstButtonY1 < mouseY && mouseY < firstButtonY2) ) {
-        fill(230);
+        fill(100);
 
         // if song select
         if(gameState == 2){
@@ -464,10 +473,11 @@ function nthMenuButton(n, nextState, firstButtonX1, firstButtonX2, firstButtonY1
             mouseReleased = false;
             gameState = nextState;
             buttonSelected = n;
+            firstLoaded = true;
         }
     }
     else {
-        fill(200);
+        fill(0);
             // hide previews
         for(var i = 0; i < 3; i++){
             if(true){
@@ -479,13 +489,13 @@ function nthMenuButton(n, nextState, firstButtonX1, firstButtonX2, firstButtonY1
     textAlign(CENTER, CENTER);
     // textFont(font);
     textSize(20);
-    fill(100);
+    fill(255);
     text(word, firstButtonX1 + (firstButtonX2 - firstButtonX1)/2, firstButtonY1 + (firstButtonY2 - firstButtonY1)/2);
     //Stay in Main Menu if no option is selected
 }
 
 function showResults(){
-    background(0);
+    // background(0);
     textAlign(CENTER,CENTER);
     textSize(50);
     text("Total Score: " + int(totalScore), screenWidth/2, screenHeight/3);
@@ -509,17 +519,26 @@ function showResults(){
     text("\n\nPress SPACE to Return to Menu", screenWidth/4, 3*screenHeight/4, 2*screenWidth/4, 3*screenHeight/4);
 }
 
-// function displayBackground(){
-//     var backNum = int(random(backgroundsNum));
-//     imageMode(CENTER);
-//     image(backgrounds[backNum], screenWidth/2, screenHeight/2);
-// }
+function displayBackground(){
+    // var backNum = );
+    // console.log(backNum);
+    imageMode(CENTER);
+    image(backgroundImages[int(random(0, backgroundsNum))], videoWidth/2, videoHeight/2);
+}
 
 // ===================================================================================================
 // ===================================================================================================
 // Draw
 
 function draw() {
+    if(firstLoaded){
+        // if(gameState == 0){
+        //     audio.play();
+        // }
+        console.log("loaded.");
+        displayBackground();
+        firstLoaded = false;
+    }
     if(gameState == 0){
         startMenu();
     }
