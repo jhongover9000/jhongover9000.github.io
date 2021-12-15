@@ -8,6 +8,8 @@
 // ===================================================================================================
 // Variables
 
+isLocal = true;        // if running locally (not GitHub webpage/website, IS NOT WORKING)
+
 // Say So
 // https://teachablemachine.withgoogle.com/models/uehtSDJpy/
 var URL = "https://teachablemachine.withgoogle.com/models/uehtSDJpy/";
@@ -29,27 +31,21 @@ var camHeight = 540;
 
 
 // Video Variables (auto-adjust to height/width)
-// if(window.innerWidth*0.565 > window.innerHeight){
-//     // Video Variables (Height-Based)
-//     var videoHeight = window.innerHeight;
-//     var videoWidth = videoHeight*1.7702;
-//     var visualHeight = videoHeight*1.107;    // yes i did those calculations too
-//     var videoYOffset = videoHeight*0.053;     // yup even this
-//
-// }
-// else{
-//     // Video Variables (Width-Based)
-//     var videoWidth = window.innerWidth;
-//     var videoHeight = videoWidth*0.565;
-//     var visualHeight = videoWidth*0.625;    // yes i did those calculations too
-//     var videoYOffset = videoWidth*0.03;     // yup even this
-// }
+if(window.innerWidth*0.565 > window.innerHeight){
+    // Video Variables (Height-Based)
+    var videoHeight = window.innerHeight;
+    var videoWidth = videoHeight*1.7702;
+    var visualHeight = videoHeight*1.107;    // yes i did those calculations too
+    var videoYOffset = videoHeight*0.053;     // yup even this
 
-// Video Variables (Width-Based)
-var videoWidth = window.innerWidth;
-var videoHeight = videoWidth*0.565;
-var visualHeight = videoWidth*0.625;    // yes i did those calculations too
-var videoYOffset = videoWidth*0.03;     // yup even this
+}
+else{
+    // Video Variables (Width-Based)
+    var videoWidth = window.innerWidth;
+    var videoHeight = videoWidth*0.565;
+    var visualHeight = videoWidth*0.625;    // yes i did those calculations too
+    var videoYOffset = videoWidth*0.03;     // yup even this
+}
 
 // Pose Variables
 var numPoses = 0;
@@ -64,18 +60,6 @@ var timeStamps = [];
 var poseNums = [];
 var poseSet;
 var numPoses;
-
-// HYLT
-// var timeStamps = [1.07, 3.16, 7.15, 8.10, 9.03, 14.02, 17.19, 19.05, 22.19, 23.13, 25.26, 28.12, 30.10, 33.02, 34.16, 32.01, 33.23, 36.00, 43.18, 37.02, 39.23, 41.26, 45.11];
-// var poseNums = [1,2,3,4,4,5,6,7,8,9,10,11,12,12,12,13,13,14,14,15,16,17,18];
-
-// SS
-// var timeStamps = [2.23, 4.15,  6.20,11.15, 12.19, 19.20, 36.28, 20.21, 38.01, 22.24, 40.05, 25.14, 27.17, 44.25, 29.10, 46.18, 33.21, 50.26, 34.06, 51.16, 35.11, 52.24];
-// var poseNums = [1,2,3,4,5,6,6,7,7,8,8,9,10,10,11,11,12,12,13,13,14,14]
-
-// Maria
-// var timeStamps = [3.29,10.00,11.13,14.27,26.14,29.13,35.12,42.03,43.09,46.29,50.25,55.20,58.25,63.19];
-// var poseNums = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
 
 // Header Variables
 var fileDirHdr = "Songs/HowYouLikeThat/"; // header for loading files
@@ -122,6 +106,7 @@ var currentIndex = 0;   // current index of pose
 var currentTimeStamp;   // time stamp of next pose
 var etaPose;            // time to next pose
 var totalScore = 0;     // total score
+var poseArray = [];     // array of poses
 
 
 
@@ -165,7 +150,7 @@ function preload() {
     }
 
     // dance video
-    danceVid = createVideo(fileDirHdr + "/danceVideo.mp4");
+    danceVid = createVideo(fileDirHdr + "danceVideo.mp4");
     danceVid.hide();
 }
 
@@ -173,7 +158,7 @@ function preload() {
 function setup() {
     frameRate(30);
     // canvas with webcam
-    const canvas = createCanvas(videoWidth, videoHeight);
+    const canvas = createCanvas(screenWidth, screenHeight);
     audio = new Audio("Audio/" + String(int(random(0,4))) + ".mp3");
     context = canvas.elt.getContext('2d');
     capture = createCapture(VIDEO);
@@ -221,7 +206,28 @@ async function init() {
     poseImages.sort(function(a, b){return a.timeStamp - b.timeStamp});
     // console.log(poseImages);
 
-    danceVid = createVideo(fileDirHdr + "/danceVideo.mp4");
+
+    // if local, use local files. if not, use hosted files
+    if(isLocal){
+        danceVid = createVideo(fileDirHdr + "danceVideo.mp4");
+    }
+    // use hosted files (doesn't seem to be working)
+    else{
+        if(fileDirHdr == "Songs/HowYouLikeThat/"){
+            danceVid = createVideo(src = "https://firebasestorage.googleapis.com/v0/b/personalstorage-d7890.appspot.com/o/howYouLikeThat.mp4?alt=media&token=278f73dc-fa2f-4aa6-87d0-b70218f3a035");
+        }
+        else if(fileDirHdr == "Songs/SaySo/"){
+            danceVid = createVideo("https://firebasestorage.googleapis.com/v0/b/personalstorage-d7890.appspot.com/o/saySo.mp4?alt=media&token=62e55364-38a8-4508-9778-0eb313ca1836");
+            
+        }
+        else if(fileDirHdr == "Songs/Maria/"){
+            danceVid = createVideo("https://firebasestorage.googleapis.com/v0/b/personalstorage-d7890.appspot.com/o/maria.mp4?alt=media&token=b90efc6f-47e6-4289-9656-5e7e3ae805ab");
+        }
+        else{
+            console.log("Header not found: "+fileDirHdr);
+        }
+    }
+    
     danceVid.hide();
 
     for(var i = 0; i < numPoses; i++){
@@ -249,7 +255,7 @@ async function predict() {
     const predictions = await model.predict(posenetOutput)
     var highestProbability = 0
     var highestIndex
-    if(-0.5 < etaPose && etaPose <= -0.3){
+    if(-0.75 < etaPose && etaPose <= 0.0){
         predictions.forEach((item, index) => {
             if(item.className == currentPose.compString){
                 totalScore += item.probability*1000;
@@ -292,7 +298,7 @@ async function updatePose(){
         displayPose();
     }
     // scoring window technically starts from the 0.5 second mark
-    else if(-0.5 < etaPose && etaPose <= 0.5){
+    else if(-0.75 < etaPose && etaPose <= 0.5){
         if(currentPose.compString == topPrediction){
             console.log("Nice!");
             totalScore += int(poseProb*1000);
@@ -303,12 +309,13 @@ async function updatePose(){
             }
         }
         else{
-          if(etaPose < 0){
-          }
-          else{
-            poseLocX = map(etaPose, 0, 3, 0, 2*windowWidth/3);
-            displayPose();
-          }
+            // only show if at 0
+            if(etaPose < 0){
+            }
+            else{
+                poseLocX = map(etaPose, 0, 3, 0, 2*windowWidth/3);
+                displayPose();
+            }
         }
 
     }
@@ -316,18 +323,21 @@ async function updatePose(){
     else if( etaPose <= -0.5){
         currentIndex++;
         if(currentIndex >= totalPoses){
-
+            // do nothing
         }
         else{
+            // increase by confidence level
             if(currentPose.compString == topPrediction){
                 console.log("Nice!");
                 totalScore += int(poseProb*1000);
-                displayPose();
             }
+            // less score is given on missed
             else{
+                totalScore += 150;
                 console.log(currentPose.compString);
                 console.log(topPrediction);
             }
+            displayPose();
             setPoseVariables(poseImages[currentIndex]);
         }
     }
@@ -418,7 +428,6 @@ function songSelect(){
         fileDirHdr = "Songs/HowYouLikeThat/";
         poseNums = [1,2,3,4,4,5,6,7,8,9,10,11,12,12,12,13,13,14,14,15,16,17,18];
         timeStamps = [1.07, 3.16, 7.15, 8.10, 9.03, 14.02, 17.19, 19.05, 22.19, 23.13, 25.26, 28.12, 30.10, 33.02, 34.16, 32.01, 33.23, 36.00, 43.18, 37.02, 39.23, 41.26, 45.11];
-        // audio.stop();
         init();
     }
 
@@ -431,7 +440,6 @@ function songSelect(){
         // timeStamps = [2.23, 4.15,  6.20,11.15, 12.19, 19.20, 36.28, 20.21, 38.01, 22.24, 40.05, 25.14, 27.17, 44.25, 29.10, 46.18, 33.21, 50.26, 34.06, 51.16, 35.11, 52.24];
         timeStamps = [2.7, 4.5, 7.00, 11.13, 12.6, 19.17, 36.26, 20.19, 37.29, 22.6, 40.44, 25.52, 27.6, 44.25, 29.7, 46.17, 33.17, 50.26, 34.06, 51.16, 35.08, 52.21];
         poseNums = [1,2,3,4,5,6,6,7,7,8,8,9,10,10,11,11,12,12,13,13,14,14];
-        // audio.stop();
         init();
     }
     // Maria - Hwasa
@@ -443,7 +451,6 @@ function songSelect(){
         // timeStamps = [3.29,10.00,11.13,14.27,26.14,29.13,35.12,42.03,43.09,46.29,50.25,55.20,58.25,63.19];
         timeStamps = [3.7, 9.27, 11.13, 14.7, 26.08, 29.03, 35.11, 41.25, 43.07, 46.06, 50.22, 55.80, 57.26, 63.14];
         poseNums = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
-        // audio.stop();
         init();
     }
 }
@@ -516,10 +523,10 @@ function showResults(){
     if(numPoses*1000*0.8 < totalScore && totalScore <= numPoses*1000){
         text("Amazing! You're a natural at this!", screenWidth/2, screenHeight/3 + 120);
     }
-    else if(numPoses*1000*0.4 < totalScore && totalScore <= numPoses*1000*0.8){
+    else if(numPoses*1000*0.6 < totalScore && totalScore <= numPoses*1000*0.8){
         text("Nice. You're pretty decent, I gotta say!", screenWidth/2, screenHeight/3 + 120);
     }
-    else if(numPoses*1000*0.2 < totalScore && totalScore <= numPoses*1000*0.4){
+    else if(numPoses*1000*0.3 < totalScore && totalScore <= numPoses*1000*0.6){
         text("Not bad. Not bad.", screenWidth/2, screenHeight/3 + 120);
     }
     else{
@@ -536,7 +543,7 @@ function displayBackground(){
     // var backNum = );
     // console.log(backNum);
     imageMode(CENTER);
-    image(backgroundImages[int(random(0, backgroundsNum))], videoWidth/2, videoHeight/2, videoWidth, videoHeight);
+    image(backgroundImages[int(random(0, backgroundsNum))], screenWidth/2, screenHeight/2, screenWidth, screenHeight);
 }
 
 // ===================================================================================================
@@ -597,9 +604,11 @@ function draw() {
                 tmPose.drawSkeleton(poseData.keypoints, minPartConfidence, context);
             }
             pop();
-            updatePose();
-            etaPose = currentTimeStamp - danceVid.time();
-            totalScore += 0.01;
+            if(currentIndex < totalPoses){
+                updatePose();
+                etaPose = currentTimeStamp - danceVid.time();
+                totalScore += 0.05;
+            }
         }
         predict();
         strokeWeight(4);
