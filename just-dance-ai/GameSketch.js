@@ -1,14 +1,13 @@
 // A.r.t. Intel Final Project: Just Dance A.I. (Sketch Script)
-// Joseph
+// Joseph Hong
 //
-// Description: this is the script that plays out the game. Since I ended up writing this alone, I
-//              thought it was only fair I put my name on it. I used some base code from an example,
+// Description: this is the script that plays out the game. I used some base code from an example,
 //              which I lost but the code is here: https://editor.p5js.org/jhh508/sketches/pH8nvOCtN.
 // ===================================================================================================
 // ===================================================================================================
 // Variables
 
-isLocal = true;        // if running locally (not GitHub webpage/website, IS NOT WORKING)
+isLocal = false;        // if running locally (not GitHub webpage/website; this online feature isn't working due to how p5.js creates videos)
 
 // Say So
 // https://teachablemachine.withgoogle.com/models/uehtSDJpy/
@@ -214,7 +213,7 @@ async function init() {
     // use hosted files (doesn't seem to be working)
     else{
         if(fileDirHdr == "Songs/HowYouLikeThat/"){
-            danceVid = createVideo(src = "https://firebasestorage.googleapis.com/v0/b/personalstorage-d7890.appspot.com/o/howYouLikeThat.mp4?alt=media&token=278f73dc-fa2f-4aa6-87d0-b70218f3a035");
+            danceVid = createVideo("https://firebasestorage.googleapis.com/v0/b/personalstorage-d7890.appspot.com/o/howYouLikeThat.mp4?alt=media&token=278f73dc-fa2f-4aa6-87d0-b70218f3a035");
         }
         else if(fileDirHdr == "Songs/SaySo/"){
             danceVid = createVideo("https://firebasestorage.googleapis.com/v0/b/personalstorage-d7890.appspot.com/o/saySo.mp4?alt=media&token=62e55364-38a8-4508-9778-0eb313ca1836");
