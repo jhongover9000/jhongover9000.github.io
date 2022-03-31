@@ -1,15 +1,17 @@
 # Just Dance AI
 
-### The Overview
+##### A Project by Joseph Hong and Jannie Zhou
+
+## The Overview
 Hello~ we’re back again, this time for the final project of the semester! For the final project, our group created a game that makes you dance (!!!!). Just Dance AI, everyone’s favorite dancing game with a special flavor of artificial intelligence! Dance and pose like you’ve never done before! The major technology we deployed is the machine learning model PoseNet and TeachableMachine by Google, and the game itself is coded through p5.js!
 
-### The Idea
+## The Idea
 Well, it actually started with the idea of an interactive performance using PoseNet. Different poses would trigger different effects, and with that you could create a really cool piece that could help people not only learn about how PoseNet works but also have fun in the process. Then, when learning about Teachable Machine, we saw the yoga pose clip and thought of an interactive yoga session. Then, out of left field, came the idea of making people dance along to choreography then grading them on it. A lot of the inspiration behind that came from Dance Dance Revolution, as well as the Dance Evolution Arcade Machine (even if it’s not all that related, it’s still really fun to watch). I’m actually curious as to whether the latter uses something similar to what we implemented with our project.
 
 
-### The Process
+## The Process
 
-#### Choreography and Videos (Jannie)
+### Choreography and Videos (Jannie)
 
 We chose three songs to come up with the choreography, shoot the videos and take out certain frames in the video to train the model. I chose distinctive poses from the choreography so that the machine will not confuse them. 
 
@@ -35,7 +37,7 @@ A problem that came up while playtesting was that the score would be very low. A
 
 One of the limitations of TM PoseNet is that it registers poses a little bit slow. And when considering that our project is based around split second poses, we needed to balance that out. In the end, I added a ‘grace’ period after the pose ended, one that would essentially allow the late results to still be considered valid. And that actually helped boost scores up quite a bit. Also, adding the little “bonus” period at the end of each song helped balance out the score a bit, though this was less about the model’s accuracy and more about making the player feel at least a little better about themselves.
 
-### Machine Learning in Artistic Performance: Implications
+## Machine Learning in Artistic Performance: Implications
 
 And that brings up something interesting, especially in regards to the question of assessing performance. What makes a performance ‘good’? Is it the accuracy of the movements–– something that our model was supposed to be doing ––or the expression that is conveyed through it? Most people who went for the latter rarely received good marks from the model because they weren’t in sync with what moves had been fed into it at the start, whereas those who went for the former (including myself) could score rather high without really dancing at all.
 
@@ -45,7 +47,7 @@ When it comes to using machine learning to assess performances, especially artis
 
 As I mentioned earlier, the model is extremely biased since it only took samples from several persons. It can detect their poses really well but not other people. Initially I thought by training on poses the model should be able to steer away from the influence of different people playing. However, as it turned out, it is still a very biased dataset giving out limited predictions. This reminds me of the importance of having a well-rounded dataset that includes data from all identities as we discussed in class. Even though PoseNet is a mature model trained to recognize poses, somehow the model generated from Teachable Machine is still biased. Now we are only using it for a game, what if the machine learning algorithm is used to give predictions on social issues such as jurisdiction and salary? It should not be one person who makes these algorithms, it should be a team full of representatives from all identities. 
 
-### Bringing Things Together…
+## Bringing Things Together…
 
 Overall, this project started out as something that was just supposed to be fun and entertaining to something that started to make us question things about what makes humans human, and if those things could ever be understood by AI–– or perceived, even. I think that this is actually one of the most put-together projects that I’ve done over the semester, and definitely one of the ones where I had the most fun.
 It’s been a long ride, learning about all sorts of different machine learning models. Not just about them, but in a sense learning about us humans as a whole, since the models cannot do anything without the data that we feed them. We assume that artificial intelligence is objective, but in the end it’s just spewing back everything we gave it in the first place. I think we learn more about ourselves, the innate biases we might have, the tendencies that we unknowingly possess, through these models. And if we know, then we can improve.
